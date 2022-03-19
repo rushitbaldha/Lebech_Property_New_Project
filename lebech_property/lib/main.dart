@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
 
+import 'common/app_theme/app_theme.dart';
 import 'screens/home_screen/home_screen.dart';
 
 void main() {
@@ -15,15 +17,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: "Lebech Property New Project",
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
 
-      theme: ThemeData(
-        fontFamily: "Quicksand",
-        appBarTheme: AppBarTheme(
-          color: Colors.red,
-          // titleTextStyle: Text
-        ),
-      ),
+      home: SignInScreen(),
+
+      theme: appThemeData(),
     );
   }
 }
