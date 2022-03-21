@@ -43,6 +43,7 @@ InputDecoration formFieldDecoration({required String hintText}) {
     hintText: hintText,
     fillColor: Colors.white,
     filled: true,
+    errorStyle: const TextStyle(color: Colors.white),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
       borderSide: const BorderSide(color: Colors.white),

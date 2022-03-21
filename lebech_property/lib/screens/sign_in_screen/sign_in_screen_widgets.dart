@@ -5,6 +5,7 @@ import 'package:lebech_property/screens/sign_up_screen/sign_up_screen.dart';
 import '../../common/field_decorations.dart';
 import '../../common/field_validations.dart';
 import '../../controllers/sign_in_screen_controller/sign_in_screen_controller.dart';
+import '../home_screen/home_screen.dart';
 
 
 class SignInPhoneNoTextFieldModule extends StatelessWidget {
@@ -18,9 +19,6 @@ class SignInPhoneNoTextFieldModule extends StatelessWidget {
       keyboardType: TextInputType.phone,
       maxLength: 10,
       decoration: formFieldDecoration(hintText: 'Mobile No'),
-      style: const TextStyle(
-        color: Colors.white,
-      ),
       validator: (value) => FieldValidations().validateMobile(value!),
     );
   }
@@ -36,9 +34,6 @@ class SignInPasswordFieldModule extends StatelessWidget {
       controller: screenController.passwordTextField,
       keyboardType: TextInputType.text,
       decoration: formFieldDecoration(hintText: 'Password'),
-      style: const TextStyle(
-        color: Colors.white,
-      ),
       validator: (value) => FieldValidations().validatePassword(value!),
     );
   }
@@ -53,8 +48,8 @@ class SignInButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         if(screenController.formKey.currentState!.validate()){
-          // await screenController.userSignInFunction();
-          // Get.off(()=> HomeScreen());
+          await screenController.userSignInFunction();
+          Get.off(()=> HomeScreen());
         }
       },
       child: Material(

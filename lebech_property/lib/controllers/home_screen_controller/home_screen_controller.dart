@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:lebech_property/common/app_images.dart';
+import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class HomeScreenController extends GetxController {
