@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
@@ -7,6 +6,7 @@ import 'package:lebech_property/controllers/home_screen_controller/home_screen_c
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../common/field_decorations.dart';
+import '../../models/home_screen_model/home_screen_model.dart';
 
 class SearchBarModule extends StatelessWidget {
   SearchBarModule({Key? key}) : super(key: key);
@@ -55,7 +55,7 @@ class BannerModule extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
-            image: AssetImage(screenController.bannerLists[index]),
+            image: NetworkImage(screenController.bannerLists[index].image),
             fit: BoxFit.cover,
           ),
         ),
@@ -94,7 +94,8 @@ class BannerIndicatorModule extends StatelessWidget {
 }
 
 class NewProjectsModule extends StatelessWidget {
-  const NewProjectsModule({Key? key}) : super(key: key);
+  NewProjectsModule({Key? key}) : super(key: key);
+  final screenController = Get.find<HomeScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +112,12 @@ class NewProjectsModule extends StatelessWidget {
         SizedBox(
           height: 180,
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: screenController.newProjectsList.length,
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, i) {
+              Project singleNewProjectItem = screenController.newProjectsList[i];
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Container(
@@ -134,7 +136,7 @@ class NewProjectsModule extends StatelessWidget {
                       // const SizedBox(height: 5),
                       Expanded(
                         flex: 45,
-                        child: _propertyDetails(),
+                        child: _propertyDetails(singleNewProjectItem: singleNewProjectItem),
                       ),
                     ],
                   ),
@@ -182,14 +184,176 @@ class NewProjectsModule extends StatelessWidget {
     );
   }
 
-  Widget _propertyDetails() {
+  Widget _propertyDetails({required Project singleNewProjectItem}) {
     return Container(
       width: 180,
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
+            singleNewProjectItem.name,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 5),
+          Text(
+            '${singleNewProjectItem.user.name}, ${singleNewProjectItem.area.name}',
+            maxLines: 1,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 5),
+          SizedBox(
+            height: 17,
+            child: ListView.builder(
+              itemCount: singleNewProjectItem.prices.length,
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, i) {
+                return IntrinsicHeight(
+                  child: Row(
+                    children: [
+                      Text(
+                        singleNewProjectItem.prices[i].type,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 13,
+                        ),
+                      ),
+                      VerticalDivider(),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+
+
+        ],
+      ),
+    );
+  }
+}
+
+class FavouriteProjectsModule extends StatelessWidget {
+  FavouriteProjectsModule({Key? key}) : super(key: key);
+  final screenController = Get.find<HomeScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Text(
+          'Favourite Projects',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+          ),
+        ),
+        const SizedBox(height: 5),
+        SizedBox(
+          height: 180,
+          child: ListView.builder(
+            itemCount: screenController.favouriteProjectsList.length,
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, i) {
+              Project singleFavouriteProjectItem = screenController.favouriteProjectsList[i];
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Container(
+
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 55,
+                        child: _imageModule(),
+                      ),
+                      // const SizedBox(height: 5),
+                      Expanded(
+                        flex: 45,
+                        child: _propertyDetails(singleFavouriteProjectItem: singleFavouriteProjectItem),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 5),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: const [
+              Text(
+                'See All Favourite Projects',
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              SizedBox(width: 5),
+              Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _imageModule() {
+    return Container(
+      width: 180,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+        image: DecorationImage(
+          image: AssetImage(AppImages.banner1Img),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _propertyDetails({required Project singleFavouriteProjectItem}) {
+    return Container(
+      width: 180,
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            singleFavouriteProjectItem.name,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 5),
+          Text(
+            '${singleFavouriteProjectItem.user.name}, ${singleFavouriteProjectItem.area.name}',
+            maxLines: 1,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 5),
+          const Text(
             '2 BHK Flat',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -197,20 +361,281 @@ class NewProjectsModule extends StatelessWidget {
               fontSize: 13,
             ),
           ),
-          SizedBox(height: 5),
-          Text(
-            '₹ 1.25 Cr | 1450 sqft',
-            maxLines: 1,
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-            ),
+
+
+        ],
+      ),
+    );
+  }
+}
+
+class NewListingsModule extends StatelessWidget {
+  NewListingsModule({Key? key}) : super(key: key);
+  final screenController = Get.find<HomeScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Text(
+          'New Listings',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
           ),
-          SizedBox(height: 5),
-          Text(
-              'Rajhans Cornello',
+        ),
+        const SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: GridView.builder(
+            itemCount: screenController.newListingsList.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 20,
+              childAspectRatio: 0.75,
+            ),
+            itemBuilder: (context, i){
+              Favourite singleListingsItem = screenController.newListingsList[i];
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 45,
+                      child: _imagesListModule(singleListingsItem: singleListingsItem),
+                    ),
+                    Expanded(
+                      flex: 55,
+                      child: _propertyDetailsModule(singleListingsItem: singleListingsItem),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 5),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: const [
+              Text(
+                'See All New Listings',
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              SizedBox(width: 5),
+              Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _imagesListModule({required Favourite singleListingsItem}) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15)
+        ),
+        image: DecorationImage(
+          image: NetworkImage(singleListingsItem.propertyImages[0].image),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _propertyDetailsModule({required Favourite singleListingsItem}) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+           Text(
+            singleListingsItem.title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            "₹ ${singleListingsItem.rent.rent}",
+            maxLines: 1,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
+              fontSize: 12,
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            singleListingsItem.sortDesc,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 12),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            '${singleListingsItem.bedrooms}BHK',
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            '${singleListingsItem.propertyTenant.totalCarParking} Car Parking',
+            style: const TextStyle(fontSize: 12),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FeaturedListingsModule extends StatelessWidget {
+  FeaturedListingsModule({Key? key}) : super(key: key);
+  final screenController = Get.find<HomeScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Text(
+          'Featured Listings',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: GridView.builder(
+            itemCount: screenController.featuredListingsList.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 20,
+              childAspectRatio: 0.75,
+            ),
+            itemBuilder: (context, i){
+              Favourite singleFeaturedItem = screenController.featuredListingsList[i];
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 45,
+                      child: _imagesListModule(singleFeaturedItem: singleFeaturedItem),
+                    ),
+                    Expanded(
+                      flex: 55,
+                      child: _propertyDetailsModule(singleFeaturedItem: singleFeaturedItem),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 5),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: const [
+              Text(
+                'See All Featured Listings',
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              SizedBox(width: 5),
+              Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _imagesListModule({required Favourite singleFeaturedItem}) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15)
+        ),
+        image: DecorationImage(
+          image: NetworkImage(singleFeaturedItem.propertyImages[0].image),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _propertyDetailsModule({required Favourite singleFeaturedItem}) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            singleFeaturedItem.title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            "₹ ${singleFeaturedItem.rent.rent}",
+            maxLines: 1,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
+              fontSize: 12,
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            singleFeaturedItem.sortDesc,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 12),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            '${singleFeaturedItem.bedrooms}BHK',
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            '${singleFeaturedItem.propertyTenant.totalCarParking} Car Parking',
+            style: const TextStyle(fontSize: 12),
           ),
         ],
       ),
@@ -294,7 +719,7 @@ class Banner2Module extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
-            image: AssetImage(screenController.bannerLists[index]),
+            image: NetworkImage(screenController.bannerLists[index].image),
             fit: BoxFit.cover,
           ),
         ),
@@ -311,7 +736,7 @@ class AminitiesTextModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: Text(
+      child: const Text(
         'Building Aminities',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -323,7 +748,8 @@ class AminitiesTextModule extends StatelessWidget {
 }
 
 class AminitiesModule extends StatelessWidget {
-  const AminitiesModule({Key? key}) : super(key: key);
+  AminitiesModule({Key? key}) : super(key: key);
+  final screenController = Get.find<HomeScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -332,7 +758,7 @@ class AminitiesModule extends StatelessWidget {
       child: SizedBox(
         height: 300,
         child: GridView.builder(
-          itemCount: 10,
+          itemCount: screenController.aminitiesLists.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 10,
@@ -343,75 +769,73 @@ class AminitiesModule extends StatelessWidget {
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, i) {
-            return Container(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Column(
-                    children: [
-                      Expanded(
-                        flex: 80,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(color: Colors.grey),
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.red.shade100,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(8),
-                                    child: Icon(Icons.home_rounded, color: Colors.red, size: 35),
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                const Text(
-                                  'CCTV',
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 20,
-                        child: Container(),
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    bottom: 8,
-                    child: Material(
-                      elevation: 10,
-                      // shape: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(20),
+            return Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Column(
+                  children: [
+                    Expanded(
+                      flex: 80,
                       child: Container(
-                        height: 40,
-                        width: 40,
-                        alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
+                          borderRadius: BorderRadius.circular(15),
                           border: Border.all(color: Colors.grey),
-                          color: Colors.white,
                         ),
-                        child: const Icon(Icons.arrow_forward_rounded),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.red.shade100,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Icon(Icons.home_rounded, color: Colors.red, size: 35),
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                screenController.aminitiesLists[i],
+                                maxLines: 1,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
+                    Expanded(
+                      flex: 20,
+                      child: Container(),
+                    ),
+                  ],
+                ),
+                Positioned(
+                  bottom: 8,
+                  child: Material(
+                    elevation: 10,
+                    // shape: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey),
+                        color: Colors.white,
+                      ),
+                      child: const Icon(Icons.arrow_forward_rounded),
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           },
         ),
@@ -558,3 +982,4 @@ class LatestNewsFeedModule extends StatelessWidget {
     );
   }
 }
+

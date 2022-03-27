@@ -5,6 +5,9 @@ ThemeData appThemeData() {
     fontFamily: "Quicksand",
     appBarTheme: const AppBarTheme(
       color: Colors.red,
+      centerTitle: true,
+      elevation: 0,
+      toolbarTextStyle: TextStyle(color: Colors.white),
       // titleTextStyle: Text
     ),
   );

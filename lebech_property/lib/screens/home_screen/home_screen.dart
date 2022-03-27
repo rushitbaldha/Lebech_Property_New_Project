@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/common_functions.dart';
+import 'package:lebech_property/common/common_widgets.dart';
 
 import '../../controllers/home_screen_controller/home_screen_controller.dart';
 import 'home_screen_widgets.dart';
@@ -22,32 +23,47 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
 
-        drawer: Drawer(),
+        drawer: const Drawer(),
 
-        body: Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                BannerModule(),
-                const SizedBox(height: 5),
-                BannerIndicatorModule(),
-                const SizedBox(height: 10),
-                const NewProjectsModule(),
-                const SizedBox(height: 10),
-                YoutubeVideoModule(),
-                const SizedBox(height: 10),
-                const AminitiesTextModule(),
-                const SizedBox(height: 10),
-                const AminitiesModule(),
-                const SizedBox(height: 10),
-                Banner2Module(),
-                const SizedBox(height: 10),
-                LatestNewsFeedModule(),
-                const SizedBox(height: 10),
-              ],
-            ),
-          ),
+        body: Obx(
+            () => homeScreenController.isLoading.value
+                ? const CustomCircularProgressIndicatorModule()
+                : Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    BannerModule(),
+                    const SizedBox(height: 5),
+                    BannerIndicatorModule(),
+                    const SizedBox(height: 10),
+
+                    NewProjectsModule(),
+                    const SizedBox(height: 10),
+
+                    YoutubeVideoModule(),
+                    const SizedBox(height: 10),
+
+                    NewListingsModule(),
+                    const SizedBox(height: 10),
+
+                    const AminitiesTextModule(),
+                    const SizedBox(height: 10),
+                    AminitiesModule(),
+                    const SizedBox(height: 10),
+
+                    FeaturedListingsModule(),
+                    const SizedBox(height: 20),
+
+
+                    // Banner2Module(),
+                    // const SizedBox(height: 10),
+                    // LatestNewsFeedModule(),
+                    // const SizedBox(height: 10),
+                  ],
+                ),
+              ),
+            )
         ),
 
       ),
