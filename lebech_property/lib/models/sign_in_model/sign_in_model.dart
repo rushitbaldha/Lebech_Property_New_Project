@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final signInModel = signInModelFromJson(jsonString);
+
 import 'dart:convert';
 
 SignInModel signInModelFromJson(String str) => SignInModel.fromJson(json.decode(str));
@@ -11,12 +15,12 @@ class SignInModel {
     required this.data,
   });
 
-  String status;
+  bool status;
   String message;
   Data data;
 
   factory SignInModel.fromJson(Map<String, dynamic> json) => SignInModel(
-    status: json["status"] ?? "Failed",
+    status: json["status"] ?? false,
     message: json["message"] ?? "",
     data: Data.fromJson(json["data"] ?? {}),
   );

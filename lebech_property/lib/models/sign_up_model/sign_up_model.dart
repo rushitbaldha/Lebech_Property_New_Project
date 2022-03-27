@@ -15,12 +15,12 @@ class SignUpModel {
     required this.data,
   });
 
-  String status;
+  bool status;
   String message;
   Data data;
 
   factory SignUpModel.fromJson(Map<String, dynamic> json) => SignUpModel(
-    status: json["status"] ?? "",
+    status: json["status"] ?? false,
     message: json["message"] ?? "",
     data: Data.fromJson(json["data"] ?? {}),
   );

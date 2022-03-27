@@ -41,9 +41,9 @@ class SignUpScreenController extends GetxController {
 
       response.stream.transform(utf8.decoder).listen((value) async {
         SignUpModel signUpModel = SignUpModel.fromJson(json.decode(value));
-        log('signUpModel : ${signUpModel.status}');
+        isSuccessStatus = signUpModel.status.obs;
 
-        if(signUpModel.status == "Success") {
+        if(isSuccessStatus.value) {
           Fluttertoast.showToast(msg: 'User Created Successfully!');
           String userToken = signUpModel.data.token;
           await sharedPreferenceData.setUserLoggedInDetailsInPrefs(userToken: userToken);

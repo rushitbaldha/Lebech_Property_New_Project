@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceData {
@@ -9,8 +11,8 @@ class SharedPreferenceData {
     prefs.setBool(isUserLoggedInKey, true);
     prefs.setString(userTokenKey, userToken);
 
-    print('isUserLoggedInKey : ${prefs.getBool(isUserLoggedInKey)}');
-    print('userTokenKey : ${prefs.getString(userTokenKey)}');
+    log('isUserLoggedInKey : ${prefs.getBool(isUserLoggedInKey)}');
+    log('userTokenKey : ${prefs.getString(userTokenKey)}');
   }
 
 }

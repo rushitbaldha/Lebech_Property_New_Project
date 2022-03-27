@@ -33,8 +33,9 @@ class SignInScreenController extends GetxController {
 
       response.stream.transform(utf8.decoder).listen((value) async {
         SignInModel signInModel = SignInModel.fromJson(json.decode(value));
+        isSuccessStatus = signInModel.status.obs;
 
-        if(signInModel.status == "Success") {
+        if(isSuccessStatus.value) {
           Fluttertoast.showToast(msg: 'User LoggedIn Successfully!');
           String userToken = signInModel.data.token;
           await sharedPreferenceData.setUserLoggedInDetailsInPrefs(userToken: userToken);
