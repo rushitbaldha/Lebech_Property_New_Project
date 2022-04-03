@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'common/app_theme/app_theme.dart';
-import 'screens/category_property_screen/category_property_screen.dart';
 import 'screens/home_screen/home_screen.dart';
 
 void main() {

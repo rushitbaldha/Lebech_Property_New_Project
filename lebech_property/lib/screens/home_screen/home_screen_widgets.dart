@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
+import 'package:lebech_property/screens/property_details_screen/property_details_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../common/field_decorations.dart';
@@ -120,25 +121,33 @@ class NewProjectsModule extends StatelessWidget {
               Project singleNewProjectItem = screenController.newProjectsList[i];
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Container(
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(()=> PropertyDetailsScreen(),
+                        transition: Transition.zoom,
+                      arguments: singleNewProjectItem.id.toString(),
+                    );
+                  },
+                  child: Container(
 
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 55,
-                        child: _imageModule(),
-                      ),
-                      // const SizedBox(height: 5),
-                      Expanded(
-                        flex: 45,
-                        child: _propertyDetails(singleNewProjectItem: singleNewProjectItem),
-                      ),
-                    ],
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          flex: 55,
+                          child: _imageModule(),
+                        ),
+                        // const SizedBox(height: 5),
+                        Expanded(
+                          flex: 45,
+                          child: _propertyDetails(singleNewProjectItem: singleNewProjectItem),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -267,25 +276,30 @@ class FavouriteProjectsModule extends StatelessWidget {
               Project singleFavouriteProjectItem = screenController.favouriteProjectsList[i];
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Container(
+                child: GestureDetector(
+                  onTap: ()=> Get.to(()=> PropertyDetailsScreen(),
+                    transition: Transition.zoom,
+                    arguments: singleFavouriteProjectItem.id.toString(),),
+                  child: Container(
 
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 55,
-                        child: _imageModule(),
-                      ),
-                      // const SizedBox(height: 5),
-                      Expanded(
-                        flex: 45,
-                        child: _propertyDetails(singleFavouriteProjectItem: singleFavouriteProjectItem),
-                      ),
-                    ],
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          flex: 55,
+                          child: _imageModule(),
+                        ),
+                        // const SizedBox(height: 5),
+                        Expanded(
+                          flex: 45,
+                          child: _propertyDetails(singleFavouriteProjectItem: singleFavouriteProjectItem),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -399,22 +413,27 @@ class NewListingsModule extends StatelessWidget {
             ),
             itemBuilder: (context, i){
               Favourite singleListingsItem = screenController.newListingsList[i];
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 45,
-                      child: _imagesListModule(singleListingsItem: singleListingsItem),
-                    ),
-                    Expanded(
-                      flex: 55,
-                      child: _propertyDetailsModule(singleListingsItem: singleListingsItem),
-                    ),
-                  ],
+              return GestureDetector(
+                onTap: ()=> Get.to(()=> PropertyDetailsScreen(),
+                  transition: Transition.zoom,
+                  arguments: singleListingsItem.id.toString(),),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 45,
+                        child: _imagesListModule(singleListingsItem: singleListingsItem),
+                      ),
+                      Expanded(
+                        flex: 55,
+                        child: _propertyDetailsModule(singleListingsItem: singleListingsItem),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
@@ -536,22 +555,27 @@ class FeaturedListingsModule extends StatelessWidget {
             ),
             itemBuilder: (context, i){
               Favourite singleFeaturedItem = screenController.featuredListingsList[i];
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 45,
-                      child: _imagesListModule(singleFeaturedItem: singleFeaturedItem),
-                    ),
-                    Expanded(
-                      flex: 55,
-                      child: _propertyDetailsModule(singleFeaturedItem: singleFeaturedItem),
-                    ),
-                  ],
+              return GestureDetector(
+                onTap: ()=> Get.to(()=> PropertyDetailsScreen(),
+                  transition: Transition.zoom,
+                  arguments: singleFeaturedItem.id.toString(),),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 45,
+                        child: _imagesListModule(singleFeaturedItem: singleFeaturedItem),
+                      ),
+                      Expanded(
+                        flex: 55,
+                        child: _propertyDetailsModule(singleFeaturedItem: singleFeaturedItem),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

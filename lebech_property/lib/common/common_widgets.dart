@@ -40,3 +40,19 @@ class FormSubHeaderModule extends StatelessWidget {
     );
   }
 }
+
+class HeadingModule extends StatelessWidget {
+  final String heading;
+  const HeadingModule({Key? key, required this.heading}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      heading,
+      style: const TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
+      ),
+    );
+  }
+}
