@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
+import 'package:lebech_property/screens/project_list_screen/project_list_screen.dart';
 import 'package:lebech_property/screens/property_details_screen/property_details_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -111,7 +112,7 @@ class NewProjectsModule extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         SizedBox(
-          height: 180,
+          height: 300,
           child: ListView.builder(
             itemCount: screenController.newProjectsList.length,
             shrinkWrap: true,
@@ -119,6 +120,7 @@ class NewProjectsModule extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, i) {
               Project singleNewProjectItem = screenController.newProjectsList[i];
+
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: GestureDetector(
@@ -129,12 +131,33 @@ class NewProjectsModule extends StatelessWidget {
                     );
                   },
                   child: Container(
-
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Colors.grey),
                     ),
                     child: Column(
+                      children: [
+                        Expanded(
+                          flex: 80,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              _imageModule(),
+
+                              Positioned(
+                                bottom: -35,
+                                child: _propertyDetails(singleNewProjectItem: singleNewProjectItem),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Expanded(
+                          flex: 20,
+                          child: SizedBox(),
+                        ),
+                      ],
+                    ),
+                    /*child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
@@ -147,7 +170,7 @@ class NewProjectsModule extends StatelessWidget {
                           child: _propertyDetails(singleNewProjectItem: singleNewProjectItem),
                         ),
                       ],
-                    ),
+                    ),*/
                   ),
                 ),
               );
@@ -157,20 +180,23 @@ class NewProjectsModule extends StatelessWidget {
         const SizedBox(height: 5),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              Text(
-                'See All New Projects',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold
+          child: GestureDetector(
+            onTap: () => Get.to(()=> ProjectListScreen(), transition: Transition.rightToLeft),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: const [
+                Text(
+                  'See All New Projects',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
-              ),
-              SizedBox(width: 5),
-              Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
-            ],
+                SizedBox(width: 5),
+                Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
+              ],
+            ),
           ),
         ),
       ],
@@ -179,13 +205,10 @@ class NewProjectsModule extends StatelessWidget {
 
   Widget _imageModule() {
     return Container(
-      width: 180,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15),
-        ),
-        image: DecorationImage(
+      width: Get.width * 0.80,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        image: const DecorationImage(
           image: AssetImage(AppImages.banner1Img),
           fit: BoxFit.cover,
         ),
@@ -195,54 +218,91 @@ class NewProjectsModule extends StatelessWidget {
 
   Widget _propertyDetails({required Project singleNewProjectItem}) {
     return Container(
-      width: 180,
+      width: Get.width * 0.60,
+      height: 100,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+      ),
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            singleNewProjectItem.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+          const Expanded(
+            flex: 25,
+            child: SizedBox(),
           ),
-          const SizedBox(height: 5),
-          Text(
-            '${singleNewProjectItem.user.name}, ${singleNewProjectItem.area.name}',
-            maxLines: 1,
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 5),
-          SizedBox(
-            height: 17,
-            child: ListView.builder(
-              itemCount: singleNewProjectItem.prices.length,
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, i) {
-                return IntrinsicHeight(
-                  child: Row(
-                    children: [
-                      Text(
-                        singleNewProjectItem.prices[i].type,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 13,
-                        ),
+          Expanded(
+            flex: 75,
+            child: Stack(
+              alignment: Alignment.topCenter,
+              clipBehavior: Clip.none,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      singleNewProjectItem.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      '${singleNewProjectItem.user.name}, ${singleNewProjectItem.area.name}',
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
                       ),
-                      VerticalDivider(),
-                    ],
+                    ),
+                    const SizedBox(height: 5),
+                    SizedBox(
+                      height: 17,
+                      child: ListView.builder(
+                        itemCount: singleNewProjectItem.prices.length,
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, i) {
+                          return IntrinsicHeight(
+                            child: Row(
+                              children: [
+                                Text(
+                                  singleNewProjectItem.prices[i].type,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                  ),
+                                ),
+                                VerticalDivider(),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+
+
+                  ],
+                ),
+                Positioned(
+                  top: -52,
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(AppImages.banner2Img),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
                   ),
-                );
-              },
+                ),
+              ],
             ),
           ),
-
-
         ],
       ),
     );
