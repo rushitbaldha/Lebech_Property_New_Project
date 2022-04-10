@@ -7,13 +7,14 @@ import '../../controllers/project_list_screen_controller/project_list_screen_con
 import 'project_list_screen_widgets.dart';
 
 class ProjectListScreen extends StatelessWidget {
-  ProjectListScreen({Key? key}) : super(key: key);
+  final String? appBarHeading;
+  ProjectListScreen({Key? key, this.appBarHeading}) : super(key: key);
   final projectListScreenController = Get.put(ProjectListScreenController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: "Projects"),
+      appBar: customAppBar(title: appBarHeading ?? "Projects"),
 
       // backgroundColor: Colors.grey,
 

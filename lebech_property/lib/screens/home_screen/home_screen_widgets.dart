@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../common/field_decorations.dart';
 import '../../models/home_screen_model/home_screen_model.dart';
+import '../project_details_screen/project_details_screen.dart';
 
 class SearchBarModule extends StatelessWidget {
   SearchBarModule({Key? key}) : super(key: key);
@@ -125,9 +128,11 @@ class NewProjectsModule extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: GestureDetector(
                   onTap: () {
-                    Get.to(()=> PropertyDetailsScreen(),
-                        transition: Transition.zoom,
-                      arguments: singleNewProjectItem.id.toString(),
+                    log("singleNewProjectItem.id : ${singleNewProjectItem.id}");
+                    Get.to(
+                          () => ProjectDetailsScreen(),
+                      transition: Transition.rightToLeft,
+                      arguments: singleNewProjectItem.id,
                     );
                   },
                   child: Container(
@@ -181,7 +186,7 @@ class NewProjectsModule extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: GestureDetector(
-            onTap: () => Get.to(()=> ProjectListScreen(), transition: Transition.rightToLeft),
+            onTap: () => Get.to(()=> ProjectListScreen(appBarHeading: "New Projects"), transition: Transition.rightToLeft),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: const [
