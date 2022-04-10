@@ -50,6 +50,7 @@ class HomeScreen extends StatelessWidget {
 
                     const AminitiesTextModule(),
                     const SizedBox(height: 10),
+
                     AminitiesModule(),
                     const SizedBox(height: 10),
 

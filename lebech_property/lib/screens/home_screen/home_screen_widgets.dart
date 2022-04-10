@@ -13,6 +13,7 @@ import '../../common/field_decorations.dart';
 import '../../models/home_screen_model/home_screen_model.dart';
 import '../project_details_screen/project_details_screen.dart';
 
+/// SearchBar Module
 class SearchBarModule extends StatelessWidget {
   SearchBarModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -31,6 +32,7 @@ class SearchBarModule extends StatelessWidget {
   }
 }
 
+/// Banner Module
 class BannerModule extends StatelessWidget {
   BannerModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -70,6 +72,7 @@ class BannerModule extends StatelessWidget {
 
 }
 
+/// Banner Indicator
 class BannerIndicatorModule extends StatelessWidget {
   BannerIndicatorModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -98,6 +101,7 @@ class BannerIndicatorModule extends StatelessWidget {
   }
 }
 
+/// New Project Module
 class NewProjectsModule extends StatelessWidget {
   NewProjectsModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -314,6 +318,7 @@ class NewProjectsModule extends StatelessWidget {
   }
 }
 
+/// Favourite Project Module
 class FavouriteProjectsModule extends StatelessWidget {
   FavouriteProjectsModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -448,6 +453,7 @@ class FavouriteProjectsModule extends StatelessWidget {
   }
 }
 
+/// New Listing Module
 class NewListingsModule extends StatelessWidget {
   NewListingsModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -590,6 +596,7 @@ class NewListingsModule extends StatelessWidget {
   }
 }
 
+/// Featured Product Module
 class FeaturedListingsModule extends StatelessWidget {
   FeaturedListingsModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -732,6 +739,7 @@ class FeaturedListingsModule extends StatelessWidget {
   }
 }
 
+/// Youtube Vide Module
 class YoutubeVideoModule extends StatelessWidget {
   YoutubeVideoModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -779,7 +787,7 @@ class YoutubeVideoModule extends StatelessWidget {
 
 }
 
-class Banner2Module extends StatelessWidget {
+/*class Banner2Module extends StatelessWidget {
   Banner2Module({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
 
@@ -816,8 +824,9 @@ class Banner2Module extends StatelessWidget {
     );
   }
 
-}
+}*/
 
+/// Aminities Text Heading Module
 class AminitiesTextModule extends StatelessWidget {
   const AminitiesTextModule({Key? key}) : super(key: key);
 
@@ -836,6 +845,7 @@ class AminitiesTextModule extends StatelessWidget {
   }
 }
 
+/// Aminities List Module
 class AminitiesModule extends StatelessWidget {
   AminitiesModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
@@ -933,7 +943,8 @@ class AminitiesModule extends StatelessWidget {
   }
 }
 
-class LatestNewsFeedModule extends StatelessWidget {
+/// Latest News Feed Module
+/*class LatestNewsFeedModule extends StatelessWidget {
   LatestNewsFeedModule({Key? key}) : super(key: key);
   final screenController = Get.find<HomeScreenController>();
 
@@ -967,7 +978,7 @@ class LatestNewsFeedModule extends StatelessWidget {
               padEnds: false,
               controller: screenController.newsFeedPageController,
               onPageChanged: screenController.selectedPageIndex,
-              itemCount: /*screenController.serviceLists.length*/5,
+              itemCount: *//*screenController.serviceLists.length*//*5,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -1070,5 +1081,5 @@ class LatestNewsFeedModule extends StatelessWidget {
       ),
     );
   }
-}
+}*/
 
