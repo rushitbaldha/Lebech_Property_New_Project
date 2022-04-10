@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => hideKeyBoard(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text('Lebech Property'),
           bottom: PreferredSize(
