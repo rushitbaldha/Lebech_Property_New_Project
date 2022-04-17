@@ -284,7 +284,7 @@ class NewProjectsModule extends StatelessWidget {
                                     fontSize: 13,
                                   ),
                                 ),
-                                VerticalDivider(),
+                                const VerticalDivider(),
                               ],
                             ),
                           );
@@ -336,7 +336,7 @@ class FavouriteProjectsModule extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         SizedBox(
-          height: 180,
+          height: 300,
           child: ListView.builder(
             itemCount: screenController.favouriteProjectsList.length,
             shrinkWrap: true,
@@ -347,16 +347,42 @@ class FavouriteProjectsModule extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: GestureDetector(
-                  onTap: ()=> Get.to(()=> PropertyDetailsScreen(),
-                    transition: Transition.zoom,
-                    arguments: singleFavouriteProjectItem.id.toString(),),
+                  onTap: () {
+                    log("singleNewProjectItem.id : ${singleFavouriteProjectItem.id}");
+                    Get.to(
+                          () => ProjectDetailsScreen(),
+                      transition: Transition.rightToLeft,
+                      arguments: singleFavouriteProjectItem.id,
+                    );
+                  },
                   child: Container(
-
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Colors.grey),
                     ),
                     child: Column(
+                      children: [
+                        Expanded(
+                          flex: 80,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              _imageModule(),
+
+                              Positioned(
+                                bottom: -35,
+                                child: _propertyDetails(singleFavouriteProjectItem: singleFavouriteProjectItem),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Expanded(
+                          flex: 20,
+                          child: SizedBox(),
+                        ),
+                      ],
+                    ),
+                    /*child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
@@ -366,10 +392,10 @@ class FavouriteProjectsModule extends StatelessWidget {
                         // const SizedBox(height: 5),
                         Expanded(
                           flex: 45,
-                          child: _propertyDetails(singleFavouriteProjectItem: singleFavouriteProjectItem),
+                          child: _propertyDetails(singleNewProjectItem: singleNewProjectItem),
                         ),
                       ],
-                    ),
+                    ),*/
                   ),
                 ),
               );
@@ -379,20 +405,23 @@ class FavouriteProjectsModule extends StatelessWidget {
         const SizedBox(height: 5),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              Text(
-                'See All Favourite Projects',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold
+          child: GestureDetector(
+            onTap: () => Get.to(()=> ProjectListScreen(appBarHeading: "Favourite Projects"), transition: Transition.rightToLeft),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: const [
+                Text(
+                  'See All Favourite Projects',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
-              ),
-              SizedBox(width: 5),
-              Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
-            ],
+                SizedBox(width: 5),
+                Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
+              ],
+            ),
           ),
         ),
       ],
@@ -401,13 +430,10 @@ class FavouriteProjectsModule extends StatelessWidget {
 
   Widget _imageModule() {
     return Container(
-      width: 180,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15),
-        ),
-        image: DecorationImage(
+      width: Get.width * 0.80,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        image: const DecorationImage(
           image: AssetImage(AppImages.banner1Img),
           fit: BoxFit.cover,
         ),
@@ -417,40 +443,148 @@ class FavouriteProjectsModule extends StatelessWidget {
 
   Widget _propertyDetails({required Project singleFavouriteProjectItem}) {
     return Container(
-      width: 180,
+      width: Get.width * 0.60,
+      height: 100,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+      ),
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            singleFavouriteProjectItem.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+          const Expanded(
+            flex: 25,
+            child: SizedBox(),
           ),
-          const SizedBox(height: 5),
-          Text(
-            '${singleFavouriteProjectItem.user.name}, ${singleFavouriteProjectItem.area.name}',
-            maxLines: 1,
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 5),
-          const Text(
-            '2 BHK Flat',
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 13,
-            ),
-          ),
+          Expanded(
+            flex: 75,
+            child: Stack(
+              alignment: Alignment.topCenter,
+              clipBehavior: Clip.none,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      singleFavouriteProjectItem.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      '${singleFavouriteProjectItem.user.name}, ${singleFavouriteProjectItem.area.name}',
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    SizedBox(
+                      height: 17,
+                      child: ListView.builder(
+                        itemCount: singleFavouriteProjectItem.prices.length,
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, i) {
+                          return IntrinsicHeight(
+                            child: Row(
+                              children: [
+                                Text(
+                                  singleFavouriteProjectItem.prices[i].type,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                  ),
+                                ),
+                                const VerticalDivider(),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
 
 
+                  ],
+                ),
+                Positioned(
+                  top: -52,
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(AppImages.banner2Img),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
+
+  // Widget _imageModule() {
+  //   return Container(
+  //     width: 180,
+  //     decoration: const BoxDecoration(
+  //       borderRadius: BorderRadius.only(
+  //         topLeft: Radius.circular(15),
+  //         topRight: Radius.circular(15),
+  //       ),
+  //       image: DecorationImage(
+  //         image: AssetImage(AppImages.banner1Img),
+  //         fit: BoxFit.cover,
+  //       ),
+  //     ),
+  //   );
+  // }
+  //
+  // Widget _propertyDetails({required Project singleFavouriteProjectItem}) {
+  //   return Container(
+  //     width: 180,
+  //     padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Text(
+  //           singleFavouriteProjectItem.name,
+  //           maxLines: 1,
+  //           overflow: TextOverflow.ellipsis,
+  //         ),
+  //         const SizedBox(height: 5),
+  //         Text(
+  //           '${singleFavouriteProjectItem.user.name}, ${singleFavouriteProjectItem.area.name}',
+  //           maxLines: 1,
+  //           style: const TextStyle(
+  //             fontSize: 13,
+  //             fontWeight: FontWeight.bold,
+  //           ),
+  //         ),
+  //         const SizedBox(height: 5),
+  //         const Text(
+  //           '2 BHK Flat',
+  //           maxLines: 1,
+  //           overflow: TextOverflow.ellipsis,
+  //           style: TextStyle(
+  //             fontSize: 13,
+  //           ),
+  //         ),
+  //
+  //
+  //       ],
+  //     ),
+  //   );
+  // }
 }
 
 /// New Listing Module
