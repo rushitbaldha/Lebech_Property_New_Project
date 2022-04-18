@@ -8,4 +8,10 @@ class ApiUrl {
 
   static const String projectListApi = apiMainPath + "customer/project_list";
   static const String projectDetailsApi = apiMainPath + "customer/project_detail";
+
+  static const String getCategoryWisePropertyApi = apiMainPath + "customer/category_property";
+  static const String changeCityApi = apiMainPath + "customer/change_city";
+  static const String searchResultApi = apiMainPath + "customer/search_result";
+  static const String directSearchApi = apiMainPath + "customer/direct_search";
+  static const String fetchProjectApi = apiMainPath + "customer/project_fetch";
 }
