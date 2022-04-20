@@ -22,7 +22,7 @@ class SearchScreen extends StatelessWidget {
             child: Obx(
               () => searchScreenController.isLoading.value
                   ? const CustomCircularProgressIndicatorModule()
-                  : /*searchScreenController.searchList.isEmpty
+                  : searchScreenController.searchList.isEmpty
                       ? const Center(
                           child: Text(
                             "Search Property",
@@ -33,7 +33,7 @@ class SearchScreen extends StatelessWidget {
                             ),
                           ),
                         )
-                      :*/ SearchListModule()
+                      : SearchListModule()
                           .commonSymmetricPadding(horizontal: 10),
             ),
           ),

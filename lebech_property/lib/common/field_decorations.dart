@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../controllers/direct_search_screen_controller/direct_search_screen_controller.dart';
 import '../controllers/search_screen_controller/search_screen_controller.dart';
 
 
@@ -31,6 +32,41 @@ InputDecoration searchFieldDecoration({required String hintText, required Search
         String searchText = screenController.searchFieldController.text.trim();
         await screenController.searchResultFunction(searchText: searchText);
         },
+      icon: const Icon(Icons.search, size: 25, color: Colors.red),
+    ),
+  );
+}
+
+
+InputDecoration directSearchFieldDecoration({required String hintText, required DirectSearchScreenController screenController}) {
+  return InputDecoration(
+    hintText: hintText,
+    fillColor: Colors.white,
+    filled: true,
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.white),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.white),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.white),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.white),
+    ),
+    isDense: true,
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+    counterText: '',
+    suffixIcon: IconButton(
+      onPressed: () async {
+        String searchText = screenController.directSearchFieldController.text.trim();
+        await screenController.directSearchFunction(searchText: searchText);
+      },
       icon: const Icon(Icons.search, size: 25, color: Colors.red),
     ),
   );

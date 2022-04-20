@@ -46,7 +46,7 @@ class SearchScreenController extends GetxController {
 
         if(isSuccessStatus.value) {
           searchList = searchResultModel.data.data;
-          
+
           log("searchList Length : ${searchList.length}");
           loadUI();
         } else {
