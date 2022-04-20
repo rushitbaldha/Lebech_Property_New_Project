@@ -34,11 +34,11 @@ class Data {
     required this.selected,
   });
 
-  List<Datum> data;
+  List<SearchDatum> data;
   String selected;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x)) ?? {}),
+    data: List<SearchDatum>.from(json["data"].map((x) => SearchDatum.fromJson(x)) ?? {}),
     selected: json["selected"] ?? "",
   );
 
@@ -48,8 +48,8 @@ class Data {
   };
 }
 
-class Datum {
-  Datum({
+class SearchDatum {
+  SearchDatum({
     required this.id,
     required this.detail,
     required this.propertyTypeId,
@@ -181,7 +181,7 @@ class Datum {
   PropertyTenant propertyTenant;
   PropertyType propertyType;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory SearchDatum.fromJson(Map<String, dynamic> json) => SearchDatum(
     id: json["id"] ?? 0,
     detail: json["detail"] ?? "",
     propertyTypeId: json["property_type_id"] ?? 0,

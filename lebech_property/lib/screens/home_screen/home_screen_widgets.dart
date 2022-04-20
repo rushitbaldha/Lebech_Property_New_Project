@@ -1,17 +1,17 @@
 import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
+import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
 import 'package:lebech_property/screens/project_list_screen/project_list_screen.dart';
 import 'package:lebech_property/screens/property_details_screen/property_details_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
-import '../../common/field_decorations.dart';
 import '../../models/home_screen_model/home_screen_model.dart';
 import '../project_details_screen/project_details_screen.dart';
+import '../search_screen/search_screen.dart';
+
 
 /// SearchBar Module
 class SearchBarModule extends StatelessWidget {
@@ -22,13 +22,43 @@ class SearchBarModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 5),
+      child: GestureDetector(
+        onTap: () {
+          Get.to(()=> SearchScreen());
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                "Search Property",
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                ),
+              ),
+              Icon(
+                Icons.search_rounded,
+                color: Colors.red,
+              )
+            ],
+          ).commonAllSidePadding(padding: 14),
+        ),
+      ),
+    );
+    /*return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 5),
       child: TextFormField(
         controller: screenController.searchFieldController,
         keyboardType: TextInputType.text,
         cursorColor: Colors.red,
         decoration: searchFieldDecoration(hintText: 'Search Property', screenController: screenController),
       ),
-    );
+    );*/
   }
 }
 

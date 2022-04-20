@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
+import '../controllers/search_screen_controller/search_screen_controller.dart';
 
-InputDecoration searchFieldDecoration({required String hintText, required HomeScreenController screenController}) {
+
+InputDecoration searchFieldDecoration({required String hintText, required SearchScreenController screenController}) {
   return InputDecoration(
     hintText: hintText,
     fillColor: Colors.white,
@@ -27,11 +27,9 @@ InputDecoration searchFieldDecoration({required String hintText, required HomeSc
     contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
     counterText: '',
     suffixIcon: IconButton(
-      onPressed: () {
-        if (kDebugMode) {
-          print(screenController.searchFieldController.text);
-        }
-        screenController.searchFieldController.clear();
+      onPressed: () async {
+        String searchText = screenController.searchFieldController.text.trim();
+        await screenController.searchResultFunction(searchText: searchText);
         },
       icon: const Icon(Icons.search, size: 25, color: Colors.red),
     ),

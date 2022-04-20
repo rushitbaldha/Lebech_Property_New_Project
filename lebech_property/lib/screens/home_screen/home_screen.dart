@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lebech_property/common/common_functions.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 
+import '../../common/custom_drawer/custom_drawer.dart';
 import '../../controllers/home_screen_controller/home_screen_controller.dart';
 import 'home_screen_widgets.dart';
 
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
 
-        drawer: const Drawer(),
+        drawer: const CustomDrawer(),
 
         body: Obx(
             () => homeScreenController.isLoading.value
