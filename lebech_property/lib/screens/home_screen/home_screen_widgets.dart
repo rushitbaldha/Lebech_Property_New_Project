@@ -622,6 +622,7 @@ class NewListingsModule extends StatelessWidget {
                 onTap: ()=> Get.to(()=> PropertyDetailsScreen(),
                   transition: Transition.zoom,
                   arguments: singleListingsItem.id.toString(),),
+
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),

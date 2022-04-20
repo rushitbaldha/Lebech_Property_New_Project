@@ -159,7 +159,7 @@ class ExtraScreenController extends GetxController {
 
 
   /// Search Result Function - Done
-  searchResultFunction() async {
+  /*searchResultFunction() async {
     isLoading(true);
     String url = ApiUrl.searchResultApi;
     log("Search Result  Api URL : $url");
@@ -194,12 +194,12 @@ class ExtraScreenController extends GetxController {
       isLoading(false);
     }
 
-  }
+  }*/
 
 
   @override
   void onInit() {
-    searchResultFunction();
+    // searchResultFunction();
     super.onInit();
   }
 

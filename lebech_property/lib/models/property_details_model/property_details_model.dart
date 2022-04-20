@@ -761,12 +761,12 @@ class Rent {
 
   int rent;
   int charge;
-  int word;
+  String word;
 
   factory Rent.fromJson(Map<String, dynamic> json) => Rent(
     rent: json["rent"] ?? 0,
     charge: json["charge"] ?? 0,
-    word: json["word"] ?? 0,
+    word: json["word"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {

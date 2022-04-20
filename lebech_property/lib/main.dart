@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
       title: "Lebech Property New Project",
       debugShowCheckedModeBanner: false,
 
-      home: HomeScreen(),
-
       theme: appThemeData(),
+
+      home: HomeScreen(),
     );
   }
 }

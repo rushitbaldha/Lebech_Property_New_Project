@@ -23,7 +23,13 @@ class PropertyDetailsScreen extends StatelessWidget {
                 PropertyImageSliderModule(),
                 const SizedBox(height: 10),
 
+                PropertyNameModule(),
+                const SizedBox(height: 10),
+
                 PropertyDetailsModule(),
+                const SizedBox(height: 10),
+
+                AminitiesModule(),
                 const SizedBox(height: 10),
 
                 FactNumbersModule(),

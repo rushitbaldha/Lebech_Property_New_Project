@@ -49,6 +49,8 @@ class HeadingModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       heading,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
       style: const TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 24,
