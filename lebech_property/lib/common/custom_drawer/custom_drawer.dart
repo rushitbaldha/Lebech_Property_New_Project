@@ -37,12 +37,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GestureDetector(
+                      ListTile(
                         onTap: () {
                           Get.back();
                           Get.to(() => DirectSearchScreen());
                         },
-                        child: const Text(
+                        title: const Text(
                           "Direct Search",
                           textAlign: TextAlign.start,
                           style: TextStyle(

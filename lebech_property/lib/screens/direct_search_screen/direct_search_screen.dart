@@ -16,6 +16,8 @@ class DirectSearchScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            DSSPropertyTypeDropDownModule(),
+            const SizedBox(height: 10),
             DirectSearchScreenSearchFieldModule(),
             const SizedBox(height: 20),
             Expanded(

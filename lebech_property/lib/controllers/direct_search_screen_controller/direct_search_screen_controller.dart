@@ -11,6 +11,8 @@ class DirectSearchScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
+  RxString propertyTypeValue = 'Rent'.obs;
+
   List<DirectSearchDatum> directSearchList = [];
   TextEditingController directSearchFieldController = TextEditingController();
 
@@ -23,7 +25,7 @@ class DirectSearchScreenController extends GetxController {
     try {
       var request = http.MultipartRequest('POST', Uri.parse(url));
       request.fields["search"] = searchText;
-      request.fields["status"] = "rent";
+      request.fields["status"] = propertyTypeValue.value.toLowerCase();
       log("Fields ::: ${request.fields}");
 
       var response = await request.send();

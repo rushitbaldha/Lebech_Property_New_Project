@@ -17,6 +17,7 @@ class SearchScreen extends StatelessWidget {
       appBar: customAppBar(title: ""),
       body: Column(
         children: [
+          SSPropertyTypeDropDownModule().commonAllSidePadding(padding: 10),
           SearchScreenSearchFieldModule().commonAllSidePadding(padding: 10),
           Expanded(
             child: Obx(

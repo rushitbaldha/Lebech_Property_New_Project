@@ -11,6 +11,8 @@ class SearchScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
+  RxString propertyTypeValue = 'Rent'.obs;
+
   TextEditingController searchFieldController = TextEditingController();
   List<SearchDatum> searchList = [];
 
@@ -31,7 +33,7 @@ class SearchScreenController extends GetxController {
 
       request.fields["city"] = "1";
       request.fields["search"] = searchText.toString();
-      request.fields["status"] = "rent";
+      request.fields["status"] = propertyTypeValue.value.toLowerCase();
       request.fields["type"] = "1";
       log("Fields ::: ${request.fields}");
 

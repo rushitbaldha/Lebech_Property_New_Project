@@ -3,6 +3,7 @@ import '../controllers/direct_search_screen_controller/direct_search_screen_cont
 import '../controllers/search_screen_controller/search_screen_controller.dart';
 import '../controllers/sign_in_screen_controller/sign_in_screen_controller.dart';
 import '../controllers/sign_up_screen_controller/sign_up_screen_controller.dart';
+import 'common_functions.dart';
 
 InputDecoration searchFieldDecoration(
     {required String hintText,
@@ -34,6 +35,7 @@ InputDecoration searchFieldDecoration(
       onPressed: () async {
         String searchText = screenController.searchFieldController.text.trim();
         await screenController.searchResultFunction(searchText: searchText);
+        hideKeyBoard();
       },
       icon: const Icon(Icons.search, size: 25, color: Colors.red),
     ),
@@ -71,6 +73,7 @@ InputDecoration directSearchFieldDecoration(
         String searchText =
             screenController.directSearchFieldController.text.trim();
         await screenController.directSearchFunction(searchText: searchText);
+        hideKeyBoard();
       },
       icon: const Icon(Icons.search, size: 25, color: Colors.red),
     ),

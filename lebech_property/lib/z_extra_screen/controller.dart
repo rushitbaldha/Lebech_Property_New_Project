@@ -11,6 +11,8 @@ class ExtraScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
+  RxString discountTypeValue = 'Rent'.obs;
+
 
   /// Category Wise Property Function - Done
   /*getCategoryWisePropertyFunction() async {

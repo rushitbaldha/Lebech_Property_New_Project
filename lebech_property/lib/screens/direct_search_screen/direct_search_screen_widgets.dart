@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,6 +7,60 @@ import '../../common/field_decorations.dart';
 import '../../controllers/direct_search_screen_controller/direct_search_screen_controller.dart';
 import '../../models/direct_search_model/direct_search_model.dart';
 import '../property_details_screen/property_details_screen.dart';
+
+
+class DSSPropertyTypeDropDownModule extends StatelessWidget {
+  DSSPropertyTypeDropDownModule({Key? key}) : super(key: key);
+  final screenController = Get.find<DirectSearchScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+          ()=> Container(
+        padding: const EdgeInsets.only(left: 10),
+        width: MediaQuery.of(context)
+            .size
+            .width, //gives the width of the dropdown button
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: Colors.white,
+        ),
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.white,
+            buttonTheme: ButtonTheme.of(context).copyWith(
+              alignedDropdown: true,
+            ),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: screenController.propertyTypeValue.value,
+              items: <String>[
+                'Rent',
+                'Sell',
+              ].map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                );
+              }).toList(),
+              onChanged: (value) {
+                screenController.isLoading(true);
+                screenController.propertyTypeValue.value = value!;
+                screenController.isLoading(false);
+                log("value : $value");
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
 
 class DirectSearchScreenSearchFieldModule extends StatelessWidget {
