@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
+import 'package:lebech_property/screens/direct_search_screen/direct_search_screen.dart';
 import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -13,7 +14,25 @@ class CustomDrawer extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Container(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.back();
+                      Get.to(()=> DirectSearchScreen());
+                    },
+                    child: const Text(
+                      "Direct Search",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
             GestureDetector(

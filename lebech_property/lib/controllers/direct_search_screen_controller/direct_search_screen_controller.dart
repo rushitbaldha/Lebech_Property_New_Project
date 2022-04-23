@@ -15,13 +15,14 @@ class DirectSearchScreenController extends GetxController {
   TextEditingController directSearchFieldController = TextEditingController();
 
   directSearchFunction({required String searchText}) async {
+    log(searchText);
     isLoading(true);
     String url = ApiUrl.directSearchApi;
     log("Direct Search API URL : $url");
 
     try {
       var request = http.MultipartRequest('POST', Uri.parse(url));
-      request.fields["search"] = "a";
+      request.fields["search"] = searchText;
       request.fields["status"] = "rent";
       log("Fields ::: ${request.fields}");
 
@@ -37,6 +38,7 @@ class DirectSearchScreenController extends GetxController {
         if(isSuccessStatus.value) {
           directSearchList = directSearchModel.data.data;
           log("directSearchList Length : ${directSearchList.length}");
+          loadUI();
         } else {
           log("directSearchFunction Else Else");
         }
@@ -63,6 +65,11 @@ class DirectSearchScreenController extends GetxController {
       isLoading(false);
     }
 
+  }
+
+  loadUI() {
+    isLoading(true);
+    isLoading(false);
   }
 
 }
