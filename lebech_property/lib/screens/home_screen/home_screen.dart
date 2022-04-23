@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
 
-        drawer: const CustomDrawer(),
+        drawer: CustomDrawer(),
 
         body: Obx(
             () => homeScreenController.isLoading.value

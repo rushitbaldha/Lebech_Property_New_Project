@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:lebech_property/common/user_details/user_details.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceData {
@@ -14,6 +15,10 @@ class SharedPreferenceData {
 
     log('isUserLoggedInKey : ${prefs.getBool(isUserLoggedInKey)}');
     log('userTokenKey : ${prefs.getString(userTokenKey)}');
+
+    UserDetails.userLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
+    UserDetails.userToken = prefs.getString(userTokenKey) ?? "";
+    UserDetails.userCity = prefs.getString(currentCityKey) ?? "";
   }
 
   setCurrentCityInPrefs({required String cityId}) async {

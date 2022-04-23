@@ -19,7 +19,7 @@ class SignInScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Form(
-              key: signInScreenController.formKey,
+              key: signInScreenController.signInFormKey,
               child: Obx(
                     () => signInScreenController.isLoading.value
                     ? const CustomCircularProgressIndicatorModule()
@@ -62,7 +62,7 @@ class SignInScreen extends StatelessWidget {
                       const SizedBox(height: 30),
                       SignInButtonModule(),
                       const SizedBox(height: 30),
-                      SignUpTextModule(),
+                      const SignUpTextModule(),
                       const SizedBox(height: 30),
                     ],
                   ),

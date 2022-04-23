@@ -15,7 +15,7 @@ class FullNameTextFieldModule extends StatelessWidget {
     return TextFormField(
       controller: screenController.fullNameTextField,
       keyboardType: TextInputType.text,
-      decoration: formFieldDecoration(hintText: 'Full Name'),
+      decoration: signUpFormFieldDecoration(hintText: 'Full Name', controller: screenController),
       validator: (value) => FieldValidations().validateFullName(value!),
     );
   }
@@ -31,7 +31,7 @@ class MobileNoTextFieldModule extends StatelessWidget {
       controller: screenController.mobileNoTextField,
       keyboardType: TextInputType.phone,
       maxLength: 10,
-      decoration: formFieldDecoration(hintText: '10 Digit Mobile Number'),
+      decoration: signUpFormFieldDecoration(hintText: '10 Digit Mobile Number', controller: screenController),
       validator: (value) => FieldValidations().validateMobile(value!),
     );
   }
@@ -46,7 +46,7 @@ class EmailTextFieldModule extends StatelessWidget {
     return TextFormField(
       controller: screenController.emailTextField,
       keyboardType: TextInputType.emailAddress,
-      decoration: formFieldDecoration(hintText: 'Email Address'),
+      decoration: signUpFormFieldDecoration(hintText: 'Email Address', controller: screenController),
       validator: (value) => FieldValidations().validateEmail(value!),
     );
   }
@@ -58,12 +58,14 @@ class PasswordFieldModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: screenController.passwordTextField,
-      keyboardType: TextInputType.text,
-      decoration: formFieldDecoration(hintText: 'Password'),
-      validator: (value) => FieldValidations().validatePassword(value!),
-    );
+    return Obx(() => TextFormField(
+          controller: screenController.passwordTextField,
+          keyboardType: TextInputType.text,
+          obscureText: screenController.isPasswordShow.value,
+          decoration: signUpFormFieldDecoration(
+              hintText: 'Password', index: 1, controller: screenController),
+          validator: (value) => FieldValidations().validatePassword(value!),
+        ));
   }
 }
 
@@ -73,16 +75,20 @@ class ConfirmPasswordFieldModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: screenController.cPasswordTextField,
-      keyboardType: TextInputType.text,
-      decoration: formFieldDecoration(hintText: 'Confirm Password'),
-      validator: (value) => FieldValidations().validateCPassword(
-        value!,
-        screenController.passwordTextField.text.trim(),
-        screenController.cPasswordTextField.text.trim(),
-      ),
-    );
+    return Obx(() => TextFormField(
+          controller: screenController.cPasswordTextField,
+          keyboardType: TextInputType.text,
+          obscureText: screenController.isCPasswordShow.value,
+          decoration: signUpFormFieldDecoration(
+              hintText: 'Confirm Password',
+              index: 2,
+              controller: screenController),
+          validator: (value) => FieldValidations().validateCPassword(
+            value!,
+            screenController.passwordTextField.text.trim(),
+            screenController.cPasswordTextField.text.trim(),
+          ),
+        ));
   }
 }
 
@@ -125,7 +131,7 @@ class CreateAccountButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        if(screenController.formKey.currentState!.validate()){
+        if(screenController.signUpFormKey.currentState!.validate()){
           await screenController.getUserSignUpFunction();
         }
       },

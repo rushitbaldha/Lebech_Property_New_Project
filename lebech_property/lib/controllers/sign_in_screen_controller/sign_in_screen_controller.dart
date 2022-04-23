@@ -12,8 +12,9 @@ import '../../screens/home_screen/home_screen.dart';
 class SignInScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
+  RxBool isPasswordShow = true.obs;
 
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> signInFormKey = GlobalKey<FormState>();
   final phoneNoTextField = TextEditingController();
   final passwordTextField = TextEditingController();
   SharedPreferenceData sharedPreferenceData = SharedPreferenceData();

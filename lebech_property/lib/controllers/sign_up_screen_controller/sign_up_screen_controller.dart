@@ -13,10 +13,12 @@ import '../../screens/home_screen/home_screen.dart';
 class SignUpScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
+  RxBool isPasswordShow = true.obs;
+  RxBool isCPasswordShow = true.obs;
 
   SharedPreferenceData sharedPreferenceData = SharedPreferenceData();
 
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
   final fullNameTextField = TextEditingController();
   final mobileNoTextField = TextEditingController();
   final emailTextField = TextEditingController();
