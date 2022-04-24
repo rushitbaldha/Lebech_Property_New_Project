@@ -6,6 +6,7 @@ import 'package:lebech_property/screens/direct_search_screen/direct_search_scree
 import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
 
 import '../../controllers/custom_drawer_controller/custom_drawer_controller.dart';
+import 'custom_drawer_widgets.dart';
 
 
 class CustomDrawer extends StatefulWidget {
@@ -34,24 +35,38 @@ class _CustomDrawerState extends State<CustomDrawer> {
             child: Column(
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ListTile(
-                        onTap: () {
-                          Get.back();
-                          Get.to(() => DirectSearchScreen());
-                        },
-                        title: const Text(
-                          "Direct Search",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+
+                        const DrawerCategoryNameTextModule(),
+
+                        const ResidentialCategoryModule(),
+                        const CommercialCategoryModule(),
+                        const IndustrialCategoryModule(),
+                        const TextileSpaceCategoryModule(),
+                        const ProjectsModule(),
+
+                        const Divider(),
+
+                        ListTile(
+                          onTap: () {
+                            Get.back();
+                            Get.to(() => DirectSearchScreen());
+                          },
+                          title: const Text(
+                            "Direct Search",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -121,83 +136,3 @@ class _CustomDrawerState extends State<CustomDrawer> {
     );
   }
 }
-
-
-
-
-
-
-// class CustomDrawer extends StatelessWidget {
-//   CustomDrawer({Key? key}) : super(key: key);
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Drawer(
-//       child: SafeArea(
-//         child: Column(
-//           children: [
-//             Expanded(
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   GestureDetector(
-//                     onTap: () {
-//                       Get.back();
-//                       Get.to(() => DirectSearchScreen());
-//                     },
-//                     child: const Text(
-//                       "Direct Search",
-//                       textAlign: TextAlign.start,
-//                       style: TextStyle(
-//                         fontWeight: FontWeight.bold,
-//                         fontSize: 18,
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             const SizedBox(height: 20),
-//             GestureDetector(
-//               onTap: () {
-//                 if(customDrawerController.isLoggedIn.value == true) {
-//
-//                 } else if(customDrawerController.isLoggedIn.value == false) {
-//                   Get.back();
-//                   Get.to(
-//                         () => SignInScreen(),
-//                     transition: Transition.leftToRight,
-//                   );
-//                 }
-//
-//               },
-//               child: Obx(
-//                 () => customDrawerController.isLoading.value
-//                     ? const CustomCircularProgressIndicatorModule()
-//                     : Row(
-//                         children: [
-//                           customDrawerController.isLoggedIn.value
-//                           ? const Icon(Icons.logout_rounded, size: 25)
-//                           : const Icon(Icons.login_rounded, size: 25),
-//                           const SizedBox(width: 10),
-//                           Text(
-//                             customDrawerController.isLoggedIn.value
-//                             ? "Sign Out"
-//                             : "Sign In",
-//                             style: const TextStyle(
-//                               fontWeight: FontWeight.bold,
-//                               fontSize: 18,
-//                             ),
-//                           ),
-//                         ],
-//                       ).commonAllSidePadding(padding: 10),
-//               ),
-//             ),
-//             const SizedBox(height: 20),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

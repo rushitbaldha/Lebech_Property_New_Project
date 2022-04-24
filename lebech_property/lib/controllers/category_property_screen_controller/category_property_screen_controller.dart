@@ -7,9 +7,14 @@ import '../../common/constants/api_url.dart';
 import '../../models/category_wise_property_model/category_wise_property_model.dart';
 
 class CategoryPropertyScreenController extends GetxController {
+  String categoryId = Get.arguments;
+
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-  List categoryPropertyList = [];
+  //Todo
+  List<CategoryWiseDatum> categoryPropertyList = [];
+
+  RxString propertyTypeValue = 'Rent'.obs;
 
 
   getCategoryWisePropertyFunction() async {
@@ -19,24 +24,26 @@ class CategoryPropertyScreenController extends GetxController {
 
     try {
       var request = http.MultipartRequest('POST', Uri.parse(url));
-      request.fields['id'] = "1";
-      request.fields['status'] = "rent";
+      request.fields['id'] = categoryId;
+      request.fields['status'] = propertyTypeValue.value;
       request.fields['city'] = "1";
       var response = await request.send();
 
-      response.stream.transform(utf8.decoder).listen((value) async {
-        CategoryPropertyModel categoryPropertyModel =
-            CategoryPropertyModel.fromJson(json.decode(value));
+      response.stream.transform(const Utf8Decoder()).transform(const LineSplitter()).listen((dataLine) {
+        CategoryPropertyModel categoryPropertyModel = CategoryPropertyModel.fromJson(json.decode(dataLine));
         isSuccessStatus = categoryPropertyModel.status.obs;
         log("isSuccessStatus : $isSuccessStatus");
 
         if (isSuccessStatus.value) {
+          categoryPropertyList.clear();
           log("isSuccessStatus : $isSuccessStatus");
-          log("getCategoryWisePropertyFunction Complete Done!!!!!!!!!");
+          categoryPropertyList = categoryPropertyModel.data.data;
         } else {
           log("getCategoryWisePropertyFunction Else Else");
         }
+
       });
+
     } catch (e) {
       log("getCategoryWisePropertyFunction Error :: $e");
     } finally {

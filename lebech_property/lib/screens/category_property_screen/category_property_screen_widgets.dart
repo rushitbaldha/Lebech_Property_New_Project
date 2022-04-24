@@ -1,15 +1,73 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../common/constants/app_images.dart';
 import '../../controllers/category_property_screen_controller/category_property_screen_controller.dart';
+import '../../models/category_wise_property_model/category_wise_property_model.dart';
 
-class CategoryListTile extends StatelessWidget {
-  CategoryListTile({Key? key}) : super(key: key);
+
+class CPSPropertyTypeDropDownModule extends StatelessWidget {
+  CPSPropertyTypeDropDownModule({Key? key}) : super(key: key);
   final screenController = Get.find<CategoryPropertyScreenController>();
 
   @override
   Widget build(BuildContext context) {
+    return Obx(
+          ()=> Container(
+        padding: const EdgeInsets.only(left: 10),
+        width: MediaQuery.of(context)
+            .size
+            .width, //gives the width of the dropdown button
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: Colors.white,
+        ),
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Colors.white,
+            buttonTheme: ButtonTheme.of(context).copyWith(
+              alignedDropdown: true,
+            ),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: screenController.propertyTypeValue.value,
+              items: <String>[
+                'Rent',
+                'Sell',
+              ].map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                );
+              }).toList(),
+              onChanged: (value) async {
+                screenController.isLoading(true);
+                screenController.propertyTypeValue.value = value!;
+                screenController.isLoading(false);
+                log("value : $value");
+                await screenController.getCategoryWisePropertyFunction();
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class CategoryListTile extends StatelessWidget {
+  final CategoryWiseDatum singleProperty;
+  CategoryListTile({Key? key, required this.singleProperty}) : super(key: key);
+  final screenController = Get.find<CategoryPropertyScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    String imgUrl = singleProperty.propertyImages[0].image;
     return GestureDetector(
       onTap: () {
         // Get.to(()=> SubCategoryPropertyScreen());
@@ -24,7 +82,7 @@ class CategoryListTile extends StatelessWidget {
           children: [
             Expanded(
               flex: 35,
-              child: _imageModule(),
+              child: _imageModule(imgUrl),
             ),
             // const SizedBox(height: 5),
             Expanded(
@@ -35,19 +93,19 @@ class CategoryListTile extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _priceModule(),
+                      _priceModule(singleProperty),
                       const SizedBox(height: 5),
-                      _propertyHeadingModule(),
+                      _propertyHeadingModule(singleProperty),
                       const SizedBox(height: 5),
-                      _smallDetailsModule(),
+                      _smallDetailsModule(singleProperty),
                       const SizedBox(height: 5),
-                      _placeModule(),
+                      _placeModule(singleProperty),
                       const SizedBox(height: 5),
-                      _parkingModule(),
+                      _parkingModule(singleProperty),
                       const SizedBox(height: 5),
                       _visitModule(),
                       const SizedBox(height: 5),
-                      _propertyDetails(),
+                      _propertyDetails(singleProperty),
                       const SizedBox(height: 5),
                       // const SizedBox(height: 5),
                     ],
@@ -61,77 +119,74 @@ class CategoryListTile extends StatelessWidget {
     );
   }
 
-  Widget _imageModule() {
+  Widget _imageModule(String imgUrl) {
     return Container(
-      decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(10),
             topLeft: Radius.circular(10),
           ),
           image: DecorationImage(
-            image: AssetImage(AppImages.banner2Img),
+            image: NetworkImage(imgUrl),
             fit: BoxFit.cover,
           )
       ),
     );
   }
 
-  Widget _priceModule() {
-    return const Text(
-      '₹ 3.10 CRORE',
+  Widget _priceModule(CategoryWiseDatum singleProperty) {
+    return Text(
+      '₹ ${singleProperty.rent.rent}',
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: TextStyle(
-        color: Colors.red,
-        fontSize: 18,
-      ),
+      style: const TextStyle(color: Colors.red, fontSize: 18),
     );
   }
 
-  Widget _propertyHeadingModule() {
-    return const Text(
-      'RAJHANS ROYALTON',
+  Widget _propertyHeadingModule(CategoryWiseDatum singleProperty) {
+    return Text(
+      singleProperty.title,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
-      style: TextStyle(
+      style: const TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 20,
       ),
     );
   }
 
-  Widget _smallDetailsModule() {
+  Widget _smallDetailsModule(CategoryWiseDatum singleProperty) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: const [
+      children: [
         Text(
-          '4BHK',
-          style: TextStyle(
+          '${singleProperty.bedrooms}BHK',
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
         ),
         Text(
-          '(₹ per sqr.F)',
-          style: TextStyle(color: Colors.grey, fontSize: 15),
+          '(₹ ${singleProperty.sqRate} per sqr.F)',
+          style: const TextStyle(color: Colors.grey, fontSize: 15),
         ),
       ],
     );
   }
 
-  Widget _placeModule() {
-    return const Text(
-      '100% vastu (North West)',
+  Widget _placeModule(CategoryWiseDatum singleProperty) {
+    return Text(
+      '100% vastu (${singleProperty.area.name})',
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: TextStyle(color: Colors.grey),
+      style: const TextStyle(color: Colors.grey),
     );
   }
 
-  Widget _parkingModule() {
-    return const Text(
-      '3 Car Parking',
-      style: TextStyle(
+  Widget _parkingModule(CategoryWiseDatum singleProperty) {
+    return Text(
+      '${singleProperty.propertyTenant.totalCarParking} Car Parking',
+      style: const TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 15,
         color: Colors.grey,
@@ -150,12 +205,12 @@ class CategoryListTile extends StatelessWidget {
     );
   }
 
-  Widget _propertyDetails() {
-    return const Text(
-      'Luxurious Living',
-      maxLines: 2,
+  Widget _propertyDetails(CategoryWiseDatum singleProperty) {
+    return Text(
+      singleProperty.sortDesc,
+      maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 16,
         color: Colors.grey,
       ),

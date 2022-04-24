@@ -33,10 +33,10 @@ class Data {
     required this.data,
   });
 
-  List<Datum> data;
+  List<CategoryWiseDatum> data;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x)) ?? {}),
+    data: List<CategoryWiseDatum>.from(json["data"].map((x) => CategoryWiseDatum.fromJson(x)) ?? {}),
   );
 
   Map<String, dynamic> toJson() => {
@@ -44,8 +44,8 @@ class Data {
   };
 }
 
-class Datum {
-  Datum({
+class CategoryWiseDatum {
+  CategoryWiseDatum({
     required this.id,
     required this.detail,
     required this.propertyTypeId,
@@ -179,7 +179,7 @@ class Datum {
   PropertyTenant propertyTenant;
   PropertyType propertyType;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory CategoryWiseDatum.fromJson(Map<String, dynamic> json) => CategoryWiseDatum(
     id: json["id"] ?? 0,
     detail: json["detail"] ?? "",
     propertyTypeId: json["property_type_id"] ?? 0,
