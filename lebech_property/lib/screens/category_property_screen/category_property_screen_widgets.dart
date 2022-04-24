@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/screens/property_details_screen/property_details_screen.dart';
 import '../../controllers/category_property_screen_controller/category_property_screen_controller.dart';
 import '../../models/category_wise_property_model/category_wise_property_model.dart';
 
@@ -70,7 +71,7 @@ class CategoryListTile extends StatelessWidget {
     String imgUrl = singleProperty.propertyImages[0].image;
     return GestureDetector(
       onTap: () {
-        // Get.to(()=> SubCategoryPropertyScreen());
+        Get.to(()=> PropertyDetailsScreen(), arguments: singleProperty.id.toString());
       },
       child: Container(
         decoration: BoxDecoration(

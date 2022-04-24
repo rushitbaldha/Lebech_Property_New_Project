@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
 
-        drawer: CustomDrawer(),
+        drawer: const CustomDrawer(),
 
         body: Obx(
             () => homeScreenController.isLoading.value
@@ -49,11 +49,11 @@ class HomeScreen extends StatelessWidget {
                     NewListingsModule(),
                     const SizedBox(height: 10),
 
-                    const AminitiesTextModule(),
-                    const SizedBox(height: 10),
+                    // const AminitiesTextModule(),
+                    // const SizedBox(height: 10),
 
-                    AminitiesModule(),
-                    const SizedBox(height: 10),
+                    // AminitiesModule(),
+                    // const SizedBox(height: 10),
 
                     FeaturedListingsModule(),
                     const SizedBox(height: 20),
