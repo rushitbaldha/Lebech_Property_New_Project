@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../common/common_functions.dart';
 import '../../common/common_widgets.dart';
+import '../../common/constants/app_colors.dart';
 import '../../controllers/sign_up_screen_controller/sign_up_screen_controller.dart';
 import 'sign_up_screen_widgets.dart';
 
@@ -37,7 +38,7 @@ class SignUpScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: Colors.red,
+                              color: AppColors.greenColor,
                             ),
                             child: Column(
                               children: [

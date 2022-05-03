@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/common/constants/app_colors.dart';
 
 import '../../common/field_decorations.dart';
 import '../../common/field_validations.dart';
@@ -115,6 +116,7 @@ class AlreadyHaveAnAccountText extends StatelessWidget {
             style: TextStyle(
               decoration: TextDecoration.underline,
               fontSize: 16,
+              color: AppColors.blueColor,
             ),
           ),
         ),
@@ -140,7 +142,7 @@ class CreateAccountButtonModule extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.red,
+            color: AppColors.greenColor,
             borderRadius: BorderRadius.circular(15),
           ),
           child: const Padding(

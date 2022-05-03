@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lebech_property/common/constants/app_colors.dart';
 import '../controllers/direct_search_screen_controller/direct_search_screen_controller.dart';
 import '../controllers/search_screen_controller/search_screen_controller.dart';
 import '../controllers/sign_in_screen_controller/sign_in_screen_controller.dart';
@@ -118,7 +119,7 @@ InputDecoration signInFormFieldDecoration(
               controller.isPasswordShow.value
                   ? Icons.visibility_off_rounded
                   : Icons.visibility_rounded,
-              color: Colors.red,
+              color: AppColors.greenColor,
               size: 22,
             ),
           )
@@ -164,7 +165,7 @@ InputDecoration signUpFormFieldDecoration(
               controller.isPasswordShow.value
                   ? Icons.visibility_off_rounded
                   : Icons.visibility_rounded,
-              color: Colors.red,
+              color: AppColors.greenColor,
               size: 22,
             ),
           )
@@ -178,7 +179,7 @@ InputDecoration signUpFormFieldDecoration(
                   controller.isCPasswordShow.value
                       ? Icons.visibility_off_rounded
                       : Icons.visibility_rounded,
-                  color: Colors.red,
+                  color: AppColors.greenColor,
                   size: 22,
                 ),
               )

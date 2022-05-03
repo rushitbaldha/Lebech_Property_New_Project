@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/screens/sign_up_screen/sign_up_screen.dart';
 
+import '../../common/constants/app_colors.dart';
 import '../../common/field_decorations.dart';
 import '../../common/field_validations.dart';
 import '../../controllers/sign_in_screen_controller/sign_in_screen_controller.dart';
@@ -59,7 +60,7 @@ class SignInButtonModule extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.red,
+            color: AppColors.greenColor,
             borderRadius: BorderRadius.circular(15),
           ),
           child: const Padding(
@@ -109,6 +110,7 @@ class SignUpTextModule extends StatelessWidget {
             'SignUp',
             style: TextStyle(
               decoration: TextDecoration.underline,
+              color: AppColors.blueColor
             ),
           ),
         ),

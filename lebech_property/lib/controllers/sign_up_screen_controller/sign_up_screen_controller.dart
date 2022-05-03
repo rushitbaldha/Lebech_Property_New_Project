@@ -49,6 +49,7 @@ class SignUpScreenController extends GetxController {
           Fluttertoast.showToast(msg: 'User Created Successfully!');
           String userToken = signUpModel.data.token;
           await sharedPreferenceData.setUserLoggedInDetailsInPrefs(userToken: userToken);
+          await sharedPreferenceData.setCurrentCityInPrefs(cityId: "1");
           Get.offAll(()=> HomeScreen());
         } else {
           Fluttertoast.showToast(msg: 'User Not Created Successfully!');

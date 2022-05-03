@@ -40,6 +40,7 @@ class SignInScreenController extends GetxController {
           Fluttertoast.showToast(msg: 'User LoggedIn Successfully!');
           String userToken = signInModel.data.token;
           await sharedPreferenceData.setUserLoggedInDetailsInPrefs(userToken: userToken);
+          await sharedPreferenceData.setCurrentCityInPrefs(cityId: "1");
           Get.offAll(()=> HomeScreen());
         } else {
           Fluttertoast.showToast(msg: 'User Not LoggedIn Successfully!');
