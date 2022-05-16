@@ -167,9 +167,13 @@ class CategoryListTile extends StatelessWidget {
             fontSize: 16,
           ),
         ),
-        Text(
-          '(₹ ${singleProperty.sqRate} per sqr.F)',
-          style: const TextStyle(color: Colors.grey, fontSize: 15),
+        Expanded(
+          child: Text(
+            '(₹ ${singleProperty.sqRate} per sqr.F)',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(color: Colors.grey, fontSize: 15),
+          ),
         ),
       ],
     );

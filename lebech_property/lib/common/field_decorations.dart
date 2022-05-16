@@ -76,7 +76,7 @@ InputDecoration directSearchFieldDecoration(
         await screenController.directSearchFunction(searchText: searchText);
         hideKeyBoard();
       },
-      icon: const Icon(Icons.search, size: 25, color: Colors.red),
+      icon: const Icon(Icons.search, size: 25, color: AppColors.greenColor),
     ),
   );
 }

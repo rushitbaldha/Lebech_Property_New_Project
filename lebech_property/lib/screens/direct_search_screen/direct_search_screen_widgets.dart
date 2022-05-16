@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../common/constants/app_colors.dart';
 import '../../common/field_decorations.dart';
 import '../../controllers/direct_search_screen_controller/direct_search_screen_controller.dart';
 import '../../models/direct_search_model/direct_search_model.dart';
@@ -72,7 +73,7 @@ class DirectSearchScreenSearchFieldModule extends StatelessWidget {
     return TextFormField(
       controller: screenController.directSearchFieldController,
       keyboardType: TextInputType.text,
-      cursorColor: Colors.red,
+      cursorColor: AppColors.greenColor,
       decoration: directSearchFieldDecoration(hintText: 'Search Property', screenController: screenController),
     );
   }

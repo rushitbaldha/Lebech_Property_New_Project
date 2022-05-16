@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../common/common_widgets.dart';
 import '../../common/custom_appbar/custom_appbar.dart';
 import '../../controllers/property_details_screen_controller/property_details_screen_controller.dart';
 import 'property_details_screen_widgets.dart';
@@ -37,6 +38,9 @@ class PropertyDetailsScreen extends StatelessWidget {
 
                 FactsAndFeaturesModule(),
                 const SizedBox(height: 10),
+
+                /// Import from other Common
+                SocialMediaIconsModule(),
               ],
             ),
           ),

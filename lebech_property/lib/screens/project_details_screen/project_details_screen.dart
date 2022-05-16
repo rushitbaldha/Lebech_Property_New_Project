@@ -43,7 +43,9 @@ class ProjectDetailsScreen extends StatelessWidget {
                     // VideoGalleryModule(),
                     const Divider(thickness: 1),
                     BrochuresModule(),
-                    // const Divider(thickness: 1),
+                    const Divider(thickness: 1),
+                    /// Import from other Common
+                    SocialMediaIconsModule(),
                   ],
                 ),
               ).commonAllSidePadding(padding: 10),

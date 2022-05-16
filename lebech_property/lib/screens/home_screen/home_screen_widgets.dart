@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
@@ -43,7 +44,7 @@ class SearchBarModule extends StatelessWidget {
               ),
               Icon(
                 Icons.search_rounded,
-                color: Colors.red,
+                color: AppColors.greenColor,
               )
             ],
           ).commonAllSidePadding(padding: 14),
@@ -120,7 +121,7 @@ class BannerIndicatorModule extends StatelessWidget {
             height: screenController.activeBannerIndex.value == index ? 14 : 11,
             decoration: BoxDecoration(
               color: screenController.activeBannerIndex.value == index
-                  ? Colors.red
+                  ? AppColors.greenColor
                   : Colors.grey.shade400,
               shape: BoxShape.circle,
             ),
@@ -228,12 +229,12 @@ class NewProjectsModule extends StatelessWidget {
                   'See All New Projects',
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                      color: Colors.red,
+                      color: AppColors.greenColor,
                       fontWeight: FontWeight.bold
                   ),
                 ),
                 SizedBox(width: 5),
-                Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
+                Icon(Icons.arrow_forward_rounded, color: AppColors.greenColor, size: 19),
               ],
             ),
           ),
@@ -444,12 +445,12 @@ class FavouriteProjectsModule extends StatelessWidget {
                   'See All Favourite Projects',
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                      color: Colors.red,
+                      color: AppColors.greenColor,
                       fontWeight: FontWeight.bold
                   ),
                 ),
                 SizedBox(width: 5),
-                Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
+                Icon(Icons.arrow_forward_rounded, color: AppColors.greenColor, size: 19),
               ],
             ),
           ),
@@ -675,25 +676,28 @@ class NewListingsModule extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(height: 5),
-        Padding(
+        // const SizedBox(height: 5),
+        /*Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              Text(
-                'See All New Listings',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold
+          child: GestureDetector(
+            onTap: () {},
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: const [
+                Text(
+                  'See All New Listings',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: AppColors.greenColor,
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
-              ),
-              SizedBox(width: 5),
-              Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
-            ],
+                SizedBox(width: 5),
+                Icon(Icons.arrow_forward_rounded, color: AppColors.greenColor, size: 19),
+              ],
+            ),
           ),
-        ),
+        ),*/
       ],
     );
   }
@@ -734,7 +738,7 @@ class NewListingsModule extends StatelessWidget {
             maxLines: 1,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.red,
+              color: AppColors.greenColor,
               fontSize: 12,
             ),
           ),
@@ -818,25 +822,28 @@ class FeaturedListingsModule extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(height: 5),
-        Padding(
+        // const SizedBox(height: 5),
+        /*Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              Text(
-                'See All Featured Listings',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold
+          child: GestureDetector(
+            onTap: () {},
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: const [
+                Text(
+                  'See All Featured Listings',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: AppColors.greenColor,
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
-              ),
-              SizedBox(width: 5),
-              Icon(Icons.arrow_forward_rounded, color: Colors.red, size: 19),
-            ],
+                SizedBox(width: 5),
+                Icon(Icons.arrow_forward_rounded, color: AppColors.greenColor, size: 19),
+              ],
+            ),
           ),
-        ),
+        ),*/
       ],
     );
   }
@@ -877,7 +884,7 @@ class FeaturedListingsModule extends StatelessWidget {
             maxLines: 1,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.red,
+              color: AppColors.greenColor,
               fontSize: 12,
             ),
           ),
@@ -1051,12 +1058,12 @@ class AminitiesModule extends StatelessWidget {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.red.shade100,
+                                  color: AppColors.greenColor.withOpacity(0.4),
                                   shape: BoxShape.circle,
                                 ),
                                 child: const Padding(
                                   padding: EdgeInsets.all(8),
-                                  child: Icon(Icons.home_rounded, color: Colors.red, size: 35),
+                                  child: Icon(Icons.home_rounded, color: AppColors.greenColor, size: 35),
                                 ),
                               ),
                               const SizedBox(height: 5),

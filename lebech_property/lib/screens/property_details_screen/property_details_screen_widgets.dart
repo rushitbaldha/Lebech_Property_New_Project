@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import '../../common/common_widgets.dart';
+import '../../common/constants/app_colors.dart';
 import '../../common/constants/text_styles.dart';
 import '../../controllers/property_details_screen_controller/property_details_screen_controller.dart';
 import '../../models/property_details_model/fact_and_feature_local_model.dart';
@@ -61,7 +62,7 @@ class PropertyImageSliderModule extends StatelessWidget {
             height: screenController.activeBannerIndex.value == index ? 14 : 11,
             decoration: BoxDecoration(
               color: screenController.activeBannerIndex.value == index
-                  ? Colors.red
+                  ? AppColors.greenColor
                   : Colors.grey.shade400,
               shape: BoxShape.circle,
             ),

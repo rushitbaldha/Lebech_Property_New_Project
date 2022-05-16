@@ -110,7 +110,7 @@ class SignUpTextModule extends StatelessWidget {
             'SignUp',
             style: TextStyle(
               decoration: TextDecoration.underline,
-              color: AppColors.blueColor
+              color: AppColors.greenColor
             ),
           ),
         ),

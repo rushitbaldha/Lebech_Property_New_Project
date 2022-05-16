@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/screens/project_details_screen/project_details_screen.dart';
@@ -43,7 +44,7 @@ class PropertyListModule extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: Colors.grey),
+          border: Border.all(color: AppColors.greenColor),
         ),
         child: Stack(
           children: [
@@ -108,7 +109,7 @@ class PropertyListModule extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.red, width: 2),
+                          border: Border.all(color: AppColors.greenColor, width: 2),
                         ),
                         child: const Padding(
                           padding: EdgeInsets.symmetric(vertical: 11),
@@ -117,7 +118,7 @@ class PropertyListModule extends StatelessWidget {
                             textAlign: TextAlign.center,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold,),
+                            style: TextStyle(color: AppColors.greenColor, fontWeight: FontWeight.bold,),
                           ),
                         ),
                       ),
@@ -129,7 +130,7 @@ class PropertyListModule extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.red, width: 2),
+                          border: Border.all(color: AppColors.greenColor, width: 2),
                         ),
                         child: const Padding(
                           padding: EdgeInsets.symmetric(vertical: 11),
@@ -138,7 +139,7 @@ class PropertyListModule extends StatelessWidget {
                             textAlign: TextAlign.center,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold,),
+                            style: TextStyle(color: AppColors.greenColor, fontWeight: FontWeight.bold,),
                           ),
                         ),
                       ),
@@ -150,8 +151,8 @@ class PropertyListModule extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          color: Colors.red,
-                          border: Border.all(color: Colors.red, width: 2),
+                          color: AppColors.greenColor,
+                          border: Border.all(color: AppColors.greenColor, width: 2),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 11),
@@ -186,7 +187,7 @@ class PropertyListModule extends StatelessWidget {
                 },
                 child: const Icon(
                   Icons.favorite_border_rounded,
-                  color: Colors.red,
+                  color: AppColors.greenColor,
                 ),
               ),
             ),

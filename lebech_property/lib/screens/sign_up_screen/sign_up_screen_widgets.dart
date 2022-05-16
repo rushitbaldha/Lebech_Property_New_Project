@@ -109,14 +109,14 @@ class AlreadyHaveAnAccountText extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.to(()=> SignInScreen());
+            Get.off(()=> SignInScreen());
           },
           child: const Text(
             'SingIn',
             style: TextStyle(
               decoration: TextDecoration.underline,
               fontSize: 16,
-              color: AppColors.blueColor,
+              color: AppColors.greenColor,
             ),
           ),
         ),

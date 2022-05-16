@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/screens/category_property_screen/category_property_screen.dart';
 import 'package:lebech_property/screens/project_list_screen/project_list_screen.dart';
 
@@ -14,7 +15,7 @@ class DrawerCategoryNameTextModule extends StatelessWidget {
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 20,
-          color: Colors.red,
+          color: AppColors.greenColor,
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../common/constants/app_colors.dart';
 import '../../controllers/project_details_screen_controller/project_details_screen_controller.dart';
 
 
@@ -63,7 +64,7 @@ class ImagesSliderIndicatorModule extends StatelessWidget {
             height: screenController.activeBannerIndex.value == index ? 14 : 11,
             decoration: BoxDecoration(
               color: screenController.activeBannerIndex.value == index
-                  ? Colors.red
+                  ? AppColors.greenColor
                   : Colors.grey.shade400,
               shape: BoxShape.circle,
             ),
@@ -91,7 +92,7 @@ class PropertyTitleAndAreaModule extends StatelessWidget {
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: Colors.red,
+            color: AppColors.greenColor,
           ),
         ),
         const SizedBox(height: 5),
@@ -204,7 +205,7 @@ class AminitiesModule extends StatelessWidget {
           width: 5,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.blueAccent,
+            color: AppColors.greenColor,
           ),
         ),
         const SizedBox(width: 5),
@@ -351,3 +352,5 @@ class BrochuresModule extends StatelessWidget {
     );
   }
 }
+
+
