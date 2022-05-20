@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/common/common_functions.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 
@@ -13,32 +14,47 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: customAppBar(title: ""),
-      body: Column(
-        children: [
-          SSPropertyTypeDropDownModule().commonAllSidePadding(padding: 10),
-          SearchScreenSearchFieldModule().commonAllSidePadding(padding: 10),
-          Expanded(
-            child: Obx(
-              () => searchScreenController.isLoading.value
-                  ? const CustomCircularProgressIndicatorModule()
-                  : searchScreenController.searchList.isEmpty
-                      ? const Center(
-                          child: Text(
-                            "Search Property",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )
-                      : SearchListModule()
-                          .commonSymmetricPadding(horizontal: 10),
+    return GestureDetector(
+      onTap: () => hideKeyBoard(),
+      child: Scaffold(
+        appBar: customAppBar(title: "Search"),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            SSPropertyTypeDropDownModule().commonAllSidePadding(padding: 10),
+            SSPropertyStatusDropDownModule().commonAllSidePadding(padding: 10),
+            /// Text Field & Button Module
+            Row(
+              children: [
+                Expanded(child: SearchScreenSearchFieldModule()),
+                const SizedBox(width: 15),
+                FindButtonModule(),
+              ],
+            ).commonSymmetricPadding(horizontal: 10),
+
+
+            const SizedBox(height: 10),
+            Expanded(
+              child: Obx(
+                    () => searchScreenController.isLoading.value
+                    ? const CustomCircularProgressIndicatorModule()
+                    : searchScreenController.searchList.isEmpty
+                    ? const Center(
+                  child: Text(
+                    "Search Property",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
+                    : SearchListModule()
+                    .commonSymmetricPadding(horizontal: 10),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

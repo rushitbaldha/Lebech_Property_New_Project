@@ -32,14 +32,7 @@ InputDecoration searchFieldDecoration(
     isDense: true,
     contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
     counterText: '',
-    suffixIcon: IconButton(
-      onPressed: () async {
-        String searchText = screenController.searchFieldController.text.trim();
-        await screenController.searchResultFunction(searchText: searchText);
-        hideKeyBoard();
-      },
-      icon: const Icon(Icons.search, size: 25, color: Colors.red),
-    ),
+    prefixIcon: const Icon(Icons.search, size: 25, color: AppColors.greenColor),
   );
 }
 

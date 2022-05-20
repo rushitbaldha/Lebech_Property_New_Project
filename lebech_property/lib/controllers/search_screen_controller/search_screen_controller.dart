@@ -11,7 +11,9 @@ class SearchScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
-  RxString propertyTypeValue = 'Rent'.obs;
+  RxString propertyStatusValue = 'Property Status'.obs;
+  RxString propertyTypeValue = 'Property Type'.obs;
+  RxString cityName = "Choose City".obs;
 
   TextEditingController searchFieldController = TextEditingController();
   List<SearchDatum> searchList = [];
@@ -35,13 +37,12 @@ class SearchScreenController extends GetxController {
       request.fields["search"] = searchText.toString();
       request.fields["status"] = propertyTypeValue.value.toLowerCase();
       request.fields["type"] = "1";
+
       log("Fields ::: ${request.fields}");
 
       var response = await request.send();
 
-      response.stream.transform(const Utf8Decoder())
-            .transform(const LineSplitter())
-            .listen((dataLine) {
+      response.stream.transform(const Utf8Decoder()).transform(const LineSplitter()).listen((dataLine) {
         SearchResultModel searchResultModel = SearchResultModel.fromJson(json.decode(dataLine));
         isSuccessStatus = searchResultModel.status.obs;
         log("isSuccessStatus : $isSuccessStatus");

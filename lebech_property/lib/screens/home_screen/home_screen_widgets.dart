@@ -150,7 +150,7 @@ class NewProjectsModule extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         SizedBox(
-          height: 300,
+          height: 250,
           child: ListView.builder(
             itemCount: screenController.newProjectsList.length,
             shrinkWrap: true,
@@ -367,7 +367,7 @@ class FavouriteProjectsModule extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         SizedBox(
-          height: 300,
+          height: 250,
           child: ListView.builder(
             itemCount: screenController.favouriteProjectsList.length,
             shrinkWrap: true,
