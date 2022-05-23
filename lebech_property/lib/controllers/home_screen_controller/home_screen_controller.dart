@@ -25,6 +25,9 @@ class HomeScreenController extends GetxController {
   List<Favourite> newListingsList = [];
   List<Favourite> featuredListingsList = [];
 
+  /// DropDown List
+  List<HomePropertyType> propertyTypeList = [];
+
   List<String> aminitiesLists = [
     "Parking Space",
     "Library Area",
@@ -59,6 +62,7 @@ class HomeScreenController extends GetxController {
         favouriteProjectsList = homeScreenModel.data.favouriteProjects;
         newListingsList = homeScreenModel.data.favourite;
         featuredListingsList = homeScreenModel.data.dataSuper;
+        propertyTypeList = homeScreenModel.data.type;
 
       } else {
         log('getHomeScreenDataFunction Else Else');

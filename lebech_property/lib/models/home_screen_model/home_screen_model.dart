@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final homeScreenModel = homeScreenModelFromJson(jsonString);
-
 import 'dart:convert';
 
 HomeScreenModel homeScreenModelFromJson(String str) => HomeScreenModel.fromJson(json.decode(str));
@@ -51,7 +47,7 @@ class Data {
   List<Favourite> dataSuper;
   List<Youtube> youtube;
   List<AreaElement> area;
-  List<Type> type;
+  List<HomePropertyType> type;
   List<Project> favouriteProjects;
   List<Project> superProjects;
   List<News> news;
@@ -63,7 +59,7 @@ class Data {
     dataSuper: List<Favourite>.from(json["super"].map((x) => Favourite.fromJson(x))  ?? {}),
     youtube: List<Youtube>.from(json["youtube"].map((x) => Youtube.fromJson(x))  ?? {}),
     area: List<AreaElement>.from(json["area"].map((x) => AreaElement.fromJson(x))  ?? {}),
-    type: List<Type>.from(json["type"].map((x) => Type.fromJson(x))  ?? {}),
+    type: List<HomePropertyType>.from(json["type"].map((x) => HomePropertyType.fromJson(x))  ?? {}),
     favouriteProjects: List<Project>.from(json["favourite_projects"].map((x) => Project.fromJson(x))  ?? {}),
     superProjects: List<Project>.from(json["super_projects"].map((x) => Project.fromJson(x))  ?? {}),
     news: List<News>.from(json["news"].map((x) => News.fromJson(x))  ?? {}),
@@ -265,7 +261,7 @@ class Favourite {
   CityClass area;
   User user;
   PropertyTenant propertyTenant;
-  Type propertyType;
+  HomePropertyType propertyType;
 
   factory Favourite.fromJson(Map<String, dynamic> json) => Favourite(
     id: json["id"] ?? 0,
@@ -332,7 +328,7 @@ class Favourite {
     area: CityClass.fromJson(json["area"] ?? {}),
     user: User.fromJson(json["user"] ?? {}),
     propertyTenant: PropertyTenant.fromJson(json["property_tenant"] ?? {}),
-    propertyType: Type.fromJson(json["property_type"] ?? {}),
+    propertyType: HomePropertyType.fromJson(json["property_type"] ?? {}),
   );
 
   Map<String, dynamic> toJson() => {
@@ -668,28 +664,28 @@ class PropertyTenant {
   };
 }
 
-class Type {
-  Type({
-    required this.id,
-    required this.name,
-    required this.sub,
-    required this.categoryId,
-    required this.status,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.category,
+/*class PropertyType {
+  PropertyType({
+    this.id,
+    this.name,
+    this.sub,
+    this.categoryId,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.category,
   });
 
-  int id;
-  String name;
-  String sub;
-  int categoryId;
-  String status;
-  String createdAt;
-  String updatedAt;
-  String category;
+  int? id;
+  String? name;
+  String? sub;
+  int? categoryId;
+  String? status;
+  String? createdAt;
+  String? updatedAt;
+  String? category;
 
-  factory Type.fromJson(Map<String, dynamic> json) => Type(
+  factory PropertyType.fromJson(Map<String, dynamic> json) => PropertyType(
     id: json["id"] ?? 0,
     name: json["name"] ?? "",
     sub: json["sub"] ?? "",
@@ -709,6 +705,94 @@ class Type {
     "created_at": createdAt,
     "updated_at": updatedAt,
     "category": category,
+  };
+}*/
+
+class HomePropertyType {
+  HomePropertyType({
+    this.id,
+    this.name,
+    this.sub,
+    this.categoryId,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.category,
+  });
+
+  int? id;
+  String? name;
+  String? sub;
+  int? categoryId;
+  String? status;
+  String? createdAt;
+  String? updatedAt;
+  Category? category;
+
+  factory HomePropertyType.fromJson(Map<String, dynamic> json) => HomePropertyType(
+    id: json["id"] ?? 0,
+    name: json["name"] ?? "",
+    sub: json["sub"] ?? "",
+    categoryId: json["category_id"] ?? 0,
+    status: json["status"] ?? "",
+    createdAt: json["created_at"] ?? "",
+    updatedAt: json["updated_at"] ?? "",
+    category: Category.fromJson(json["category"] ?? {}),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "sub": sub,
+    "category_id": categoryId,
+    "status": status,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
+    "category": category!.toJson(),
+  };
+}
+
+class Category {
+  Category({
+    required this.id,
+    required this.name,
+    required this.status,
+    required this.display,
+    required this.priority,
+    required this.img,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  int id;
+  String name;
+  String status;
+  String display;
+  int priority;
+  String img;
+  String createdAt;
+  String updatedAt;
+
+  factory Category.fromJson(Map<String, dynamic> json) => Category(
+    id: json["id"] ?? 0,
+    name: json["name"] ?? "",
+    status: json["status"] ?? "",
+    display: json["display"] ?? "",
+    priority: json["priority"] ?? 0,
+    img: json["img"] ?? "",
+    createdAt: json["created_at"] ?? "",
+    updatedAt: json["updated_at"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "status": status,
+    "display": display,
+    "priority": priority,
+    "img": img,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
   };
 }
 

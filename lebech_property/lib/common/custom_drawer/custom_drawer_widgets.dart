@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
+import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
 import 'package:lebech_property/screens/category_property_screen/category_property_screen.dart';
 import 'package:lebech_property/screens/project_list_screen/project_list_screen.dart';
 
@@ -22,8 +23,23 @@ class DrawerCategoryNameTextModule extends StatelessWidget {
   }
 }
 
+/*class CategoryListModule extends StatelessWidget {
+  CategoryListModule({Key? key}) : super(key: key);
+  final homeScreenController = Get.find<HomeScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: homeScreenController,
+    );
+  }
+}*/
+
+
+
 class ResidentialCategoryModule extends StatelessWidget {
-  const ResidentialCategoryModule({Key? key}) : super(key: key);
+  ResidentialCategoryModule({Key? key}) : super(key: key);
+  final homeScreenController = Get.find<HomeScreenController>();
 
   @override
   Widget build(BuildContext context) {

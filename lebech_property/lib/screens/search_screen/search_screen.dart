@@ -18,42 +18,46 @@ class SearchScreen extends StatelessWidget {
       onTap: () => hideKeyBoard(),
       child: Scaffold(
         appBar: customAppBar(title: "Search"),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            SSPropertyTypeDropDownModule().commonAllSidePadding(padding: 10),
-            SSPropertyStatusDropDownModule().commonAllSidePadding(padding: 10),
-            /// Text Field & Button Module
-            Row(
+        body: Obx(
+            () => searchScreenController.isLoading.value
+                ? const CustomCircularProgressIndicatorModule()
+                : Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Expanded(child: SearchScreenSearchFieldModule()),
-                const SizedBox(width: 15),
-                FindButtonModule(),
-              ],
-            ).commonSymmetricPadding(horizontal: 10),
+                SSPropertyTypeDropDownModule().commonAllSidePadding(padding: 10),
+                SSPropertyStatusDropDownModule().commonAllSidePadding(padding: 10),
+                /// Text Field & Button Module
+                Row(
+                  children: [
+                    Expanded(child: SearchScreenSearchFieldModule()),
+                    const SizedBox(width: 15),
+                    FindButtonModule(),
+                  ],
+                ).commonSymmetricPadding(horizontal: 10),
 
 
-            const SizedBox(height: 10),
-            Expanded(
-              child: Obx(
-                    () => searchScreenController.isLoading.value
-                    ? const CustomCircularProgressIndicatorModule()
-                    : searchScreenController.searchList.isEmpty
-                    ? const Center(
-                  child: Text(
-                    "Search Property",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: Obx(
+                        () => searchScreenController.isLoading.value
+                        ? const CustomCircularProgressIndicatorModule()
+                        : searchScreenController.searchList.isEmpty
+                        ? const Center(
+                      child: Text(
+                        "Search Property",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                        : SearchListModule()
+                        .commonSymmetricPadding(horizontal: 10),
                   ),
-                )
-                    : SearchListModule()
-                    .commonSymmetricPadding(horizontal: 10),
-              ),
+                ),
+              ],
             ),
-          ],
         ),
       ),
     );

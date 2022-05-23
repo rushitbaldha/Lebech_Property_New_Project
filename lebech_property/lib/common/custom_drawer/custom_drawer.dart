@@ -43,7 +43,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
                         const DrawerCategoryNameTextModule(),
 
-                        const ResidentialCategoryModule(),
+                        // CategoryListModule(),
+
+                        ResidentialCategoryModule(),
                         const CommercialCategoryModule(),
                         const IndustrialCategoryModule(),
                         const TextileSpaceCategoryModule(),

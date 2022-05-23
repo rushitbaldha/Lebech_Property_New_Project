@@ -642,22 +642,22 @@ class PropertyTenant {
 
 class PropertyType {
   PropertyType({
-    required this.id,
-    required this.name,
-    required this.sub,
-    required this.categoryId,
-    required this.status,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+    this.name,
+    this.sub,
+    this.categoryId,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
   });
 
-  int id;
-  String name;
-  String sub;
-  int categoryId;
-  String status;
-  String createdAt;
-  String updatedAt;
+  int? id;
+  String? name;
+  String? sub;
+  int? categoryId;
+  String? status;
+  String? createdAt;
+  String? updatedAt;
 
   factory PropertyType.fromJson(Map<String, dynamic> json) => PropertyType(
     id: json["id"] ?? 0,

@@ -5,14 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../common/constants/api_url.dart';
+import '../../models/home_screen_model/home_screen_model.dart';
 import '../../models/search_result_model/search_result_model.dart';
 
 class SearchScreenController extends GetxController {
+  /// List From Home Screen - DD
+  List<HomePropertyType> propertyTypeList = Get.arguments;
+  HomePropertyType propertyTypeValue = HomePropertyType();
+
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
   RxString propertyStatusValue = 'Property Status'.obs;
-  RxString propertyTypeValue = 'Property Type'.obs;
+  // RxString propertyTypeValue = 'Property Type'.obs;
   RxString cityName = "Choose City".obs;
 
   TextEditingController searchFieldController = TextEditingController();
@@ -35,7 +40,7 @@ class SearchScreenController extends GetxController {
 
       request.fields["city"] = "1";
       request.fields["search"] = searchText.toString();
-      request.fields["status"] = propertyTypeValue.value.toLowerCase();
+      request.fields["status"] = propertyTypeValue.name!;
       request.fields["type"] = "1";
 
       log("Fields ::: ${request.fields}");
@@ -85,6 +90,13 @@ class SearchScreenController extends GetxController {
   loadUI() {
     isLoading(true);
     isLoading(false);
+  }
+
+  @override
+  void onInit() {
+    propertyTypeList.insert(0, HomePropertyType(name: "Property Type"));
+    propertyTypeValue = propertyTypeList[0];
+    super.onInit();
   }
 
 }

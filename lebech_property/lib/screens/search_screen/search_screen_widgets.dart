@@ -1,12 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 
 import '../../common/field_decorations.dart';
 import '../../controllers/search_screen_controller/search_screen_controller.dart';
+import '../../models/home_screen_model/home_screen_model.dart';
 import '../../models/search_result_model/search_result_model.dart';
 import '../property_details_screen/property_details_screen.dart';
 
@@ -131,55 +133,38 @@ class SSPropertyTypeDropDownModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-          ()=> Container(
-        padding: const EdgeInsets.only(left: 10),
-        width: Get.width, //gives the width of the dropdown button
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          color: Colors.white,
-        ),
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            canvasColor: Colors.white,
-            buttonTheme: ButtonTheme.of(context).copyWith(
-              alignedDropdown: true,
-            ),
+    return Container(
+      padding: const EdgeInsets.only(left: 10),
+      width: Get.width, //gives the width of the dropdown button
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        color: Colors.white,
+      ),
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: Colors.white,
+          buttonTheme: ButtonTheme.of(context).copyWith(
+            alignedDropdown: true,
           ),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
-              value: screenController.propertyTypeValue.value,
-              items: <String>[
-                'Property Type',
-                'Flat',
-                'Bunglow/Villa',
-                'Office',
-                'PG',
-                'House',
-                'Residential Plot',
-                'Studio Apartment',
-                'Plots',
-                'Shop / Showroom',
-                'Textile Shop/Godawn',
-                'Commercial Land',
-                'Industrial Building',
-                'Sheds',
-              ].map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                    style: const TextStyle(color: Colors.black),
-                  ),
-                );
-              }).toList(),
-              onChanged: (value) {
-                screenController.isLoading(true);
-                screenController.propertyTypeValue.value = value!;
-                screenController.isLoading(false);
-                log("value : $value");
-              },
-            ),
+        ),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<HomePropertyType>(
+            value: screenController.propertyTypeValue,
+            items: screenController.propertyTypeList
+                .map<DropdownMenuItem<HomePropertyType>>((HomePropertyType value) {
+              return DropdownMenuItem<HomePropertyType>(
+                value: value,
+                child: Text(
+                  value.name!,
+                  style: const TextStyle(color: Colors.black),
+                ),
+              );
+            }).toList(),
+            onChanged: (value) {
+              screenController.isLoading(true);
+              screenController.propertyTypeValue = value!;
+              screenController.isLoading(false);
+            },
           ),
         ),
       ),
@@ -216,7 +201,13 @@ class FindButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         String searchText = screenController.searchFieldController.text.trim();
-        await screenController.searchResultFunction(searchText: searchText);
+
+        if(screenController.propertyTypeValue.name == "Property Type") {
+          Fluttertoast.showToast(msg: "Please select property type!");
+        } else {
+          await screenController.searchResultFunction(searchText: searchText);
+        }
+
       },
       child: Container(
         decoration: BoxDecoration(

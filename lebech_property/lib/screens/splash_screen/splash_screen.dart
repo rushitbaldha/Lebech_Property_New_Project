@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/common/constants/app_colors.dart';
 import '../../controllers/splash_screen_controller/splash_screen_controller.dart';
 
 
@@ -18,7 +19,7 @@ class SplashScreen extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
-              color: Colors.red,
+              color: AppColors.greenColor,
             ),
           ),
         ),
