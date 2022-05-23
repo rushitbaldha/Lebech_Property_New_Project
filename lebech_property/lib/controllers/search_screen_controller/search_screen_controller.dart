@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:lebech_property/common/constants/enums.dart';
 import '../../common/constants/api_url.dart';
 import '../../models/home_screen_model/home_screen_model.dart';
 import '../../models/search_result_model/search_result_model.dart';
@@ -25,7 +26,7 @@ class SearchScreenController extends GetxController {
 
 
   /// Search Result Function
-  searchResultFunction({required String searchText}) async {
+  searchResultFunction({required String searchText, SearchType searchType = SearchType.none}) async {
     isLoading(true);
     String url = ApiUrl.searchResultApi;
     log("Search Result  Api URL : $url");
@@ -37,12 +38,17 @@ class SearchScreenController extends GetxController {
       // request.fields["status"] = "rent";
       // request.fields["type"] = "1";
 
-
-      request.fields["city"] = "1";
-      request.fields["search"] = searchText.toString();
-      request.fields["status"] = propertyTypeValue.name!;
-      request.fields["type"] = "1";
-
+      if(searchType == SearchType.none) {
+        request.fields["city"] = "1";
+        request.fields["search"] = "";
+        request.fields["status"] = "";
+        request.fields["type"] = "";
+      } else {
+        request.fields["city"] = "1";
+        request.fields["search"] = searchText.toString();
+        request.fields["status"] = propertyStatusValue.value;
+        request.fields["type"] = "${propertyTypeValue.id}";
+      }
       log("Fields ::: ${request.fields}");
 
       var response = await request.send();

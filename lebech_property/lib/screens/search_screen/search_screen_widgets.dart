@@ -201,12 +201,14 @@ class FindButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         String searchText = screenController.searchFieldController.text.trim();
-
-        if(screenController.propertyTypeValue.name == "Property Type") {
+        await screenController.searchResultFunction(searchText: searchText);
+        /*if(screenController.propertyTypeValue.name == "Property Type") {
           Fluttertoast.showToast(msg: "Please select property type!");
+        } else if(screenController.propertyStatusValue.value == "Property Status") {
+          Fluttertoast.showToast(msg: "Please select property status!");
         } else {
           await screenController.searchResultFunction(searchText: searchText);
-        }
+        }*/
 
       },
       child: Container(
