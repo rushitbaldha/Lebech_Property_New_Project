@@ -40,6 +40,8 @@ class Data {
     required this.superProjects,
     required this.news,
     required this.feedback,
+    required this.cities,
+    required this.categoryNew,
   });
 
   List<Banner1> banner;
@@ -52,6 +54,8 @@ class Data {
   List<Project> superProjects;
   List<News> news;
   List<dynamic> feedback;
+  List<Cities> cities;
+  List<CategoryNew> categoryNew;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     banner: List<Banner1>.from(json["banner"].map((x) => Banner1.fromJson(x)) ?? {}),
@@ -64,6 +68,8 @@ class Data {
     superProjects: List<Project>.from(json["super_projects"].map((x) => Project.fromJson(x))  ?? {}),
     news: List<News>.from(json["news"].map((x) => News.fromJson(x))  ?? {}),
     feedback: List<dynamic>.from(json["feedback"].map((x) => x)  ?? {}),
+    cities: List<Cities>.from(json["cities"].map((x) => Cities.fromJson(x))),
+    categoryNew: List<CategoryNew>.from(json["categories"].map((x) => CategoryNew.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -77,6 +83,8 @@ class Data {
     "super_projects": List<dynamic>.from(superProjects.map((x) => x.toJson())),
     "news": List<dynamic>.from(news.map((x) => x.toJson())),
     "feedback": List<dynamic>.from(feedback.map((x) => x)),
+    "cities": List<dynamic>.from(cities.map((x) => x.toJson())),
+    "categories": List<dynamic>.from(categoryNew.map((x) => x.toJson())),
   };
 }
 
@@ -1294,5 +1302,49 @@ class Youtube {
     "link": link,
     "priority": priority,
     "created_at": createdAt,
+  };
+}
+
+class Cities {
+  Cities({
+    this.id,
+    this.name,
+    this.stateId,
+  });
+
+  int? id;
+  String? name;
+  int? stateId;
+
+  factory Cities.fromJson(Map<String, dynamic> json) => Cities(
+    id: json["id"] ?? 0,
+    name: json["name"] ?? "",
+    stateId: json["state_id"] ?? 0,
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "state_id": stateId,
+  };
+}
+
+class CategoryNew {
+  CategoryNew({
+    required this.id,
+    required this.name,
+  });
+
+  int id;
+  String name;
+
+  factory CategoryNew.fromJson(Map<String, dynamic> json) => CategoryNew(
+    id: json["id"] ?? 0,
+    name: json["name"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
   };
 }

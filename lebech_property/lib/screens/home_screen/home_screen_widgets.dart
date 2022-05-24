@@ -25,7 +25,13 @@ class SearchBarModule extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 5),
       child: GestureDetector(
         onTap: () {
-          Get.to(()=> SearchScreen(), arguments: screenController.propertyTypeList);
+          Get.to(
+            () => SearchScreen(),
+            arguments: [
+              screenController.propertyTypeList,
+              screenController.citiesList
+            ],
+          );
         },
         child: Container(
           decoration: BoxDecoration(

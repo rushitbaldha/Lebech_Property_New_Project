@@ -11,15 +11,18 @@ import '../../models/search_result_model/search_result_model.dart';
 
 class SearchScreenController extends GetxController {
   /// List From Home Screen - DD
-  List<HomePropertyType> propertyTypeList = Get.arguments;
+  List<HomePropertyType> propertyTypeList = Get.arguments[0];
+  List<Cities> citiesList = Get.arguments[1];
+
   HomePropertyType propertyTypeValue = HomePropertyType();
+  Cities citiesTypeValue = Cities();
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
   RxString propertyStatusValue = 'Property Status'.obs;
   // RxString propertyTypeValue = 'Property Type'.obs;
-  RxString cityName = "Choose City".obs;
+  // RxString cityName = "Choose City".obs;
 
   TextEditingController searchFieldController = TextEditingController();
   List<SearchDatum> searchList = [];
@@ -44,7 +47,7 @@ class SearchScreenController extends GetxController {
         request.fields["status"] = "";
         request.fields["type"] = "";
       } else {
-        request.fields["city"] = "1";
+        request.fields["city"] = "${citiesTypeValue.id}";
         request.fields["search"] = searchText.toString();
         request.fields["status"] = propertyStatusValue.value;
         request.fields["type"] = "${propertyTypeValue.id}";
@@ -102,6 +105,8 @@ class SearchScreenController extends GetxController {
   void onInit() {
     propertyTypeList.insert(0, HomePropertyType(name: "Property Type"));
     propertyTypeValue = propertyTypeList[0];
+    citiesList.insert(0, Cities(name: "Choose City"));
+    citiesTypeValue = citiesList[0];
     super.onInit();
   }
 

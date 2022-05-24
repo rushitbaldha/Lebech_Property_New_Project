@@ -24,9 +24,10 @@ class HomeScreenController extends GetxController {
   List<Project> favouriteProjectsList = [];
   List<Favourite> newListingsList = [];
   List<Favourite> featuredListingsList = [];
-
+  List<CategoryNew> categoryList = [];
   /// DropDown List
   List<HomePropertyType> propertyTypeList = [];
+  List<Cities> citiesList = [];
 
   List<String> aminitiesLists = [
     "Parking Space",
@@ -63,6 +64,8 @@ class HomeScreenController extends GetxController {
         newListingsList = homeScreenModel.data.favourite;
         featuredListingsList = homeScreenModel.data.dataSuper;
         propertyTypeList = homeScreenModel.data.type;
+        citiesList = homeScreenModel.data.cities;
+        categoryList = homeScreenModel.data.categoryNew;
 
       } else {
         log('getHomeScreenDataFunction Else Else');

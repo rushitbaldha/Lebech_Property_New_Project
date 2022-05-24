@@ -1,16 +1,14 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
-
 import '../../common/field_decorations.dart';
 import '../../controllers/search_screen_controller/search_screen_controller.dart';
 import '../../models/home_screen_model/home_screen_model.dart';
 import '../../models/search_result_model/search_result_model.dart';
 import '../property_details_screen/property_details_screen.dart';
+
 
 
 /// City List - DD
@@ -36,31 +34,20 @@ class SSCityListDropDownModule extends StatelessWidget {
             ),
           ),
           child: DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
-              value: screenController.cityName.value,
-              items: <String>[
-                'Choose City',
-                'Surat',
-                'Olpad',
-                'Navsari',
-                'Valsad',
-                'Kim',
-                'Bardoli',
-                'Ankleshwar',
-                'Hazira',
-                'Sachin',
-              ].map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
+            child: DropdownButton<Cities>(
+              value: screenController.citiesTypeValue,
+              items: screenController.citiesList.map<DropdownMenuItem<Cities>>((Cities value) {
+                return DropdownMenuItem<Cities>(
                   value: value,
                   child: Text(
-                    value,
+                    value.name!,
                     style: const TextStyle(color: Colors.black),
                   ),
                 );
               }).toList(),
               onChanged: (value) {
                 screenController.isLoading(true);
-                screenController.cityName.value = value!;
+                screenController.citiesTypeValue = value!;
                 screenController.isLoading(false);
                 log("value : $value");
               },
