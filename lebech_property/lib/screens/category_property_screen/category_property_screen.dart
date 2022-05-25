@@ -16,18 +16,25 @@ class CategoryPropertyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: 'Category'),
-      body: Column(
-        children: [
-          CPSPropertyTypeDropDownModule(),
-          const SizedBox(height: 10),
-          Expanded(
-            child: Obx(
-              () => categoryPropertyScreenController.isLoading.value
-                  ? const CustomCircularProgressIndicatorModule()
-                  : categoryPropertyScreenController
-                          .categoryPropertyList.isEmpty
-                      ? Center(
+      appBar: customAppBar(title: categoryPropertyScreenController.subCategoryList[0].category!.name),
+      body: Obx(() => categoryPropertyScreenController.isLoading.value
+          ? const CustomCircularProgressIndicatorModule()
+          : Column(
+              children: [
+                CPSSubCategoryTypeDropDownModule(),
+                const SizedBox(height: 10),
+                CPSPropertyTypeDropDownModule(),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    FindSubCategoryButtonModule(),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: categoryPropertyScreenController.categoryPropertyList.isEmpty
+                      ? const Center(
                           child: Text(
                             "No Property Found",
                             style: TextStyle(
@@ -55,10 +62,9 @@ class CategoryPropertyScreen extends StatelessWidget {
                                 singleProperty: singleProperty);
                           },
                         ),
-            ),
-          ),
-        ],
-      ).commonAllSidePadding(padding: 10),
+                ),
+              ],
+            ).commonAllSidePadding(padding: 10)),
     );
   }
 }

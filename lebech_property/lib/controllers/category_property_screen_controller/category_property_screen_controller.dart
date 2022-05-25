@@ -5,9 +5,12 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../common/constants/api_url.dart';
 import '../../models/category_wise_property_model/category_wise_property_model.dart';
+import '../../models/home_screen_model/home_screen_model.dart';
 
 class CategoryPropertyScreenController extends GetxController {
-  String categoryId = Get.arguments;
+  /// From Drawer Menu
+  List<HomePropertyType> subCategoryList = Get.arguments;
+  HomePropertyType? subCategoryValue;
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -17,6 +20,7 @@ class CategoryPropertyScreenController extends GetxController {
   RxString propertyTypeValue = 'Rent'.obs;
 
 
+
   getCategoryWisePropertyFunction() async {
     isLoading(true);
     String url = ApiUrl.getCategoryWisePropertyApi;
@@ -24,7 +28,7 @@ class CategoryPropertyScreenController extends GetxController {
 
     try {
       var request = http.MultipartRequest('POST', Uri.parse(url));
-      request.fields['id'] = categoryId;
+      request.fields['id'] = "${subCategoryValue!.id}";
       request.fields['status'] = propertyTypeValue.value;
       request.fields['city'] = "1";
       var response = await request.send();
@@ -56,6 +60,12 @@ class CategoryPropertyScreenController extends GetxController {
   @override
   void onInit() {
     getCategoryWisePropertyFunction();
+    subCategoryValue = subCategoryList[0];
     super.onInit();
+  }
+
+  loadUI() {
+    isLoading(true);
+    isLoading(false);
   }
 }

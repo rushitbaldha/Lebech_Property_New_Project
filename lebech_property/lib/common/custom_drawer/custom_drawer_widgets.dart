@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
 import 'package:lebech_property/screens/category_property_screen/category_property_screen.dart';
 import 'package:lebech_property/screens/project_list_screen/project_list_screen.dart';
+
+import '../../models/home_screen_model/home_screen_model.dart';
 
 class DrawerCategoryNameTextModule extends StatelessWidget {
   const DrawerCategoryNameTextModule({Key? key}) : super(key: key);
@@ -22,6 +26,57 @@ class DrawerCategoryNameTextModule extends StatelessWidget {
     );
   }
 }
+
+
+class CategoryListModule extends StatelessWidget {
+  CategoryListModule({Key? key}) : super(key: key);
+  final homeScreenController = Get.find<HomeScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: homeScreenController.categoryList.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, i) {
+        CategoryNew singleCategory = homeScreenController.categoryList[i];
+        return _categoryListTile(singleCategory);
+      },
+    );
+  }
+
+  Widget _categoryListTile(CategoryNew singleCategory) {
+    return ListTile(
+      onTap: () {
+        List<HomePropertyType> subCategoryList = [];
+
+        for(int i = 0; i < homeScreenController.propertyTypeList.length; i++) {
+          if(singleCategory.id == homeScreenController.propertyTypeList[i].category!.id) {
+            subCategoryList.add(homeScreenController.propertyTypeList[i]);
+          }
+        }
+
+        log("subCategoryList : ${subCategoryList.length}");
+
+        Get.back();
+        Get.to(
+          () => CategoryPropertyScreen(),
+          arguments: subCategoryList,
+        );
+      },
+      title: Text(
+        singleCategory.name,
+        textAlign: TextAlign.start,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        ),
+      ),
+    );
+  }
+
+}
+
 
 /*class CategoryListModule extends StatelessWidget {
   CategoryListModule({Key? key}) : super(key: key);

@@ -24,7 +24,7 @@ class HomeScreenController extends GetxController {
   List<Project> favouriteProjectsList = [];
   List<Favourite> newListingsList = [];
   List<Favourite> featuredListingsList = [];
-  List<CategoryNew> categoryList = [];
+    List<CategoryNew> categoryList = [];
   /// DropDown List
   List<HomePropertyType> propertyTypeList = [];
   List<Cities> citiesList = [];

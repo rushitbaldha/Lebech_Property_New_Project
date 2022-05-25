@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
+import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
 import 'package:lebech_property/screens/direct_search_screen/direct_search_screen.dart';
 import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
 
@@ -17,6 +18,7 @@ class CustomDrawer extends StatefulWidget {
 }
 class _CustomDrawerState extends State<CustomDrawer> {
   CustomDrawerController customDrawerController = Get.put(CustomDrawerController());
+  final homeScreenController = Get.find<HomeScreenController>();
 
 
   @override
@@ -45,10 +47,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
                         // CategoryListModule(),
 
-                        ResidentialCategoryModule(),
-                        const CommercialCategoryModule(),
-                        const IndustrialCategoryModule(),
-                        const TextileSpaceCategoryModule(),
+                        CategoryListModule(),
+
+                        // ResidentialCategoryModule(),
+                        // const CommercialCategoryModule(),
+                        // const IndustrialCategoryModule(),
+                        // const TextileSpaceCategoryModule(),
+
+
                         const ProjectsModule(),
 
                         const Divider(),

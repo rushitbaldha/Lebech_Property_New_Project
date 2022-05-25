@@ -2,11 +2,69 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/common/constants/app_colors.dart';
+import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/screens/property_details_screen/property_details_screen.dart';
 import '../../controllers/category_property_screen_controller/category_property_screen_controller.dart';
 import '../../models/category_wise_property_model/category_wise_property_model.dart';
+import '../../models/home_screen_model/home_screen_model.dart';
 
 
+/// Sub Category Module
+class CPSSubCategoryTypeDropDownModule extends StatelessWidget {
+  CPSSubCategoryTypeDropDownModule({Key? key}) : super(key: key);
+  final screenController = Get.find<CategoryPropertyScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+        () => screenController.isLoading.value
+        ? Container()
+        : Container(
+          padding: const EdgeInsets.only(left: 10),
+          width: Get.width, //gives the width of the dropdown button
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            color: Colors.white,
+          ),
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Colors.white,
+              buttonTheme: ButtonTheme.of(context).copyWith(
+                alignedDropdown: true,
+              ),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<HomePropertyType>(
+                value: screenController.subCategoryValue,
+                items: screenController.subCategoryList
+                    .map<DropdownMenuItem<HomePropertyType>>((HomePropertyType value) {
+                  return DropdownMenuItem<HomePropertyType>(
+                    value: value,
+                    child: Text(
+                      value.name!,
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  screenController.isLoading(true);
+                  screenController.subCategoryValue = value!;
+                  screenController.isLoading(false);
+                  log("value : $value");
+                  screenController.loadUI();
+                  // await screenController.getCategoryWisePropertyFunction();
+                },
+              ),
+            ),
+          ),
+        ),
+    );
+  }
+}
+
+
+/// Property Type Module
 class CPSPropertyTypeDropDownModule extends StatelessWidget {
   CPSPropertyTypeDropDownModule({Key? key}) : super(key: key);
   final screenController = Get.find<CategoryPropertyScreenController>();
@@ -50,7 +108,7 @@ class CPSPropertyTypeDropDownModule extends StatelessWidget {
                 screenController.propertyTypeValue.value = value!;
                 screenController.isLoading(false);
                 log("value : $value");
-                await screenController.getCategoryWisePropertyFunction();
+                // await screenController.getCategoryWisePropertyFunction();
               },
             ),
           ),
@@ -60,7 +118,35 @@ class CPSPropertyTypeDropDownModule extends StatelessWidget {
   }
 }
 
+/// Find Button
+class FindSubCategoryButtonModule extends StatelessWidget {
+  FindSubCategoryButtonModule({Key? key}) : super(key: key);
+  final screenController = Get.find<CategoryPropertyScreenController>();
 
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async => await screenController.getCategoryWisePropertyFunction(),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: AppColors.blueColor,
+        ),
+        child: const Text(
+          "Find",
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ).commonSymmetricPadding(horizontal: 30, vertical: 15),
+      ),
+    );
+  }
+}
+
+
+/// Category List
 class CategoryListTile extends StatelessWidget {
   final CategoryWiseDatum singleProperty;
   CategoryListTile({Key? key, required this.singleProperty}) : super(key: key);
@@ -140,7 +226,7 @@ class CategoryListTile extends StatelessWidget {
       '₹ ${singleProperty.rent.rent}',
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: const TextStyle(color: Colors.red, fontSize: 18),
+      style: const TextStyle(color: AppColors.greenColor, fontSize: 18),
     );
   }
 
