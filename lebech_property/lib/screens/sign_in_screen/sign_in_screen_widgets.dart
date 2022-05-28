@@ -6,6 +6,7 @@ import '../../common/constants/app_colors.dart';
 import '../../common/field_decorations.dart';
 import '../../common/field_validations.dart';
 import '../../controllers/sign_in_screen_controller/sign_in_screen_controller.dart';
+import '../home_screen/home_screen.dart';
 
 
 class SignInPhoneNoTextFieldModule extends StatelessWidget {
@@ -52,7 +53,7 @@ class SignInButtonModule extends StatelessWidget {
       onTap: () async {
         if(screenController.signInFormKey.currentState!.validate()){
           await screenController.userSignInFunction();
-          // Get.off(()=> HomeScreen());
+
         }
       },
       child: Material(

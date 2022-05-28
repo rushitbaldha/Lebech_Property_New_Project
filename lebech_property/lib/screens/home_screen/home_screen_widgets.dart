@@ -5,10 +5,13 @@ import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
+import 'package:lebech_property/common/user_details/user_details.dart';
 import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
 import 'package:lebech_property/screens/project_list_screen/project_list_screen.dart';
 import 'package:lebech_property/screens/property_details_screen/property_details_screen.dart';
+import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../common/constants/enums.dart';
 import '../../models/home_screen_model/home_screen_model.dart';
 import '../project_details_screen/project_details_screen.dart';
 import '../search_screen/search_screen.dart';
@@ -655,29 +658,43 @@ class NewListingsModule extends StatelessWidget {
             ),
             itemBuilder: (context, i){
               Favourite singleListingsItem = screenController.newListingsList[i];
-              return GestureDetector(
-                onTap: ()=> Get.to(()=> PropertyDetailsScreen(),
-                  transition: Transition.zoom,
-                  arguments: singleListingsItem.id.toString(),),
+              return Stack(
+                children: [
+                  GestureDetector(
+                    onTap: ()=> Get.to(()=> PropertyDetailsScreen(),
+                      transition: Transition.zoom,
+                      arguments: singleListingsItem.id.toString(),),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            flex: 45,
+                            child: _imagesListModule(singleListingsItem: singleListingsItem),
+                          ),
+                          Expanded(
+                            flex: 55,
+                            child: _propertyDetailsModule(singleListingsItem: singleListingsItem),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
 
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Colors.grey),
+                  Positioned(
+                    right: 10,
+                    child: IconButton(
+                      onPressed: () {
+                        screenController.loadUI();
+                        optionBottomSheet(context, singleListingsItem);},
+                      icon: const Icon(Icons.visibility_rounded),
+                    ),
                   ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 45,
-                        child: _imagesListModule(singleListingsItem: singleListingsItem),
-                      ),
-                      Expanded(
-                        flex: 55,
-                        child: _propertyDetailsModule(singleListingsItem: singleListingsItem),
-                      ),
-                    ],
-                  ),
-                ),
+
+                ],
               );
             },
           ),
@@ -707,6 +724,8 @@ class NewListingsModule extends StatelessWidget {
       ],
     );
   }
+
+
 
   Widget _imagesListModule({required Favourite singleListingsItem}) {
     return Container(
@@ -769,6 +788,77 @@ class NewListingsModule extends StatelessWidget {
       ),
     );
   }
+
+  optionBottomSheet(BuildContext context, Favourite singleListingsItem) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      if(UserDetails.userLoggedIn == false) {
+                        Get.to(()=> SignInScreen(),
+                        transition: Transition.zoom,
+                        arguments: SignInRouteType.backScreen);
+                      } else if(UserDetails.userLoggedIn == true) {
+                        // todo
+
+                      }
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: AppColors.blueColor,
+                      ),
+                      child: const Text(
+                        "Book a visit",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ).commonSymmetricPadding(horizontal: 10, vertical: 10),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: GestureDetector(
+                    // onTap: () async => ,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: AppColors.blueColor,
+                      ),
+                      child: Text(
+                        UserDetails.userLoggedIn == true
+                        ? "Buy Owner Number ${singleListingsItem.rent.charge}"
+                        : "Buy Owner Number",
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ).commonSymmetricPadding(horizontal: 10, vertical: 10),
+                    ),
+                  ),
+                ),
+              ],
+            ).commonAllSidePadding(padding: 10),
+          ],
+        );
+      },
+    );
+  }
+
+
 }
 
 /// Featured Product Module
@@ -802,28 +892,41 @@ class FeaturedListingsModule extends StatelessWidget {
             ),
             itemBuilder: (context, i){
               Favourite singleFeaturedItem = screenController.featuredListingsList[i];
-              return GestureDetector(
-                onTap: ()=> Get.to(()=> PropertyDetailsScreen(),
-                  transition: Transition.zoom,
-                  arguments: singleFeaturedItem.id.toString(),),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 45,
-                        child: _imagesListModule(singleFeaturedItem: singleFeaturedItem),
+              return Stack(
+                children: [
+                  GestureDetector(
+                    onTap: ()=> Get.to(()=> PropertyDetailsScreen(),
+                      transition: Transition.zoom,
+                      arguments: singleFeaturedItem.id.toString(),),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Colors.grey),
                       ),
-                      Expanded(
-                        flex: 55,
-                        child: _propertyDetailsModule(singleFeaturedItem: singleFeaturedItem),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            flex: 45,
+                            child: _imagesListModule(singleFeaturedItem: singleFeaturedItem),
+                          ),
+                          Expanded(
+                            flex: 55,
+                            child: _propertyDetailsModule(singleFeaturedItem: singleFeaturedItem),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+
+                  Positioned(
+                    right: 10,
+                    child: IconButton(
+                      onPressed: () => optionBottomSheet(context),
+                      icon: const Icon(Icons.visibility_rounded),
+                    ),
+                  ),
+
+                ],
               );
             },
           ),
@@ -915,6 +1018,65 @@ class FeaturedListingsModule extends StatelessWidget {
       ),
     );
   }
+
+  optionBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    // onTap: () async => ,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: AppColors.blueColor,
+                      ),
+                      child: const Text(
+                        "Book a visit",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ).commonSymmetricPadding(horizontal: 8, vertical: 8),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: GestureDetector(
+                    // onTap: () async => ,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: AppColors.blueColor,
+                      ),
+                      child: const Text(
+                        "Buy Owner Number",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ).commonSymmetricPadding(horizontal: 8, vertical: 8),
+                    ),
+                  ),
+                ),
+              ],
+            ).commonAllSidePadding(padding: 10),
+          ],
+        );
+      },
+    );
+  }
+
 }
 
 /// Youtube Vide Module

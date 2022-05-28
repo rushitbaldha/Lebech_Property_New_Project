@@ -5,11 +5,14 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../common/constants/api_url.dart';
+import '../../common/constants/enums.dart';
 import '../../common/sharedpreference_data/sharedpreference_data.dart';
 import '../../models/sign_in_model/sign_in_model.dart';
 import '../../screens/home_screen/home_screen.dart';
 
 class SignInScreenController extends GetxController {
+  /// SignIn Type normal or backScreen
+  SignInRouteType signInRouteType = Get.arguments ?? SignInRouteType.normal;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   RxBool isPasswordShow = true.obs;
@@ -41,7 +44,13 @@ class SignInScreenController extends GetxController {
           String userToken = signInModel.data.token;
           await sharedPreferenceData.setUserLoggedInDetailsInPrefs(userToken: userToken);
           await sharedPreferenceData.setCurrentCityInPrefs(cityId: "1");
-          Get.offAll(()=> HomeScreen());
+
+          if(signInRouteType == SignInRouteType.normal) {
+            Get.offAll(() => HomeScreen());
+          } else if(signInRouteType == SignInRouteType.backScreen) {
+            // Todo - Screen Route
+            Get.back();
+          }
         } else {
           Fluttertoast.showToast(msg: 'User Not LoggedIn Successfully!');
         }

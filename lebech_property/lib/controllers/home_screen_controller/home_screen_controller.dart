@@ -104,5 +104,10 @@ class HomeScreenController extends GetxController {
     newsFeedPageController.nextPage(duration: 1000.milliseconds, curve: Curves.ease);
   }
 
+  loadUI() {
+    isLoading(true);
+    isLoading(false);
+  }
+
 
 }

@@ -33,15 +33,14 @@ class CategoryPropertyScreenController extends GetxController {
       request.fields['city'] = "1";
       var response = await request.send();
 
-      response.stream.transform(const Utf8Decoder()).transform(const LineSplitter()).listen((dataLine) {
+      response.stream.transform(const Utf8Decoder()).transform(const LineSplitter()).listen((dataLine) async {
         CategoryPropertyModel categoryPropertyModel = CategoryPropertyModel.fromJson(json.decode(dataLine));
         isSuccessStatus = categoryPropertyModel.status.obs;
         log("isSuccessStatus : $isSuccessStatus");
 
         if (isSuccessStatus.value) {
           categoryPropertyList.clear();
-          log("isSuccessStatus : $isSuccessStatus");
-          categoryPropertyList = categoryPropertyModel.data.data;
+          categoryPropertyList.addAll(categoryPropertyModel.data.data);
         } else {
           log("getCategoryWisePropertyFunction Else Else");
         }
@@ -53,14 +52,15 @@ class CategoryPropertyScreenController extends GetxController {
     } finally {
       isLoading(false);
     }
+    loadUI();
   }
 
 
 
   @override
   void onInit() {
-    getCategoryWisePropertyFunction();
     subCategoryValue = subCategoryList[0];
+    getCategoryWisePropertyFunction();
     super.onInit();
   }
 
