@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
+import 'package:lebech_property/common/user_details/user_details.dart';
 import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
 import 'package:lebech_property/screens/direct_search_screen/direct_search_screen.dart';
 import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
@@ -75,7 +76,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           ),
                         ),
 
-                        ListTile(
+                        UserDetails.userLoggedIn
+                        ? ListTile(
                           onTap: () {
                             Get.back();
                             Get.to(() => VisitListScreen());
@@ -88,7 +90,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                               fontSize: 18,
                             ),
                           ),
-                        ),
+                        )
+                        : Container(),
+
+                        AboutUsModule(),
                       ],
                     ),
                   ),

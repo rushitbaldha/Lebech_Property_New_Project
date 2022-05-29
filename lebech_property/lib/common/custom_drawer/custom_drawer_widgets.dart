@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
+import 'package:lebech_property/screens/about_us_screen/about_us_screen.dart';
 import 'package:lebech_property/screens/category_property_screen/category_property_screen.dart';
 import 'package:lebech_property/screens/project_list_screen/project_list_screen.dart';
 
@@ -190,6 +191,28 @@ class ProjectsModule extends StatelessWidget {
       },
       title: const Text(
         "Projects",
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        ),
+      ),
+    );
+  }
+}
+
+class AboutUsModule extends StatelessWidget {
+  const AboutUsModule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: () {
+        Get.back();
+        Get.to(() => AboutUsScreen());
+      },
+      title: const Text(
+        "About Us",
         textAlign: TextAlign.start,
         style: TextStyle(
           fontWeight: FontWeight.bold,

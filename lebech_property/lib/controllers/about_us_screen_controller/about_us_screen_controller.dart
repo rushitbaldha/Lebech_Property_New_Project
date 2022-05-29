@@ -9,7 +9,8 @@ class AboutUsScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
-  getAboutUsDataFunction() async {
+
+  /*getAboutUsDataFunction() async {
     isLoading(true);
     String url = "ApiUrl.;";
     log("About Us API URL : $url");
@@ -34,11 +35,11 @@ class AboutUsScreenController extends GetxController {
     } finally {
       isLoading(false);
     }
-  }
+  }*/
 
-  @override
-  void onInit() {
-    getAboutUsDataFunction();
-    super.onInit();
-  }
+  // @override
+  // void onInit() {
+  //   getAboutUsDataFunction();
+  //   super.onInit();
+  // }
 }
