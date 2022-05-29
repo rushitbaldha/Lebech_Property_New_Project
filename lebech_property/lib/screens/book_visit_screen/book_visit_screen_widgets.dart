@@ -8,6 +8,7 @@ import 'package:lebech_property/common/extension_methods/extension_methods.dart'
 import '../../common/constants/app_colors.dart';
 import '../../controllers/book_visit_screen_controller/book_visit_screen_controller.dart';
 import '../../models/book_visit_screen_model/book_visit_details_model.dart';
+import '../visit_list_screen/visit_list_screen.dart';
 
 
 /// Property Details Module
@@ -47,7 +48,7 @@ class BookVisitPropertyDetailsModule extends StatelessWidget {
             topRight: Radius.circular(15)
         ),
         image: DecorationImage(
-          image: NetworkImage(screenController.propertyDetails!.propertyImages![0].image),
+          image: NetworkImage(screenController.propertyDetails.propertyImages![0].image.toString()),
           fit: BoxFit.cover,
         ),
       ),
@@ -61,7 +62,7 @@ class BookVisitPropertyDetailsModule extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            screenController.propertyDetails!.title!,
+            screenController.propertyDetails.title!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
@@ -71,7 +72,7 @@ class BookVisitPropertyDetailsModule extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           Text(
-            "₹ ${screenController.propertyDetails!.rent!.rent}",
+            "₹ ${screenController.propertyDetails.rent!.rent}",
             maxLines: 1,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
@@ -81,19 +82,19 @@ class BookVisitPropertyDetailsModule extends StatelessWidget {
           ),
           const SizedBox(height: 3),
           Text(
-            screenController.propertyDetails!.sortDesc!,
+            screenController.propertyDetails.sortDesc!,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(fontSize: 12),
           ),
           const SizedBox(height: 3),
           Text(
-            '${screenController.propertyDetails!.bedrooms}BHK',
+            '${screenController.propertyDetails.bedrooms}BHK',
             style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 3),
           Text(
-            '${screenController.propertyDetails!.propertyTenant!.totalCarParking} Car Parking',
+            '${screenController.propertyDetails.propertyTenant!.totalCarParking} Car Parking',
             style: const TextStyle(fontSize: 12),
           ),
         ],
@@ -214,6 +215,9 @@ class BookButtonModule extends StatelessWidget {
           Fluttertoast.showToast(msg: "Please select branch!");
         } else if(screenController.timeSlotValue.slot == "Select time slot") {
           Fluttertoast.showToast(msg: "Please select time!");
+        } else {
+          await screenController.bookVisitFunction();
+
         }
       },
       child: Container(

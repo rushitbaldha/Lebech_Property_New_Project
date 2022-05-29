@@ -77,7 +77,6 @@ class CategoryListModule extends StatelessWidget {
 
 }
 
-
 /*class CategoryListModule extends StatelessWidget {
   CategoryListModule({Key? key}) : super(key: key);
   final homeScreenController = Get.find<HomeScreenController>();
@@ -90,96 +89,94 @@ class CategoryListModule extends StatelessWidget {
   }
 }*/
 
-
-
-class ResidentialCategoryModule extends StatelessWidget {
-  ResidentialCategoryModule({Key? key}) : super(key: key);
-  final homeScreenController = Get.find<HomeScreenController>();
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        Get.back();
-        Get.to(() => CategoryPropertyScreen(), arguments: "1");
-      },
-      title: const Text(
-        "Residential",
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-        ),
-      ),
-    );
-  }
-}
-
-class CommercialCategoryModule extends StatelessWidget {
-  const CommercialCategoryModule({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        Get.back();
-        Get.to(() => CategoryPropertyScreen(), arguments: "2");
-      },
-      title: const Text(
-        "Commercial",
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-        ),
-      ),
-    );
-  }
-}
-
-class IndustrialCategoryModule extends StatelessWidget {
-  const IndustrialCategoryModule({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        Get.back();
-        Get.to(() => CategoryPropertyScreen(), arguments: "3");
-      },
-      title: const Text(
-        "Industrial",
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-        ),
-      ),
-    );
-  }
-}
-
-class TextileSpaceCategoryModule extends StatelessWidget {
-  const TextileSpaceCategoryModule({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        Get.back();
-        Get.to(() => CategoryPropertyScreen(), arguments: "4");
-      },
-      title: const Text(
-        "Textile Space",
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-        ),
-      ),
-    );
-  }
-}
+// class ResidentialCategoryModule extends StatelessWidget {
+//   ResidentialCategoryModule({Key? key}) : super(key: key);
+//   final homeScreenController = Get.find<HomeScreenController>();
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListTile(
+//       onTap: () {
+//         Get.back();
+//         Get.to(() => CategoryPropertyScreen(), arguments: "1");
+//       },
+//       title: const Text(
+//         "Residential",
+//         textAlign: TextAlign.start,
+//         style: TextStyle(
+//           fontWeight: FontWeight.bold,
+//           fontSize: 18,
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+// class CommercialCategoryModule extends StatelessWidget {
+//   const CommercialCategoryModule({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListTile(
+//       onTap: () {
+//         Get.back();
+//         Get.to(() => CategoryPropertyScreen(), arguments: "2");
+//       },
+//       title: const Text(
+//         "Commercial",
+//         textAlign: TextAlign.start,
+//         style: TextStyle(
+//           fontWeight: FontWeight.bold,
+//           fontSize: 18,
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+// class IndustrialCategoryModule extends StatelessWidget {
+//   const IndustrialCategoryModule({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListTile(
+//       onTap: () {
+//         Get.back();
+//         Get.to(() => CategoryPropertyScreen(), arguments: "3");
+//       },
+//       title: const Text(
+//         "Industrial",
+//         textAlign: TextAlign.start,
+//         style: TextStyle(
+//           fontWeight: FontWeight.bold,
+//           fontSize: 18,
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+// class TextileSpaceCategoryModule extends StatelessWidget {
+//   const TextileSpaceCategoryModule({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListTile(
+//       onTap: () {
+//         Get.back();
+//         Get.to(() => CategoryPropertyScreen(), arguments: "4");
+//       },
+//       title: const Text(
+//         "Textile Space",
+//         textAlign: TextAlign.start,
+//         style: TextStyle(
+//           fontWeight: FontWeight.bold,
+//           fontSize: 18,
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class ProjectsModule extends StatelessWidget {
   const ProjectsModule({Key? key}) : super(key: key);

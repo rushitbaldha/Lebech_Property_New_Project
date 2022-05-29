@@ -5,6 +5,7 @@ import 'package:lebech_property/common/extension_methods/extension_methods.dart'
 import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
 import 'package:lebech_property/screens/direct_search_screen/direct_search_screen.dart';
 import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
+import 'package:lebech_property/screens/visit_list_screen/visit_list_screen.dart';
 
 import '../../controllers/custom_drawer_controller/custom_drawer_controller.dart';
 import 'custom_drawer_widgets.dart';
@@ -66,6 +67,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           },
                           title: const Text(
                             "Direct Search",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+
+                        ListTile(
+                          onTap: () {
+                            Get.back();
+                            Get.to(() => VisitListScreen());
+                          },
+                          title: const Text(
+                            "Visits",
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,

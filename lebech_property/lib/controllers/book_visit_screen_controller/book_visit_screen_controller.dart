@@ -8,6 +8,7 @@ import 'package:lebech_property/common/constants/api_url.dart';
 
 import '../../models/book_visit_screen_model/book_visit_details_model.dart';
 import '../../models/book_visit_screen_model/visit_booked_model.dart';
+import '../../screens/visit_list_screen/visit_list_screen.dart';
 
 
 class BookVisitScreenController extends GetxController {
@@ -24,7 +25,7 @@ class BookVisitScreenController extends GetxController {
   List<Time> timeSlotList = [Time(slot: "Select time slot")];
   Time timeSlotValue = Time();
 
-  Property? propertyDetails;
+  Property propertyDetails = Property();
 
 
   /// Get Book Details
@@ -52,13 +53,13 @@ class BookVisitScreenController extends GetxController {
         if(isSuccessStatus.value) {
           // Branch List DD
           branchList.clear();
-          branchList.add(Branch(title: "Search near by branch"));
+          branchList.add(Branch(title: "Search near by branch", id: 0));
           branchList.addAll(bookVisitDetailsModel.data.branch);
           branchValue = branchList[0];
 
           // Time Slot DD
           timeSlotList.clear();
-          timeSlotList.add(Time(slot: "Select time"));
+          timeSlotList.add(Time(slot: "Select time", id: 0));
           timeSlotList.addAll(bookVisitDetailsModel.data.time);
           timeSlotValue = timeSlotList[0];
 
@@ -89,7 +90,7 @@ class BookVisitScreenController extends GetxController {
 
       request.fields['time_slot_id'] = "${timeSlotValue.id}";
       request.fields['branch_id'] = "${branchValue.id}";
-      request.fields['property_id'] = "${propertyDetails!.id}";
+      request.fields['property_id'] = "${propertyDetails.id}";
 
       log("Headers : ${request.headers}");
       log("Fields : ${request.fields}");
@@ -102,7 +103,8 @@ class BookVisitScreenController extends GetxController {
 
         if(isSuccessStatus.value) {
           Fluttertoast.showToast(msg: visitBookedModel.data.msg);
-          //todo - Navigate Screen
+          await Get.off(()=> VisitListScreen(),
+              transition: Transition.zoom);
         } else {
           log("bookVisitFunction Else Else");
         }
