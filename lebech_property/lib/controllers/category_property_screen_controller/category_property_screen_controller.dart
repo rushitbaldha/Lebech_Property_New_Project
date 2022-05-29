@@ -14,7 +14,6 @@ class CategoryPropertyScreenController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-  //Todo
   List<CategoryWiseDatum> categoryPropertyList = [];
 
   RxString propertyTypeValue = 'Rent'.obs;

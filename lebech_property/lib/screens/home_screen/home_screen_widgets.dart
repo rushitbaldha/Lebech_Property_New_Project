@@ -13,6 +13,7 @@ import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../common/constants/enums.dart';
 import '../../models/home_screen_model/home_screen_model.dart';
+import '../book_visit_screen/book_visit_screen.dart';
 import '../project_details_screen/project_details_screen.dart';
 import '../search_screen/search_screen.dart';
 
@@ -806,7 +807,11 @@ class NewListingsModule extends StatelessWidget {
                         transition: Transition.zoom,
                         arguments: SignInRouteType.backScreen);
                       } else if(UserDetails.userLoggedIn == true) {
-                        // todo
+                        Get.back();
+                        Get.to(()=> BookVisitScreen(),
+                        arguments: singleListingsItem.id,
+                          transition: Transition.zoom,
+                        );
 
                       }
                     },
@@ -921,7 +926,7 @@ class FeaturedListingsModule extends StatelessWidget {
                   Positioned(
                     right: 10,
                     child: IconButton(
-                      onPressed: () => optionBottomSheet(context),
+                      onPressed: () => optionBottomSheet(context, singleFeaturedItem),
                       icon: const Icon(Icons.visibility_rounded),
                     ),
                   ),
@@ -1019,7 +1024,7 @@ class FeaturedListingsModule extends StatelessWidget {
     );
   }
 
-  optionBottomSheet(BuildContext context) {
+  optionBottomSheet(BuildContext context, Favourite singleFeaturedItem) {
     return showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -1030,7 +1035,20 @@ class FeaturedListingsModule extends StatelessWidget {
               children: [
                 Expanded(
                   child: GestureDetector(
-                    // onTap: () async => ,
+                    onTap: () {
+                      if(UserDetails.userLoggedIn == false) {
+                        Get.to(()=> SignInScreen(),
+                            transition: Transition.zoom,
+                            arguments: SignInRouteType.backScreen);
+                      } else if(UserDetails.userLoggedIn == true) {
+                        Get.back();
+                        Get.to(()=> BookVisitScreen(),
+                          arguments: singleFeaturedItem.id,
+                          transition: Transition.zoom,
+                        );
+
+                      }
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),

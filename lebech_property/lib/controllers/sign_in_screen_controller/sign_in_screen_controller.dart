@@ -48,7 +48,6 @@ class SignInScreenController extends GetxController {
           if(signInRouteType == SignInRouteType.normal) {
             Get.offAll(() => HomeScreen());
           } else if(signInRouteType == SignInRouteType.backScreen) {
-            // Todo - Screen Route
             Get.back();
           }
         } else {

@@ -15,4 +15,8 @@ class ApiUrl {
   static const String directSearchApi = apiMainPath + "customer/direct_search";
   static const String fetchProjectApi = apiMainPath + "customer/project_fetch";
   static const String getSubCategoryWisePropertyApi = apiMainPath + "customer/sub_category_property";
+
+  static const String getVisitDetailsApi = apiMainPath + "customer/book_detail";
+  static const String saveVisitApi = apiMainPath + "customer/save_visit";
+  static const String visitListApi = apiMainPath + "customer/visit_list";
 }
