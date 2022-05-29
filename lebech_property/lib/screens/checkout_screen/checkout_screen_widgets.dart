@@ -147,7 +147,23 @@ class BuyButtonModule extends StatelessWidget {
     return Container(
       alignment: Alignment.centerRight,
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+
+          var options = {
+            'key': 'rzp_test_Hx2PdNfHQo5A1m',
+            'amount': screenController.price * 100,
+            'name': 'Acme Corp.',
+            'description': 'Lebech  Property',
+            'timeout': 300, // in seconds
+
+          };
+
+/*'prefill': {
+              'contact': '',
+              'email': ''
+            }*/
+          screenController.razorpay.open(options);
+        },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),

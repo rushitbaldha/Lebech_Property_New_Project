@@ -804,6 +804,7 @@ class NewListingsModule extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       if(UserDetails.userLoggedIn == false) {
+                        Get.back();
                         Get.to(()=> SignInScreen(),
                         transition: Transition.zoom,
                         arguments: SignInRouteType.backScreen);
@@ -838,6 +839,7 @@ class NewListingsModule extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       if(UserDetails.userLoggedIn == false) {
+                        Get.back();
                         Get.to(()=> SignInScreen(),
                             transition: Transition.zoom,
                             arguments: SignInRouteType.backScreen);
@@ -1055,6 +1057,7 @@ class FeaturedListingsModule extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       if(UserDetails.userLoggedIn == false) {
+                        Get.back();
                         Get.to(()=> SignInScreen(),
                             transition: Transition.zoom,
                             arguments: SignInRouteType.backScreen);
@@ -1089,6 +1092,7 @@ class FeaturedListingsModule extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       if(UserDetails.userLoggedIn == false) {
+                        Get.back();
                         Get.to(()=> SignInScreen(),
                             transition: Transition.zoom,
                             arguments: SignInRouteType.backScreen);
