@@ -7,6 +7,7 @@ import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/common/user_details/user_details.dart';
 import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
+import 'package:lebech_property/screens/checkout_screen/checkout_screen.dart';
 import 'package:lebech_property/screens/project_list_screen/project_list_screen.dart';
 import 'package:lebech_property/screens/property_details_screen/property_details_screen.dart';
 import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
@@ -835,7 +836,24 @@ class NewListingsModule extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: GestureDetector(
-                    // onTap: () async => ,
+                    onTap: () {
+                      if(UserDetails.userLoggedIn == false) {
+                        Get.to(()=> SignInScreen(),
+                            transition: Transition.zoom,
+                            arguments: SignInRouteType.backScreen);
+                      } else if(UserDetails.userLoggedIn == true) {
+                        Get.back();
+                        Get.to(()=> CheckoutScreen(),
+                          transition: Transition.zoom,
+                          arguments: [
+                            singleListingsItem.id,
+                            singleListingsItem.propertyImages[0].image.toString(),
+                            singleListingsItem.title.toString(),
+                            singleListingsItem.rent.charge
+                          ],
+                        );
+                      }
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
@@ -843,7 +861,7 @@ class NewListingsModule extends StatelessWidget {
                       ),
                       child: Text(
                         UserDetails.userLoggedIn == true
-                        ? "Buy Owner Number ${singleListingsItem.rent.charge}"
+                        ? "Buy Owner Number @ ${singleListingsItem.rent.charge} ₹"
                         : "Buy Owner Number",
                         textAlign: TextAlign.center,
                         style: const TextStyle(
@@ -1062,28 +1080,47 @@ class FeaturedListingsModule extends StatelessWidget {
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
-                      ).commonSymmetricPadding(horizontal: 8, vertical: 8),
+                      ).commonSymmetricPadding(horizontal: 10, vertical: 10),
                     ),
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: GestureDetector(
-                    // onTap: () async => ,
+                    onTap: () {
+                      if(UserDetails.userLoggedIn == false) {
+                        Get.to(()=> SignInScreen(),
+                            transition: Transition.zoom,
+                            arguments: SignInRouteType.backScreen);
+                      } else if(UserDetails.userLoggedIn == true) {
+                        Get.back();
+                        Get.to(()=> CheckoutScreen(),
+                          transition: Transition.zoom,
+                          arguments: [
+                            singleFeaturedItem.id,
+                            singleFeaturedItem.propertyImages[0].image.toString(),
+                            singleFeaturedItem.title.toString(),
+                            singleFeaturedItem.rent.charge
+                          ],
+                        );
+                      }
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         color: AppColors.blueColor,
                       ),
-                      child: const Text(
-                        "Buy Owner Number",
+                      child: Text(
+                        UserDetails.userLoggedIn == true
+                            ? "Buy Owner Number @ ${singleFeaturedItem.rent.charge} ₹"
+                            : "Buy Owner Number",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 13,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
-                      ).commonSymmetricPadding(horizontal: 8, vertical: 8),
+                      ).commonSymmetricPadding(horizontal: 10, vertical: 10),
                     ),
                   ),
                 ),
