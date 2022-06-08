@@ -146,16 +146,22 @@ class PropertyDetailsScreenController extends GetxController {
   }
 
   addPropertyDetails({required DataData singleItemData}) {
+
+
     propertyDetailsList.add(
       PropertyDetailNameModule(
-        propertyName: "Furnished",
-        propertyValue: singleItemData.furnished),
+          propertyName: "Furnished",
+          propertyValue: singleItemData.furnished),
     );
-    propertyDetailsList.add(
-      PropertyDetailNameModule(
-          propertyName: "Non Vegetarians",
-          propertyValue: singleItemData.propertyTenant.nonVegetarians),
-    );
+
+    if(singleItemData.propertyTenant.nonVegetarians != "NO") {
+      propertyDetailsList.add(
+        PropertyDetailNameModule(
+            propertyName: "Non Vegetarians",
+            propertyValue: singleItemData.propertyTenant.nonVegetarians),
+      );
+    }
+
     propertyDetailsList.add(
       PropertyDetailNameModule(
           propertyName: "Facing",
@@ -166,101 +172,146 @@ class PropertyDetailsScreenController extends GetxController {
           propertyName: "Water",
           propertyValue: "${singleItemData.propertyTenant.water} Hour"),
     );
-    propertyDetailsList.add(
-      PropertyDetailNameModule(
-          propertyName: "Age",
-          propertyValue: singleItemData.age),
-    );
-    propertyDetailsList.add(
-      PropertyDetailNameModule(
-          propertyName: "Bachelors",
-          propertyValue: singleItemData.propertyTenant.bachelors),
-    );
-    propertyDetailsList.add(
-      PropertyDetailNameModule(
-          propertyName: "Pets",
-          propertyValue: singleItemData.propertyTenant.pets),
-    );
-    propertyDetailsList.add(
-      PropertyDetailNameModule(
-          propertyName: "Total Car Parking",
-          propertyValue: singleItemData.propertyTenant.totalCarParking.toString()),
-    );
-    propertyDetailsList.add(
-      PropertyDetailNameModule(
-          propertyName: "Covered Car Parking",
-          propertyValue: singleItemData.propertyTenant.coveredCarParking.toString()),
-    );
+
+    if(singleItemData.age != "0") {
+      propertyDetailsList.add(
+        PropertyDetailNameModule(
+            propertyName: "Age",
+            propertyValue: singleItemData.age),
+      );
+    }
+
+    if(singleItemData.propertyTenant.bachelors != "NO") {
+      propertyDetailsList.add(
+        PropertyDetailNameModule(
+            propertyName: "Bachelors",
+            propertyValue: singleItemData.propertyTenant.bachelors),
+      );
+    }
+
+    if(singleItemData.propertyTenant.pets != "NO") {
+      propertyDetailsList.add(
+        PropertyDetailNameModule(
+            propertyName: "Pets",
+            propertyValue: singleItemData.propertyTenant.pets),
+      );
+    }
+
+    if(singleItemData.propertyTenant.totalCarParking != 0) {
+      propertyDetailsList.add(
+        PropertyDetailNameModule(
+            propertyName: "Total Car Parking",
+            propertyValue: singleItemData.propertyTenant.totalCarParking
+                .toString()),
+      );
+    }
+
+    if(singleItemData.propertyTenant.coveredCarParking != 0) {
+      propertyDetailsList.add(
+        PropertyDetailNameModule(
+            propertyName: "Covered Car Parking",
+            propertyValue: singleItemData.propertyTenant.coveredCarParking
+                .toString()),
+      );
+    }
     propertyDetailsList.add(
       PropertyDetailNameModule(
           propertyName: "Electricity",
           propertyValue: "${singleItemData.propertyTenant.electricity} Hour"),
     );
-    propertyDetailsList.add(
-      PropertyDetailNameModule(
-          propertyName: "Floor Number",
-          propertyValue: singleItemData.floorNumber),
-    );
-    propertyDetailsList.add(
-      PropertyDetailNameModule(
-          propertyName: "Total Floor",
-          propertyValue: singleItemData.totalFloor),
-    );
-    propertyDetailsList.add(
-      PropertyDetailNameModule(
-          propertyName: "Unit On Floor",
-          propertyValue: singleItemData.flatFloor),
-    );
+
+    if(singleItemData.floorNumber != "0") {
+      propertyDetailsList.add(
+        PropertyDetailNameModule(
+            propertyName: "Floor Number",
+            propertyValue: singleItemData.floorNumber),
+      );
+    }
+
+    if(singleItemData.totalFloor != "0") {
+      propertyDetailsList.add(
+        PropertyDetailNameModule(
+            propertyName: "Total Floor",
+            propertyValue: singleItemData.totalFloor),
+      );
+    }
+    if(singleItemData.flatFloor != "0") {
+      propertyDetailsList.add(
+        PropertyDetailNameModule(
+            propertyName: "Unit On Floor",
+            propertyValue: singleItemData.flatFloor),
+      );
+    }
   }
 
   addFactNumberList({required DataData singleItemData}) {
-    factNumberList.add(
-        FactNumberListLocalModel(
-          factName: "Carpet Area",
-          factValue: singleItemData.carpetArea)
-    );
-    factNumberList.add(
-        FactNumberListLocalModel(
-            factName: "Super Area",
-            factValue: singleItemData.superArea)
-    );
-    factNumberList.add(
-        FactNumberListLocalModel(
-            factName: "Construction Age",
-            factValue: "${singleItemData.age} Year")
-    );
-    factNumberList.add(
-        FactNumberListLocalModel(
-            factName: "Sale Price",
-            factValue: singleItemData.rent.rent.toString())
-    );
-    factNumberList.add(
-        FactNumberListLocalModel(
-            factName: "Loan Amount",
-            factValue: "₹")
-    );
+    if(singleItemData.carpetArea =="0") {
+      factNumberList.add(
+          FactNumberListLocalModel(
+              factName: "Carpet Area",
+              factValue: singleItemData.carpetArea)
+      );
+    }
+
+    if(singleItemData.superArea == "0") {
+      factNumberList.add(
+          FactNumberListLocalModel(
+              factName: "Super Area",
+              factValue: singleItemData.superArea)
+      );
+    }
+
+    if(singleItemData.age == "0") {
+      factNumberList.add(
+          FactNumberListLocalModel(
+              factName: "Construction Age",
+              factValue: "${singleItemData.age} Year")
+      );
+    }
+
+    if(singleItemData.rent.rent != 0) {
+      factNumberList.add(
+          FactNumberListLocalModel(
+              factName: "Sale Price",
+              factValue: singleItemData.rent.rent.toString())
+      );
+    }
+
+    // factNumberList.add(
+    //     FactNumberListLocalModel(
+    //         factName: "Loan Amount",
+    //         factValue: "₹")
+    // );
   }
 
   addFactAndFeature({required DataData singleItemData}) {
-    factAndFeatureList.add(
+    if(singleItemData.bedrooms != "0") {
+      factAndFeatureList.add(
         FactAndFeatureModel(
-          name: "Bedroom",
-          value: singleItemData.bedrooms),
-    );
-    factAndFeatureList.add(
-      FactAndFeatureModel(
-          name: "Balconies",
-          value: singleItemData.balconies),
-    );
-    factAndFeatureList.add(
-      FactAndFeatureModel(
-          name: "Bathroom",
-          value: singleItemData.bathrooms),
-    );
-    factAndFeatureList.add(
-      FactAndFeatureModel(
-          name: "Lift",
-          value: singleItemData.lift),
-    );
+            name: "Bedroom",
+            value: singleItemData.bedrooms),
+      );
+    }
+    if(singleItemData.balconies != "0") {
+      factAndFeatureList.add(
+        FactAndFeatureModel(
+            name: "Balconies",
+            value: singleItemData.balconies),
+      );
+    }
+    if(singleItemData.bathrooms != "0") {
+      factAndFeatureList.add(
+        FactAndFeatureModel(
+            name: "Bathroom",
+            value: singleItemData.bathrooms),
+      );
+    }
+    if(singleItemData.lift != "0") {
+      factAndFeatureList.add(
+        FactAndFeatureModel(
+            name: "Lift",
+            value: singleItemData.lift),
+      );
+    }
   }
 }

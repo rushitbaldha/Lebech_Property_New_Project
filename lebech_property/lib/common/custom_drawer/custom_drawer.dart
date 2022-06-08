@@ -9,6 +9,7 @@ import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:lebech_property/screens/visit_list_screen/visit_list_screen.dart';
 
 import '../../controllers/custom_drawer_controller/custom_drawer_controller.dart';
+import '../../screens/contact_list_screen/contact_list_screen.dart';
 import 'custom_drawer_widgets.dart';
 
 
@@ -92,6 +93,23 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           ),
                         )
                         : Container(),
+
+                        UserDetails.userLoggedIn
+                            ? ListTile(
+                          onTap: () {
+                            Get.back();
+                            Get.to(() => ContactListScreen());
+                          },
+                          title: const Text(
+                            "Contacts",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        )
+                            : Container(),
 
                         AboutUsModule(),
                       ],

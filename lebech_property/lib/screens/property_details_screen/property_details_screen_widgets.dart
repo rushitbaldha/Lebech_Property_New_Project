@@ -181,7 +181,7 @@ class AminitiesModule extends StatelessWidget {
           },
         ),
       ],
-    );
+    ).commonSymmetricPadding(horizontal: 15);
   }
 
   Widget _aminitiesTile(String aminitiesName) {

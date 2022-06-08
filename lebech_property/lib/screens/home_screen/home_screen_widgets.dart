@@ -299,7 +299,7 @@ class NewProjectsModule extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      '${singleNewProjectItem.user.name}, ${singleNewProjectItem.area.name}',
+                      singleNewProjectItem.area.name,
                       maxLines: 1,
                       style: const TextStyle(
                         fontSize: 13,
@@ -777,12 +777,16 @@ class NewListingsModule extends StatelessWidget {
             style: const TextStyle(fontSize: 12),
           ),
           const SizedBox(height: 3),
-          Text(
+          singleListingsItem.bedrooms == "0"
+          ? Container()
+          : Text(
             '${singleListingsItem.bedrooms}BHK',
             style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 3),
-          Text(
+          singleListingsItem.propertyTenant.totalCarParking == 0
+          ? Container()
+          : Text(
             '${singleListingsItem.propertyTenant.totalCarParking} Car Parking',
             style: const TextStyle(fontSize: 12),
           ),
@@ -1030,12 +1034,16 @@ class FeaturedListingsModule extends StatelessWidget {
             style: const TextStyle(fontSize: 12),
           ),
           const SizedBox(height: 3),
-          Text(
+          singleFeaturedItem.bedrooms == "0"
+              ? Container()
+          : Text(
             '${singleFeaturedItem.bedrooms}BHK',
             style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 3),
-          Text(
+          singleFeaturedItem.propertyTenant.totalCarParking == 0
+          ? Container()
+          : Text(
             '${singleFeaturedItem.propertyTenant.totalCarParking} Car Parking',
             style: const TextStyle(fontSize: 12),
           ),

@@ -14,9 +14,9 @@ class AboutUsScreen extends StatelessWidget {
 
       body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: const [
             AboutUsImageModule(),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
 
             Text(
               "The Leading Real Estate Rental Marketplace.",
@@ -25,7 +25,7 @@ class AboutUsScreen extends StatelessWidget {
                 fontSize: 22,
               ),
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
 
             Text(
               "Launched in 2022, lebechproperty.com, deals with every aspect of the consumers’ needs in the real estate industry. It is an online forum where buyers, sellers and brokers/agents can offer servies about real estate properties quickly, effectively and inexpensively. At lebechproperty.com, you can advertise a property, search for a property, browse through properties, and keep yourself updated with the latest news and trends making headlines in the realty sector."

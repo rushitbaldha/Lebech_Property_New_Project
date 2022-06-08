@@ -40,7 +40,7 @@ class SignInScreenController extends GetxController {
         isSuccessStatus = signInModel.status.obs;
 
         if(isSuccessStatus.value) {
-          Fluttertoast.showToast(msg: 'User LoggedIn Successfully!');
+          Fluttertoast.showToast(msg: 'User loggedIn successfully!');
           String userToken = signInModel.data.token;
           await sharedPreferenceData.setUserLoggedInDetailsInPrefs(userToken: userToken);
           await sharedPreferenceData.setCurrentCityInPrefs(cityId: "1");
@@ -51,13 +51,13 @@ class SignInScreenController extends GetxController {
             Get.back();
           }
         } else {
-          Fluttertoast.showToast(msg: 'User Not LoggedIn Successfully!');
+          Fluttertoast.showToast(msg: 'User loggedIn failed!');
         }
 
       });
 
     } catch(e) {
-      print('userSignInFunction Error1 : $e');
+      log('userSignInFunction Error1 : $e');
     } finally {
       isLoading(false);
     }

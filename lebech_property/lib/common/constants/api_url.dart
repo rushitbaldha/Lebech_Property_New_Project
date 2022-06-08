@@ -19,4 +19,6 @@ class ApiUrl {
   static const String getVisitDetailsApi = apiMainPath + "customer/book_detail";
   static const String saveVisitApi = apiMainPath + "customer/save_visit";
   static const String visitListApi = apiMainPath + "customer/visit_list";
+  static const String buyContactApi = apiMainPath + "customer/buy_contact";
+  static const String contactListApi = apiMainPath + "customer/contact_list";
 }
