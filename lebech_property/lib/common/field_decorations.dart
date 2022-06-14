@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lebech_property/buyer/controllers/direct_search_screen_controller/direct_search_screen_controller.dart';
+import 'package:lebech_property/buyer/controllers/search_screen_controller/search_screen_controller.dart';
+import 'package:lebech_property/buyer/controllers/sign_in_screen_controller/sign_in_screen_controller.dart';
+import 'package:lebech_property/buyer/controllers/sign_up_screen_controller/sign_up_screen_controller.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
-import '../controllers/direct_search_screen_controller/direct_search_screen_controller.dart';
-import '../controllers/search_screen_controller/search_screen_controller.dart';
-import '../controllers/sign_in_screen_controller/sign_in_screen_controller.dart';
-import '../controllers/sign_up_screen_controller/sign_up_screen_controller.dart';
 import 'common_functions.dart';
 
 InputDecoration searchFieldDecoration(
