@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/models/book_visit_screen_model/book_visit_details_model.dart';
+import 'package:lebech_property/buyer/models/book_visit_screen_model/visit_booked_model.dart';
+import 'package:lebech_property/buyer/screens/visit_list_screen/visit_list_screen.dart';
 import 'package:lebech_property/common/constants/api_header.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
-import 'package:lebech_property/models/book_visit_screen_model/book_visit_details_model.dart';
-import 'package:lebech_property/models/book_visit_screen_model/visit_booked_model.dart';
-import 'package:lebech_property/screens/visit_list_screen/visit_list_screen.dart';
 
 
 

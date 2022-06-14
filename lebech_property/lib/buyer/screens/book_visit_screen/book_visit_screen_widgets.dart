@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/models/book_visit_screen_model/book_visit_details_model.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
-import 'package:lebech_property/models/book_visit_screen_model/book_visit_details_model.dart';
 import '../../controllers/book_visit_screen_controller/book_visit_screen_controller.dart';
 
 

@@ -2,13 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/controllers/home_screen_controller/home_screen_controller.dart';
+import 'package:lebech_property/buyer/models/home_screen_model/home_screen_model.dart';
+import 'package:lebech_property/buyer/screens/about_us_screen/about_us_screen.dart';
+import 'package:lebech_property/buyer/screens/category_property_screen/category_property_screen.dart';
+import 'package:lebech_property/buyer/screens/project_list_screen/project_list_screen.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
-import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
-import 'package:lebech_property/screens/about_us_screen/about_us_screen.dart';
-import 'package:lebech_property/screens/category_property_screen/category_property_screen.dart';
-import 'package:lebech_property/screens/project_list_screen/project_list_screen.dart';
-
-import '../../models/home_screen_model/home_screen_model.dart';
 
 class DrawerCategoryNameTextModule extends StatelessWidget {
   const DrawerCategoryNameTextModule({Key? key}) : super(key: key);

@@ -3,8 +3,8 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:lebech_property/buyer/models/sub_category_wise_property_model/sub_category_wise_property_model.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
-import 'package:lebech_property/models/sub_category_wise_property_model/sub_category_wise_property_model.dart';
 
 class SubCategoryWisePropertyScreenController extends GetxController {
   RxBool isLoading = false.obs;

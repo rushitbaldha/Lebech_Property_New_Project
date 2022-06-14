@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/screens/splash_screen/splash_screen.dart';
 import 'common/app_theme/app_theme.dart';
-import 'screens/splash_screen/splash_screen.dart';
 
 
 void main() {

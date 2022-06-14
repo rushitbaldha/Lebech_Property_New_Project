@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/models/category_wise_property_model/category_wise_property_model.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/custom_appbar/custom_appbar.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
-import 'package:lebech_property/models/category_wise_property_model/category_wise_property_model.dart';
 
 import '../../controllers/category_property_screen_controller/category_property_screen_controller.dart';
 import 'category_property_screen_widgets.dart';

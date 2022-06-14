@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/screens/home_screen/home_screen.dart';
+import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
-import 'package:lebech_property/screens/home_screen/home_screen.dart';
-
-import '../../common/constants/app_colors.dart';
 
 class PaymentSuccessScreen extends StatelessWidget {
   const PaymentSuccessScreen({Key? key}) : super(key: key);

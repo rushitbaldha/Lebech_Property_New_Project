@@ -2,10 +2,11 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/models/visit_list_screen_model/visit_list_model.dart';
 import 'package:lebech_property/common/constants/api_header.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
 import 'package:http/http.dart' as http;
-import 'package:lebech_property/models/visit_list_screen_model/visit_list_model.dart';
+
 
 class VisitListScreenController extends GetxController {
   RxBool isLoading = false.obs;

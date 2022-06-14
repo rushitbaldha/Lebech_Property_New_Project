@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/screens/sign_up_screen/sign_up_screen.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/field_decorations.dart';
 import 'package:lebech_property/common/field_validations.dart';
-import 'package:lebech_property/screens/sign_up_screen/sign_up_screen.dart';
 import '../../controllers/sign_in_screen_controller/sign_in_screen_controller.dart';
 
 

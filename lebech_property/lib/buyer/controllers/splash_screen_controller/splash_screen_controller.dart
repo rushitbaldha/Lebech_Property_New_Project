@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/screens/home_screen/home_screen.dart';
 import 'package:lebech_property/common/sharedpreference_data/sharedpreference_data.dart';
 import 'package:lebech_property/common/user_details/user_details.dart';
-import 'package:lebech_property/screens/home_screen/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 

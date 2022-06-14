@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/models/category_wise_property_model/category_wise_property_model.dart';
+import 'package:lebech_property/buyer/models/home_screen_model/home_screen_model.dart';
+import 'package:lebech_property/buyer/screens/property_details_screen/property_details_screen.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
-import 'package:lebech_property/models/category_wise_property_model/category_wise_property_model.dart';
-import 'package:lebech_property/models/home_screen_model/home_screen_model.dart';
-import 'package:lebech_property/screens/property_details_screen/property_details_screen.dart';
 import '../../controllers/category_property_screen_controller/category_property_screen_controller.dart';
 
 

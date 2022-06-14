@@ -7,6 +7,7 @@ class SharedPreferenceData {
   String isUserLoggedInKey = 'isUserLoggedInKey';
   String userTokenKey = 'userTokenKey';
   String currentCityKey = "currentCityKey";
+  String applicationTypeKey = 'applicationTypeKey';
 
   setUserLoggedInDetailsInPrefs({required String userToken}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -25,6 +26,12 @@ class SharedPreferenceData {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(currentCityKey, cityId);
     log("currentCityKey : ${prefs.getString(currentCityKey)}");
+  }
+
+  setApplicationType({required String applicationType}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(applicationTypeKey, applicationType);
+    log("Application Type : ${prefs.getString(applicationTypeKey)}");
   }
 
 }

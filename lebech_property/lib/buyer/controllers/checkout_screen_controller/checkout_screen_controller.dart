@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/models/checkout_screen_model/buy_contact_model.dart';
+import 'package:lebech_property/buyer/screens/payment_success_screen/payment_success_screen.dart';
 import 'package:lebech_property/common/constants/api_header.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
-import 'package:lebech_property/models/checkout_screen_model/buy_contact_model.dart';
-import 'package:lebech_property/screens/payment_success_screen/payment_success_screen.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:http/http.dart' as http;
 

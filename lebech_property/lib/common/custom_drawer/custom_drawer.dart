@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/controllers/custom_drawer_controller/custom_drawer_controller.dart';
+import 'package:lebech_property/buyer/controllers/home_screen_controller/home_screen_controller.dart';
+import 'package:lebech_property/buyer/screens/contact_list_screen/contact_list_screen.dart';
+import 'package:lebech_property/buyer/screens/direct_search_screen/direct_search_screen.dart';
+import 'package:lebech_property/buyer/screens/sign_in_screen/sign_in_screen.dart';
+import 'package:lebech_property/buyer/screens/visit_list_screen/visit_list_screen.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/common/user_details/user_details.dart';
-import 'package:lebech_property/controllers/home_screen_controller/home_screen_controller.dart';
-import 'package:lebech_property/screens/direct_search_screen/direct_search_screen.dart';
-import 'package:lebech_property/screens/sign_in_screen/sign_in_screen.dart';
-import 'package:lebech_property/screens/visit_list_screen/visit_list_screen.dart';
-
-import '../../controllers/custom_drawer_controller/custom_drawer_controller.dart';
-import '../../screens/contact_list_screen/contact_list_screen.dart';
 import 'custom_drawer_widgets.dart';
 
 

@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/models/property_details_model/fact_and_feature_local_model.dart';
+import 'package:lebech_property/buyer/models/property_details_model/fact_number_list_local_model.dart';
+import 'package:lebech_property/buyer/models/property_details_model/property_details_model.dart';
+import 'package:lebech_property/buyer/models/property_details_model/property_list_local_model.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
 import 'package:http/http.dart' as http;
-import 'package:lebech_property/models/property_details_model/fact_and_feature_local_model.dart';
-import 'package:lebech_property/models/property_details_model/fact_number_list_local_model.dart';
-import 'package:lebech_property/models/property_details_model/property_details_model.dart';
-import 'package:lebech_property/models/property_details_model/property_list_local_model.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class PropertyDetailsScreenController extends GetxController {

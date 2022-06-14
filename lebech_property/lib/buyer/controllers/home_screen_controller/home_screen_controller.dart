@@ -3,8 +3,8 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/models/home_screen_model/home_screen_model.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
-import 'package:lebech_property/models/home_screen_model/home_screen_model.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:http/http.dart' as http;
 

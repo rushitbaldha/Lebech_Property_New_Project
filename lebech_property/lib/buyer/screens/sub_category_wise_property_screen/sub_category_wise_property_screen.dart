@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/custom_appbar/custom_appbar.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
-import '../../../models/sub_category_wise_property_model/sub_category_wise_property_model.dart';
 import '../../controllers/sub_category_wise_property_screen_controller/sub_category_wise_property_screen_controller.dart';
+import '../../models/sub_category_wise_property_model/sub_category_wise_property_model.dart';
 import 'sub_category_wise_property_screen_widgets.dart';
 
 class SubCategoryWisePropertyScreen extends StatelessWidget {

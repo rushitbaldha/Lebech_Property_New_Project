@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../models/sub_category_wise_property_model/sub_category_wise_property_model.dart';
 import '../../controllers/sub_category_wise_property_screen_controller/sub_category_wise_property_screen_controller.dart';
+import '../../models/sub_category_wise_property_model/sub_category_wise_property_model.dart';
 
 
 class SCWPPropertyTypeDropDownModule extends StatelessWidget {

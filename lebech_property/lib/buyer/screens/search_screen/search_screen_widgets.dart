@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/models/home_screen_model/home_screen_model.dart';
+import 'package:lebech_property/buyer/models/search_result_model/search_result_model.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/common/field_decorations.dart';
-import 'package:lebech_property/models/home_screen_model/home_screen_model.dart';
-import 'package:lebech_property/models/search_result_model/search_result_model.dart';
 import '../../controllers/search_screen_controller/search_screen_controller.dart';
 import '../property_details_screen/property_details_screen.dart';
 

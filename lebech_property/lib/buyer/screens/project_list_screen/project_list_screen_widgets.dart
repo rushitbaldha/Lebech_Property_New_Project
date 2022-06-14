@@ -1,13 +1,13 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/screens/project_details_screen/project_details_screen.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
-import 'package:lebech_property/screens/project_details_screen/project_details_screen.dart';
-import '../../../models/project_list_model/project_list_model.dart';
 import '../../controllers/project_list_screen_controller/project_list_screen_controller.dart';
+import '../../models/project_list_model/project_list_model.dart';
 
 
 

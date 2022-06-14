@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:lebech_property/buyer/models/sign_in_model/sign_in_model.dart';
+import 'package:lebech_property/buyer/screens/home_screen/home_screen.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
 import 'package:lebech_property/common/constants/enums.dart';
 import 'package:lebech_property/common/sharedpreference_data/sharedpreference_data.dart';
-import 'package:lebech_property/models/sign_in_model/sign_in_model.dart';
-import 'package:lebech_property/screens/home_screen/home_screen.dart';
 
 class SignInScreenController extends GetxController {
   /// SignIn Type normal or backScreen

@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lebech_property/buyer/models/property_details_model/fact_and_feature_local_model.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/constants/text_styles.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
-import 'package:lebech_property/models/property_details_model/fact_and_feature_local_model.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../controllers/property_details_screen_controller/property_details_screen_controller.dart';
 

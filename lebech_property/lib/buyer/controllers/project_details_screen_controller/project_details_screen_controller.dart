@@ -3,8 +3,8 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:lebech_property/buyer/models/project_details_model/project_details_model.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
-import 'package:lebech_property/models/project_details_model/project_details_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 

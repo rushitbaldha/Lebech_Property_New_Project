@@ -3,9 +3,10 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:lebech_property/buyer/models/contact_list_screen_model/contact_list_screen_model.dart';
 import 'package:lebech_property/common/constants/api_header.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
-import 'package:lebech_property/models/contact_list_screen_model/contact_list_screen_model.dart';
+
 
 class ContactListScreenController extends GetxController {
   RxBool isLoading = false.obs;

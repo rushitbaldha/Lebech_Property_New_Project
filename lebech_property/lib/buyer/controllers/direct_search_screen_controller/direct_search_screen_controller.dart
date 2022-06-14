@@ -4,8 +4,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:lebech_property/buyer/models/direct_search_model/direct_search_model.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
-import 'package:lebech_property/models/direct_search_model/direct_search_model.dart';
 
 class DirectSearchScreenController extends GetxController {
   RxBool isLoading = false.obs;

@@ -3,9 +3,9 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:lebech_property/buyer/models/category_wise_property_model/category_wise_property_model.dart';
+import 'package:lebech_property/buyer/models/home_screen_model/home_screen_model.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
-import 'package:lebech_property/models/category_wise_property_model/category_wise_property_model.dart';
-import 'package:lebech_property/models/home_screen_model/home_screen_model.dart';
 
 class CategoryPropertyScreenController extends GetxController {
   /// From Drawer Menu
