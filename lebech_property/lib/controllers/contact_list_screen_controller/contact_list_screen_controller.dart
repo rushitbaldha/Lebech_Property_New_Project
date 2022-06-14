@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:lebech_property/common/constants/api_header.dart';
 import '../../common/constants/api_url.dart';
+import '../../models/contact_list_screen_model/contact_list_screen_model.dart';
 
 class ContactListScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -11,18 +13,26 @@ class ContactListScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
-  List contactsList = [];
+  List<Datum> contactsList = [];
 
   Future<void> contactListFunction() async {
     isLoading(true);
     String url = ApiUrl.contactListApi;
 
     try {
-      http.Response response = await http.get(Uri.parse(url), headers: apiHeader.headers);
+      http.Response response = await http.post(Uri.parse(url), headers: apiHeader.headers);
       log("Contact List Api Response : ${response.body}");
 
+      ContactListModel contactListModel = ContactListModel.fromJson(json.decode(response.body));
+      isSuccessStatus = contactListModel.status.obs;
 
+      if(isSuccessStatus.value) {
+        contactsList.clear();
 
+        contactsList = contactListModel.data.data;
+      } else {
+        log("contactListFunction Else Else");
+      }
 
     } catch(e) {
       log("contactListFunction Error ::: $e");

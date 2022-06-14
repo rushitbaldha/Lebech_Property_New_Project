@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
+import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import '../../common/field_decorations.dart';
 import '../../controllers/search_screen_controller/search_screen_controller.dart';
@@ -265,7 +266,20 @@ class SearchListModule extends StatelessWidget {
   }
 
   Widget _imagesListModule({required SearchDatum singleListingsItem}) {
-    return Container(
+    return singleListingsItem.propertyImages.isEmpty
+    ? Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15)
+        ),
+        image: DecorationImage(
+          image: AssetImage(AppImages.banner1Img),
+          fit: BoxFit.cover,
+        ),
+      ),
+    )
+    : Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15),
@@ -312,12 +326,16 @@ class SearchListModule extends StatelessWidget {
             style: const TextStyle(fontSize: 12),
           ),
           const SizedBox(height: 3),
-          Text(
+          singleListingsItem.bedrooms == "0"
+          ? Container()
+          : Text(
             '${singleListingsItem.bedrooms}BHK',
             style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 3),
-          Text(
+          singleListingsItem.propertyTenant.totalCarParking == 0
+          ? Container()
+          : Text(
             '${singleListingsItem.propertyTenant.totalCarParking} Car Parking',
             style: const TextStyle(fontSize: 12),
           ),

@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../common/constants/api_url.dart';
 import '../../models/project_details_model/project_details_model.dart';
 
@@ -22,8 +23,10 @@ class ProjectDetailsScreenController extends GetxController {
   String whyAnswer = "";
   String nearBy = "";
   String brochureUrl = "";
-  // YoutubePlayerController? youtubePlayerController;
-  // String youtubeLink = "";
+  YoutubePlayerController? youtubePlayerController;
+  String youtubeLink = "";
+  bool videoAvailable = false;
+
 
   /// Get Project Details Using Id
   getProjectDetailsFunction() async {
@@ -55,7 +58,9 @@ class ProjectDetailsScreenController extends GetxController {
           nearBy = projectDetailsModel.data.data.nearBy[0].name;
           brochureUrl = projectDetailsModel.data.data.brochures[0].file;
           // youtubeLink = projectDetailsModel.data.data.videos[0].link;
-          // runYoutubeVideo(ytLink: youtubeLink);
+          videoAvailable = projectDetailsModel.data.data.videos.isEmpty ? false : true;
+          youtubeLink = "https://www.youtube.com/watch?v=1kZvCVhHbXc&ab_channel=sansCARisumit";
+          runYoutubeVideo(ytLink: youtubeLink);
         } else {
           log("getProjectListFunction Else Else");
         }
@@ -87,7 +92,7 @@ class ProjectDetailsScreenController extends GetxController {
   }
 
   /// Get Youtube Video URL
-  /*void runYoutubeVideo({required String ytLink}) {
+  void runYoutubeVideo({required String ytLink}) {
     youtubePlayerController = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(ytLink)!,
       flags: const YoutubePlayerFlags(
@@ -96,7 +101,7 @@ class ProjectDetailsScreenController extends GetxController {
         autoPlay: false,
       ),
     );
-  }*/
+  }
 
   /// Only "True" Aminities add in List
   addAminities({required DataData singleItemData}) {

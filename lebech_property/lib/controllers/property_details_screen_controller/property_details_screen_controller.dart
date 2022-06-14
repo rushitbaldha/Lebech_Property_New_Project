@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../models/property_details_model/fact_and_feature_local_model.dart';
 import '../../models/property_details_model/fact_number_list_local_model.dart';
 import '../../models/property_details_model/property_details_model.dart';
@@ -22,7 +23,12 @@ class PropertyDetailsScreenController extends GetxController {
   List<FactNumberListLocalModel> factNumberList = [];
   List<FactAndFeatureModel> factAndFeatureList = [];
 
-  getPropertyDetailsDataFunction() async {
+  YoutubePlayerController? youtubePlayerController;
+  String youtubeLink = "";
+  bool videoAvailable = false;
+
+
+  Future<void> getPropertyDetailsDataFunction() async {
     isLoading(true);
     String url = ApiUrl.propertyDetailsApi;
     log("Url : $url");
@@ -56,6 +62,11 @@ class PropertyDetailsScreenController extends GetxController {
           addPropertyDetails(singleItemData: propertyDetailsModel.data.data);
           addFactNumberList(singleItemData: propertyDetailsModel.data.data);
           addFactAndFeature(singleItemData: propertyDetailsModel.data.data);
+
+          videoAvailable = propertyDetailsModel.data.data.videos.isEmpty ? false : true;
+          youtubeLink = propertyDetailsModel.data.data.videos[0].link;
+          runYoutubeVideo(ytLink: youtubeLink);
+
         } else {
           log("getPropertyDetailsDataFunction Else Else");
         }
@@ -245,7 +256,7 @@ class PropertyDetailsScreenController extends GetxController {
   }
 
   addFactNumberList({required DataData singleItemData}) {
-    if(singleItemData.carpetArea =="0") {
+    if(singleItemData.carpetArea != "0") {
       factNumberList.add(
           FactNumberListLocalModel(
               factName: "Carpet Area",
@@ -253,7 +264,7 @@ class PropertyDetailsScreenController extends GetxController {
       );
     }
 
-    if(singleItemData.superArea == "0") {
+    if(singleItemData.superArea != "0") {
       factNumberList.add(
           FactNumberListLocalModel(
               factName: "Super Area",
@@ -261,7 +272,7 @@ class PropertyDetailsScreenController extends GetxController {
       );
     }
 
-    if(singleItemData.age == "0") {
+    if(singleItemData.age != "0") {
       factNumberList.add(
           FactNumberListLocalModel(
               factName: "Construction Age",
@@ -314,4 +325,17 @@ class PropertyDetailsScreenController extends GetxController {
       );
     }
   }
+
+  /// Get Youtube Video URL
+  void runYoutubeVideo({required String ytLink}) {
+    youtubePlayerController = YoutubePlayerController(
+      initialVideoId: YoutubePlayer.convertUrlToId(ytLink)!,
+      flags: const YoutubePlayerFlags(
+        enableCaption: false,
+        isLive: false,
+        autoPlay: false,
+      ),
+    );
+  }
+
 }

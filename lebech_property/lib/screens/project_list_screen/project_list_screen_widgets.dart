@@ -1,8 +1,5 @@
 import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
@@ -34,12 +31,12 @@ class PropertyListModule extends StatelessWidget {
   Widget _listItemModule(Datum singleItem) {
     return GestureDetector(
       onTap: () {
+        log("id : ${singleItem.id}");
         Get.to(
           () => ProjectDetailsScreen(),
           transition: Transition.rightToLeft,
           arguments: singleItem.id,
         );
-        log("id : ${singleItem.id}");
       },
       child: Container(
         decoration: BoxDecoration(
@@ -75,10 +72,11 @@ class PropertyListModule extends StatelessWidget {
                         children: [
                           Text(
                             singleItem.name,
-                            maxLines: 1,
+                            maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
+                              fontSize: 17,
                             ),
                           ),
                           const SizedBox(height: 5),
@@ -92,6 +90,33 @@ class PropertyListModule extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 5),
+
+                          /*SizedBox(
+                            height: 17,
+                            child: ListView.builder(
+                              itemCount: singleItem.prices.length,
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              itemBuilder: (context, i) {
+                                return IntrinsicHeight(
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        singleNewProjectItem.prices[i].type,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                      const VerticalDivider(),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),*/
 
                         ],
                       ),

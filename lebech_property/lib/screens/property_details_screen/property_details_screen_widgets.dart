@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../common/common_widgets.dart';
 import '../../common/constants/app_colors.dart';
 import '../../common/constants/text_styles.dart';
@@ -343,3 +344,44 @@ class FactsAndFeaturesModule extends StatelessWidget {
   }
 }
 
+
+/// Video Module
+class PropertyDetailsVideoGalleryModule extends StatelessWidget {
+  PropertyDetailsVideoGalleryModule({Key? key}) : super(key: key);
+  final screenController = Get.find<PropertyDetailsScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return screenController.videoAvailable == true
+        ? Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Video Gallery",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 5),
+        Container(
+          height: 180,
+          color: Colors.grey,
+          child: YoutubePlayerBuilder(
+            player: YoutubePlayer(
+              controller: screenController.youtubePlayerController!,
+              showVideoProgressIndicator: true,
+            ),
+            builder: (context, player) {
+              return SizedBox(
+                height: 180,
+                child: player,
+              );
+            },
+          ),
+        )
+      ],
+    )
+        : Container();
+  }
+}

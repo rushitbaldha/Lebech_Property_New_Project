@@ -36,6 +36,9 @@ class PropertyDetailsScreen extends StatelessWidget {
                 FactNumbersModule(),
                 const SizedBox(height: 10),
 
+                PropertyDetailsVideoGalleryModule(),
+                const SizedBox(height: 10),
+
                 FactsAndFeaturesModule(),
                 const SizedBox(height: 10),
 

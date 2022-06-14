@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../common/constants/app_colors.dart';
 import '../../controllers/project_details_screen_controller/project_details_screen_controller.dart';
-
+import 'package:flutter_html/flutter_html.dart';
 
 /// Images Slider Module
 class ImagesSliderModule extends StatelessWidget {
@@ -145,7 +145,7 @@ class PriceDetailsModule extends StatelessWidget {
                         style: const TextStyle(fontSize: 14),
                       ),
                       Text(
-                        "${screenController.priceList[i].price}(rupees)",
+                        "₹${screenController.priceList[i].price}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontSize: 14),
@@ -239,11 +239,12 @@ class WhyQuestionModule extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 5),
-        Text(
-          screenController.whyAnswer,
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-        ),
+        Html(data: screenController.whyAnswer),
+        // Text(
+        //   screenController.whyAnswer,
+        //   maxLines: 3,
+        //   overflow: TextOverflow.ellipsis,
+        // ),
       ],
     );
   }
@@ -278,44 +279,45 @@ class NearByTextModule extends StatelessWidget {
 }
 
 /// Video Module
-/*class VideoGalleryModule extends StatelessWidget {
+class VideoGalleryModule extends StatelessWidget {
   VideoGalleryModule({Key? key}) : super(key: key);
   final screenController = Get.find<ProjectDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text(
-          "Video Gallery",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 5),
-
-        Container(
-          height: 180,
-          color: Colors.grey,
-          child: YoutubePlayerBuilder(
-            player: YoutubePlayer(
-              controller: screenController.youtubePlayerController!,
-              showVideoProgressIndicator: true,
-            ),
-            builder: (context, player) {
-              return SizedBox(
+    return screenController.videoAvailable == true
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Video Gallery",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 5),
+              Container(
                 height: 180,
-                child: player,
-              );
-            },
-          ),
-        )
-
-      ],
-    );
+                color: Colors.grey,
+                child: YoutubePlayerBuilder(
+                  player: YoutubePlayer(
+                    controller: screenController.youtubePlayerController!,
+                    showVideoProgressIndicator: true,
+                  ),
+                  builder: (context, player) {
+                    return SizedBox(
+                      height: 180,
+                      child: player,
+                    );
+                  },
+                ),
+              )
+            ],
+          )
+        : Container();
   }
-}*/
+}
 
 /// Brochures Module
 class BrochuresModule extends StatelessWidget {
