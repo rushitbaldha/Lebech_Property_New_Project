@@ -31,12 +31,13 @@ class SharedPreferenceData {
   Future<void> setApplicationType({required String applicationType}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(applicationTypeKey, applicationType);
+    UserDetails.applicationType = prefs.getString(applicationTypeKey) ?? "";
     log("Application Type : ${prefs.getString(applicationTypeKey)}");
   }
 
   Future<String> getApplicationType() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String applicationType = prefs.getString(applicationTypeKey) ?? "buyer";
+    String applicationType = prefs.getString(applicationTypeKey) ?? "";
     return applicationType;
   }
 

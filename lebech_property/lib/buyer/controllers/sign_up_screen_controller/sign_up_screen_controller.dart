@@ -10,6 +10,7 @@ import 'package:lebech_property/buyer/screens/home_screen/home_screen.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
 import 'package:lebech_property/common/sharedpreference_data/sharedpreference_data.dart';
 import 'package:lebech_property/common/user_details/user_details.dart';
+import 'package:lebech_property/seller/screens/seller_home_screen/seller_home_screen.dart';
 
 
 class SignUpScreenController extends GetxController {
@@ -42,8 +43,10 @@ class SignUpScreenController extends GetxController {
       request.fields['password_confirmation'] = cPasswordTextField.text.trim();
 
       var response = await request.send();
+      log("response : $response");
 
       response.stream.transform(utf8.decoder).listen((value) async {
+        log("value : $value");
         SignUpModel signUpModel = SignUpModel.fromJson(json.decode(value));
         isSuccessStatus = signUpModel.status.obs;
 
@@ -52,7 +55,20 @@ class SignUpScreenController extends GetxController {
           String userToken = signUpModel.data.token;
           await sharedPreferenceData.setUserLoggedInDetailsInPrefs(userToken: userToken);
           await sharedPreferenceData.setCurrentCityInPrefs(cityId: "1");
-          Get.offAll(()=> HomeScreen());
+
+          if(UserDetails.applicationType == "buyer") {
+            Get.offAll(()=> HomeScreen());
+          }
+          else if(UserDetails.applicationType == "seller") {
+              Get.offAll(()=> SellerHomeScreen());
+          }
+          else if(UserDetails.applicationType == "broker") {
+            // Get.offAll(()=> );
+          }
+          else if(UserDetails.applicationType == "propertySeller") {
+            // Get.offAll(()=> );
+          }
+
         } else {
           Fluttertoast.showToast(msg: 'User Not Created Successfully!');
         }
