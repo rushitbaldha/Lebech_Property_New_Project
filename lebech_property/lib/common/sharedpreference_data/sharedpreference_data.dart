@@ -9,7 +9,7 @@ class SharedPreferenceData {
   String currentCityKey = "currentCityKey";
   String applicationTypeKey = 'applicationTypeKey';
 
-  setUserLoggedInDetailsInPrefs({required String userToken}) async {
+  Future<void> setUserLoggedInDetailsInPrefs({required String userToken}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(isUserLoggedInKey, true);
     prefs.setString(userTokenKey, userToken);
@@ -22,16 +22,22 @@ class SharedPreferenceData {
     UserDetails.userCity = prefs.getString(currentCityKey) ?? "";
   }
 
-  setCurrentCityInPrefs({required String cityId}) async {
+  Future<void> setCurrentCityInPrefs({required String cityId}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(currentCityKey, cityId);
     log("currentCityKey : ${prefs.getString(currentCityKey)}");
   }
 
-  setApplicationType({required String applicationType}) async {
+  Future<void> setApplicationType({required String applicationType}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(applicationTypeKey, applicationType);
     log("Application Type : ${prefs.getString(applicationTypeKey)}");
+  }
+
+  Future<String> getApplicationType() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String applicationType = prefs.getString(applicationTypeKey) ?? "buyer";
+    return applicationType;
   }
 
 }

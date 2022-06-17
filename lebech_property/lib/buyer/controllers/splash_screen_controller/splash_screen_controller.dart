@@ -1,9 +1,10 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:lebech_property/buyer/screens/home_screen/home_screen.dart';
+import 'package:lebech_property/buyer/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:lebech_property/common/sharedpreference_data/sharedpreference_data.dart';
 import 'package:lebech_property/common/user_details/user_details.dart';
+import 'package:lebech_property/common_ui/screens/select_application_type_screen/select_application_type_screen.dart';
+import 'package:lebech_property/seller/screens/seller_home_screen/seller_home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -21,11 +22,32 @@ class SplashScreenController extends GetxController {
     UserDetails.userToken = prefs.getString(sharedPreferenceData.userTokenKey) ?? "";
     UserDetails.userCity = prefs.getString(sharedPreferenceData.currentCityKey) ?? "";
 
-    log("userLoggedIn ::: ${UserDetails.userLoggedIn}");
-    log("userToken ::: ${UserDetails.userToken}");
-    log("userCity ::: ${UserDetails.userCity}");
+    // log("userLoggedIn ::: ${UserDetails.userLoggedIn}");
+    // log("userToken ::: ${UserDetails.userToken}");
+    // log("userCity ::: ${UserDetails.userCity}");
 
-    Get.offAll(()=> HomeScreen());
+    UserDetails.applicationType = prefs.getString(sharedPreferenceData.applicationTypeKey) ?? "";
+
+    if(UserDetails.applicationType == "buyer") {
+      Get.offAll(()=> HomeScreen());
+    }
+    else if(UserDetails.applicationType == "seller") {
+      if(UserDetails.userLoggedIn == true) {
+        Get.offAll(()=> SellerHomeScreen());
+      } else {
+        Get.offAll(()=> SignInScreen());
+      }
+    }
+    else if(UserDetails.applicationType == "broker") {
+      // Get.offAll(()=> );
+    }
+    else if(UserDetails.applicationType == "propertySeller") {
+      // Get.offAll(()=> );
+    } else {
+      Get.offAll(()=> SelectApplicationTypeScreen(), transition: Transition.zoom);
+    }
+
+
   }
 
   @override

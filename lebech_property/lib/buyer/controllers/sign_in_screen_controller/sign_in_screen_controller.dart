@@ -9,6 +9,8 @@ import 'package:lebech_property/buyer/screens/home_screen/home_screen.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
 import 'package:lebech_property/common/constants/enums.dart';
 import 'package:lebech_property/common/sharedpreference_data/sharedpreference_data.dart';
+import 'package:lebech_property/common/user_details/user_details.dart';
+import 'package:lebech_property/seller/screens/seller_home_screen/seller_home_screen.dart';
 
 class SignInScreenController extends GetxController {
   /// SignIn Type normal or backScreen
@@ -45,11 +47,21 @@ class SignInScreenController extends GetxController {
           await sharedPreferenceData.setUserLoggedInDetailsInPrefs(userToken: userToken);
           await sharedPreferenceData.setCurrentCityInPrefs(cityId: "1");
 
-          if(signInRouteType == SignInRouteType.normal) {
-            Get.offAll(() => HomeScreen());
-          } else if(signInRouteType == SignInRouteType.backScreen) {
-            Get.back();
+          if(UserDetails.applicationType == "buyer") {
+            if (signInRouteType == SignInRouteType.normal) {
+              Get.offAll(() => HomeScreen());
+            } else if (signInRouteType == SignInRouteType.backScreen) {
+              Get.back();
+            }
+          } else if(UserDetails.applicationType == "seller") {
+            Get.offAll(()=> SellerHomeScreen(), transition: Transition.zoom);
+          } else if(UserDetails.applicationType == "broker") {
+
+          } else if(UserDetails.applicationType == "propertySeller") {
+
           }
+
+
         } else {
           Fluttertoast.showToast(msg: 'User loggedIn failed!');
         }
