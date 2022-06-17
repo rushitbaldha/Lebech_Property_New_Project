@@ -9,6 +9,7 @@ import 'package:lebech_property/buyer/models/sign_up_model/sign_up_model.dart';
 import 'package:lebech_property/buyer/screens/home_screen/home_screen.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
 import 'package:lebech_property/common/sharedpreference_data/sharedpreference_data.dart';
+import 'package:lebech_property/common/user_details/user_details.dart';
 
 
 class SignUpScreenController extends GetxController {
@@ -28,7 +29,7 @@ class SignUpScreenController extends GetxController {
 
   getUserSignUpFunction() async {
     isLoading(true);
-    String url = ApiUrl.registerApi;
+    String url = getSignUpUrl();
     log('url : $url');
 
     try{
@@ -63,6 +64,20 @@ class SignUpScreenController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+
+
+  String getSignUpUrl() {
+    if(UserDetails.applicationType == "buyer") {
+      return ApiUrl.registerApi;
+    } else if(UserDetails.applicationType == "seller") {
+      return ApiUrl.sellerRegisterApi;
+    } else if(UserDetails.applicationType == "broker") {
+      return "ApiUrl.sellerLoginApi";
+    } else if(UserDetails.applicationType == "propertySeller") {
+      return "ApiUrl.sellerLoginApi";
+    }
+    return "";
   }
 
 }

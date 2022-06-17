@@ -1,6 +1,7 @@
 class ApiUrl {
   static const String apiMainPath = "https://lebechproperty.com/admin/api/";
 
+  /// Buyer
   static const String homeScreenApi = apiMainPath + "customer/index";
   static const String loginApi = apiMainPath + "customer/login";
   static const String registerApi = apiMainPath + "customer/register";
@@ -21,4 +22,9 @@ class ApiUrl {
   static const String visitListApi = apiMainPath + "customer/visit_list";
   static const String buyContactApi = apiMainPath + "customer/buy_contact";
   static const String contactListApi = apiMainPath + "customer/contact_list";
+
+  /// Seller
+  static const String sellerLoginApi = apiMainPath + "seller/login";
+  static const String sellerRegisterApi = apiMainPath + "seller/register";
+
 }

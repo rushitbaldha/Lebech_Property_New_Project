@@ -24,9 +24,9 @@ class SignInScreenController extends GetxController {
   final passwordTextField = TextEditingController();
   SharedPreferenceData sharedPreferenceData = SharedPreferenceData();
 
-  userSignInFunction() async {
+  Future<void> userSignInFunction() async {
     isLoading(true);
-    String url = ApiUrl.loginApi;
+    String url = getLoginUrl();
     log('url : $url');
 
     try{
@@ -61,7 +61,6 @@ class SignInScreenController extends GetxController {
 
           }
 
-
         } else {
           Fluttertoast.showToast(msg: 'User loggedIn failed!');
         }
@@ -73,6 +72,20 @@ class SignInScreenController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+
+
+  String getLoginUrl() {
+    if(UserDetails.applicationType == "buyer") {
+      return ApiUrl.loginApi;
+    } else if(UserDetails.applicationType == "seller") {
+      return ApiUrl.sellerLoginApi;
+    } else if(UserDetails.applicationType == "broker") {
+      return "ApiUrl.sellerLoginApi";
+    } else if(UserDetails.applicationType == "propertySeller") {
+      return "ApiUrl.sellerLoginApi";
+    }
+    return "";
   }
 
 }
