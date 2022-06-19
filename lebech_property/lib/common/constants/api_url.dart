@@ -26,5 +26,6 @@ class ApiUrl {
   /// Seller
   static const String sellerLoginApi = apiMainPath + "seller/login";
   static const String sellerRegisterApi = apiMainPath + "seller/register";
+  static const String basicDetailsApi = apiMainPath + "basic_detail";
 
 }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
+import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'common_functions.dart';
@@ -157,5 +158,41 @@ class SocialMediaIconsModule extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+
+class Header1 extends StatelessWidget {
+  final String text;
+  const Header1({Key? key, required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 18
+      ),
+    );
+  }
+}
+
+class Header2 extends StatelessWidget {
+  final String text;
+  const Header2({Key? key, required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: const TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+        color: Colors.grey,
+      ),
+    ).commonAllSidePadding(padding: 5);
   }
 }

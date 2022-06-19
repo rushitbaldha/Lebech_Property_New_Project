@@ -13,3 +13,14 @@ enum ApplicationType {
   broker,
   propertySeller
 }
+
+enum PropertyAvailability {
+  immediately,
+  selectDate
+}
+
+enum SeparateCleaningArea {
+  none,
+  yes,
+  no
+}

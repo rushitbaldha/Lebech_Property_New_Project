@@ -4,6 +4,7 @@ import 'package:lebech_property/buyer/controllers/search_screen_controller/searc
 import 'package:lebech_property/buyer/controllers/sign_in_screen_controller/sign_in_screen_controller.dart';
 import 'package:lebech_property/buyer/controllers/sign_up_screen_controller/sign_up_screen_controller.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
+import 'package:lebech_property/seller/controllers/seller_create_property_screen_controller/seller_create_property_screen_controller.dart';
 import 'common_functions.dart';
 
 InputDecoration searchFieldDecoration(
@@ -177,5 +178,43 @@ InputDecoration signUpFormFieldDecoration(
                 ),
               )
             : null,
+  );
+}
+
+InputDecoration sellerCreatePropertyFieldDecoration(
+    {required String hintText,
+      required SellerCreatePropertyScreenController screenController}) {
+  return InputDecoration(
+    hintText: hintText,
+    fillColor: Colors.white,
+    filled: true,
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.black),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.black),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.black),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.black),
+    ),
+    isDense: true,
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+    counterText: '',
+    // suffixIcon: IconButton(
+    //   onPressed: () async {
+    //     String searchText =
+    //     screenController.directSearchFieldController.text.trim();
+    //     await screenController.directSearchFunction(searchText: searchText);
+    //     hideKeyBoard();
+    //   },
+    //   icon: const Icon(Icons.search, size: 25, color: AppColors.greenColor),
+    // ),
   );
 }

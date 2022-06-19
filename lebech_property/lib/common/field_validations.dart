@@ -1,7 +1,7 @@
 class FieldValidations {
   String? validateFullName(String value) {
     if (value.isEmpty) {
-      return 'Field is Required';
+      return 'Field is required';
     }
 
     return null;
