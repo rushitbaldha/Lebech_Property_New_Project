@@ -11,3 +11,24 @@ class RentPropertyDetailsModule extends StatelessWidget {
     return Container();
   }
 }
+
+
+class RentTenantDetailsModule extends StatelessWidget {
+  const RentTenantDetailsModule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+class RentOwnerDetailsModule extends StatelessWidget {
+  const RentOwnerDetailsModule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+

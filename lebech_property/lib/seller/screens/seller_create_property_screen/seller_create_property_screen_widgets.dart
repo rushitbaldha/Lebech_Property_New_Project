@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/common_widgets.dart';
+import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/seller/controllers/seller_create_property_screen_controller/seller_create_property_screen_controller.dart';
 
@@ -41,11 +42,89 @@ class SCPPropertyDetailsModule extends StatelessWidget {
                     ? RentPropertyDetailsModule()
                     : PgPropertyDetailsModule(),
           ),
+
         ],
       ).commonAllSidePadding(padding: 3),
     ).commonAllSidePadding(padding: 8);
   }
 }
+
+
+class SCPTenantDetailsModule extends StatelessWidget {
+  SCPTenantDetailsModule({Key? key}) : super(key: key);
+  final screenController = Get.find<SellerCreatePropertyScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Tenant Detail",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+          Divider(thickness: 2, color: Colors.grey.shade600),
+
+          // If Sale Part Select then show this modules
+          Obx(
+                () => screenController.propertyForValue.value == screenController.propertyForList[0]
+                ? SaleTenantDetailsModule()
+                : screenController.propertyForValue.value == screenController.propertyForList[1]
+                ? RentTenantDetailsModule()
+                : PgTenantDetailsModule(),
+          ),
+
+        ],
+      ).commonAllSidePadding(padding: 3),
+    ).commonAllSidePadding(padding: 8);
+  }
+}
+
+
+class SCPOwnerDetailsModule extends StatelessWidget {
+  SCPOwnerDetailsModule({Key? key}) : super(key: key);
+  final screenController = Get.find<SellerCreatePropertyScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Owner Detail",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+          Divider(thickness: 2, color: Colors.grey.shade600),
+
+          // If Sale Part Select then show this modules
+          Obx(
+                () => screenController.propertyForValue.value == screenController.propertyForList[0]
+                ? SaleOwnerDetailsModule()
+                : screenController.propertyForValue.value == screenController.propertyForList[1]
+                ? RentOwnerDetailsModule()
+                : PgOwnerDetailsModule(),
+          ),
+
+        ],
+      ).commonAllSidePadding(padding: 3),
+    ).commonAllSidePadding(padding: 8);
+  }
+}
+
 
 class PropertyForDropdownModule extends StatelessWidget {
   PropertyForDropdownModule({Key? key}) : super(key: key);
@@ -94,5 +173,30 @@ class PropertyForDropdownModule extends StatelessWidget {
 }
 
 
+class SaveButtonModule extends StatelessWidget {
+  SaveButtonModule({Key? key}) : super(key: key);
+  final screenController = Get.find<SellerCreatePropertyScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors.blueColor,
+        ),
+        child: const Text(
+          "Save",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+          ),
+        ).commonSymmetricPadding(horizontal: 25, vertical: 15),
+      ),
+    );
+  }
+}
 
 

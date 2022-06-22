@@ -26,6 +26,13 @@ class SellerCreatePropertyScreen extends StatelessWidget {
             child: Column(
               children: [
                 SCPPropertyDetailsModule(),
+                SCPTenantDetailsModule(),
+                SCPOwnerDetailsModule(),
+
+                const SizedBox(height: 10),
+                SaveButtonModule(),
+                const SizedBox(height: 10),
+
               ],
             ),
           ),

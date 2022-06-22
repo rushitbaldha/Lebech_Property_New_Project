@@ -11,3 +11,22 @@ class PgPropertyDetailsModule extends StatelessWidget {
     return Container();
   }
 }
+
+class PgTenantDetailsModule extends StatelessWidget {
+  const PgTenantDetailsModule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+class PgOwnerDetailsModule extends StatelessWidget {
+  const PgOwnerDetailsModule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
