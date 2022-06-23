@@ -21,13 +21,13 @@ class SellerCreatePropertyScreenController extends GetxController {
   List<Property> propertyTypeList = [];
   Property propertyTypeValue = Property();
 
-  List<BasicCity> cityList = [];
+  List<BasicCity> cityList = [BasicCity(name: "Select City")];
   BasicCity cityValue = BasicCity(name: "Select City");
 
-  List<BasicArea> areaList = [];
+  List<BasicArea> areaList = [BasicArea(name: "Select Area")];
   BasicArea areaValue = BasicArea(name: "Select Area");
 
-  List<BasicState> stateList = [];
+  List<BasicState> stateList = [BasicState(name: "Select State")];
   BasicState stateValue = BasicState(name: "Select State");
 
   List<int> bedRoomList = [1,2,3,4,5,6,7,8,9,10];
@@ -236,6 +236,21 @@ class SellerCreatePropertyScreenController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+
+  /// Get Search Property Name List Function
+  Future<List<String>> getSearchNameListFunction(String searchText) async {
+
+
+    return searchText.isEmpty
+        ? propertyNameList
+        : propertyNameList.where((element) {
+      String searchListString = element.toLowerCase();
+      String searchTextNew = searchText.toLowerCase();
+
+      return searchListString.contains(searchTextNew);
+    }).toList();
+
   }
 
 

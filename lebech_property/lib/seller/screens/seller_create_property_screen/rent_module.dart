@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
@@ -304,12 +305,32 @@ class RentPropertyDetailsModule extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Header2(text: "Property Name/Society"),
-        TextFormField(
-          controller: screenController.propertyNameController,
-          keyboardType: TextInputType.text,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
-          validator: (value) => FieldValidations().validateFullName(value!),
-        )
+        TypeAheadField(
+          suggestionsCallback: (text) async {
+            return await screenController.getSearchNameListFunction(text);
+          },
+          hideSuggestionsOnKeyboardHide: true,
+          textFieldConfiguration: TextFieldConfiguration(
+            controller: screenController.propertyNameController,
+            decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          ),
+          itemBuilder: (context, String? suggestion) {
+            final cat = suggestion!;
+            return ListTile(
+              title: Text(cat),
+            );
+          },
+          onSuggestionSelected: (String? suggestion) {
+            screenController.propertyNameController.text = suggestion!;
+            log("Text : ${screenController.propertyNameController.text}");
+          },
+        ),
+        // TextFormField(
+        //   controller: screenController.propertyNameController,
+        //   keyboardType: TextInputType.text,
+        //   decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+        //   validator: (value) => FieldValidations().validateFullName(value!),
+        // )
       ],
     );
   }
@@ -1135,7 +1156,6 @@ class RentPropertyDetailsModule extends StatelessWidget {
     );
   }
 
-  //todo implement
   // Maintenance Tenure DD
   Widget maintenanceTenureDropDownModule(BuildContext context) {
     return Column(
@@ -1493,7 +1513,7 @@ class RentTenantDetailsModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Header2(text: "Tenants with Pets"),
+        const Header2(text: "Tenants without company lease"),
         Row(
           children: [
             Expanded(
