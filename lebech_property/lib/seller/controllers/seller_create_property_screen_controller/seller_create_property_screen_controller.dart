@@ -42,6 +42,7 @@ class SellerCreatePropertyScreenController extends GetxController {
   int tvValue = 0;
   RxBool isWithoutHall = false.obs;
   RxBool isNegotiable = false.obs;
+  RxBool isMonthlyRentNegotiable = false.obs;
 
   List<String> furnishedList = ["Furnished", "Unfurnished", "Semi-Furnished"];
   RxString furnishedValue = "Furnished".obs;
@@ -64,7 +65,10 @@ class SellerCreatePropertyScreenController extends GetxController {
   TextEditingController liftsInTowerController = TextEditingController();
   TextEditingController unitsOnFloorController = TextEditingController();
   TextEditingController salePriceController = TextEditingController();
+  TextEditingController monthlyRentController = TextEditingController();
   TextEditingController loanAmountController = TextEditingController();
+  TextEditingController securityDepositeController = TextEditingController();
+  TextEditingController maintenanceChargeController = TextEditingController();
   TextEditingController perSqFtRateController = TextEditingController();
   TextEditingController totalCarParkingController = TextEditingController();
   TextEditingController coveredCarParkingController = TextEditingController();
@@ -78,6 +82,7 @@ class SellerCreatePropertyScreenController extends GetxController {
   SeparateCleaningArea separateCleaningArea = SeparateCleaningArea.none;
 
   List<String> ageOfConstructionList = [
+    "Under Construction",
     "1 to 3 Year",
     "3 to 5 Year",
     "5 to 7 Year",
@@ -86,7 +91,17 @@ class SellerCreatePropertyScreenController extends GetxController {
     "15 to 20 Year",
     "More then 20 Year",
   ];
-  String ageOfConstructionValue = "1 to 3 Year";
+  String ageOfConstructionValue = "Under Construction";
+
+  List<String> maintenanceTenureList = [
+    "Monthly", "Quarterly", "Half Yearly", "Yearly"
+  ];
+  String maintenanceTenureValue = "Monthly";
+
+  List<String> propertyTaxPayableByList = [
+    "Owner", "50-50", "Customer"
+  ];
+  String propertyTaxPayableByValue = "Owner";
 
   DateTime selectedDate = DateTime.now();
 
