@@ -63,12 +63,17 @@ class SCPTenantDetailsModule extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Tenant Detail",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
+          Obx(
+              ()=> screenController.isLoading.value
+                  ? Container()
+                  : Text(
+                screenController.propertyForValue.value == screenController.propertyForList[0]
+                    ? "Other Detail" : "Tenant Detail",
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
           ),
           Divider(thickness: 2, color: Colors.grey.shade600),
 

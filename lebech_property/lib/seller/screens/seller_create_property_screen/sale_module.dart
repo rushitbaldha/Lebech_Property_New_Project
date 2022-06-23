@@ -1137,12 +1137,12 @@ class SaleTenantDetailsModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Header1(text: "Tenants You Prefer"),
-        _bachelors(),
-        _nonVegetarians(),
-        _pets(),
-        _companyLease(),
-        const Divider(),
+        // const Header1(text: "Tenants You Prefer"),
+        // _bachelors(),
+        // _nonVegetarians(),
+        // _pets(),
+        // _companyLease(),
+        // const Divider(),
 
         const Header1(text: "Additional Features"),
         _additionalRoom(),
@@ -1179,7 +1179,7 @@ class SaleTenantDetailsModule extends StatelessWidget {
     );
   }
 
-  Widget _bachelors() {
+  /*Widget _bachelors() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1239,9 +1239,9 @@ class SaleTenantDetailsModule extends StatelessWidget {
 
       ],
     );
-  }
+  }*/
 
-  Widget _nonVegetarians() {
+  /*Widget _nonVegetarians() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1301,9 +1301,9 @@ class SaleTenantDetailsModule extends StatelessWidget {
 
       ],
     );
-  }
+  }*/
 
-  Widget _pets() {
+  /*Widget _pets() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1362,9 +1362,9 @@ class SaleTenantDetailsModule extends StatelessWidget {
         ),
       ],
     );
-  }
+  }*/
 
-  Widget _companyLease() {
+  /*Widget _companyLease() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1423,7 +1423,7 @@ class SaleTenantDetailsModule extends StatelessWidget {
         ),
       ],
     );
-  }
+  }*/
 
   Widget _additionalRoom() {
     return Column(
@@ -1817,11 +1817,11 @@ class SaleOwnerDetailsModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Header1(text: "Tenant Preferences"),
-        _visitorsRestriction(),
-        _tenantRestrictionFieldModule(),
-        _tenantPrefer(),
-        const Divider(),
+        // const Header1(text: "Tenant Preferences"),
+        // _visitorsRestriction(),
+        // _tenantRestrictionFieldModule(),
+        // _tenantPrefer(),
+        // const Divider(),
 
         const Header1(text: "Preferred Time to Call?"),
         _preferredTimeCallModule(),
@@ -1848,7 +1848,7 @@ class SaleOwnerDetailsModule extends StatelessWidget {
   }
 
 
-  Widget _visitorsRestriction() {
+  /*Widget _visitorsRestriction() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1902,9 +1902,9 @@ class SaleOwnerDetailsModule extends StatelessWidget {
 
       ],
     );
-  }
+  }*/
 
-  Widget _tenantRestrictionFieldModule() {
+  /*Widget _tenantRestrictionFieldModule() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1926,9 +1926,9 @@ class SaleOwnerDetailsModule extends StatelessWidget {
         )
       ],
     );
-  }
+  }*/
 
-  Widget _tenantPrefer() {
+  /*Widget _tenantPrefer() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1968,7 +1968,7 @@ class SaleOwnerDetailsModule extends StatelessWidget {
         ),
       ],
     );
-  }
+  }*/
 
   Widget _preferredTimeCallModule() {
     return Row(
