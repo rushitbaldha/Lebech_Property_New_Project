@@ -1578,6 +1578,7 @@ class RentTenantDetailsModule extends StatelessWidget {
         GridView.builder(
           itemCount: screenController.additionalRoomsList.length,
           shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 10,
@@ -1592,9 +1593,11 @@ class RentTenantDetailsModule extends StatelessWidget {
                   fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
                   value: screenController.additionalRoomsList[i].value,
                   onChanged: (bool? value) {
+                    screenController.isLoading(true);
                     screenController.additionalRoomsList[i].value =
                     !screenController.additionalRoomsList[i].value;
                     log("isNegotiable : ${screenController.additionalRoomsList[i].value}");
+                    screenController.isLoading(false);
                   },
                 ),
                 Text(
@@ -1679,9 +1682,11 @@ class RentTenantDetailsModule extends StatelessWidget {
                   fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
                   value: screenController.overlookingList[i].value,
                   onChanged: (bool? value) {
+                    screenController.isLoading(true);
                     screenController.overlookingList[i].value =
                     !screenController.overlookingList[i].value;
                     log("${screenController.overlookingList[i].value}");
+                    screenController.isLoading(false);
                   },
                 ),
                 Text(
@@ -1887,9 +1892,11 @@ class RentTenantDetailsModule extends StatelessWidget {
                   fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
                   value: screenController.flooringList[i].value,
                   onChanged: (bool? value) {
+                    screenController.isLoading(true);
                     screenController.flooringList[i].value =
                     !screenController.flooringList[i].value;
                     log("${screenController.flooringList[i].value}");
+                    screenController.isLoading(false);
                   },
                 ),
                 Expanded(
@@ -1929,9 +1936,11 @@ class RentTenantDetailsModule extends StatelessWidget {
                   fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
                   value: screenController.aminitiesList[i].value,
                   onChanged: (bool? value) {
+                    screenController.isLoading(true);
                     screenController.aminitiesList[i].value =
                     !screenController.aminitiesList[i].value;
                     log("${screenController.aminitiesList[i].value}");
+                    screenController.isLoading(false);
                   },
                 ),
                 Expanded(
@@ -2093,9 +2102,11 @@ class RentOwnerDetailsModule extends StatelessWidget {
                   fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
                   value: screenController.preferTenantList[i].value,
                   onChanged: (bool? value) {
+                    screenController.isLoading(true);
                     screenController.preferTenantList[i].value =
                     !screenController.preferTenantList[i].value;
                     log("${screenController.preferTenantList[i].value}");
+                    screenController.isLoading(false);
                   },
                 ),
                 Expanded(
@@ -2120,9 +2131,11 @@ class RentOwnerDetailsModule extends StatelessWidget {
           fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
           value: screenController.isAnyTime.value,
           onChanged: (bool? value) {
+            screenController.isLoading(true);
             screenController.isAnyTime.value =
             !screenController.isAnyTime.value;
             log("${screenController.isAnyTime.value}");
+            screenController.isLoading(false);
           },
         ),
         const Expanded(
@@ -2310,7 +2323,7 @@ class RentOwnerDetailsModule extends StatelessWidget {
                 }).toList(),
                 onChanged: (value) {
                   screenController.isLoading(true);
-                  screenController.fromTimeValue = value!;
+                  screenController.toTimeValue = value!;
                   screenController.isLoading(false);
                 },
               ),
@@ -2469,9 +2482,11 @@ class RentOwnerDetailsModule extends StatelessWidget {
           fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
           value: screenController.isTermAndCondition.value,
           onChanged: (bool? value) {
+            screenController.isLoading(true);
             screenController.isTermAndCondition.value =
             !screenController.isTermAndCondition.value;
             log("${screenController.isTermAndCondition.value}");
+            screenController.isLoading(false);
           },
         ),
         const Expanded(
