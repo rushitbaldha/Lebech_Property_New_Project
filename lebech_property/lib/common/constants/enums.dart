@@ -15,41 +15,38 @@ enum ApplicationType {
 }
 
 enum PropertyAvailability {
-  immediately,
-  selectDate
+  immediate,
+  date
 }
 
 enum SeparateCleaningArea {
-  none,
   yes,
   no
 }
 
 enum TenantBachelors {
-  none, yes, no, noMatter
+  yes, no, no_matter
 }
 
 enum TenantNonVegetarian {
-  none, yes, no, noMatter
+  yes, no, no_matter
 }
 
 enum TenantPets {
-  none, yes, no, noMatter
+  yes, no, no_matter
 }
 
 enum TenantCompanyLease {
-  none, yes, no, noMatter
+  yes, no, no_matter
 }
 
 enum VisitorsRestriction {
-  none,
   noRestriction,
   overNightStayNotAllow,
   visitorsNotAllowed
 }
 
 enum PreferredDayCall {
-  none,
   anyDay,
   weekdaysOnly,
   weekendsOnly,
@@ -57,12 +54,11 @@ enum PreferredDayCall {
 }
 
 enum CrossViolation {
-  none,
   yes,
   no
 }
 
 
 enum CommonWall {
-  none, yes, no
+  yes, no
 }

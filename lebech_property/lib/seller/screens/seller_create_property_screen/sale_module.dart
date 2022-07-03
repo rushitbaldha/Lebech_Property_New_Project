@@ -10,9 +10,7 @@ import 'package:lebech_property/common/extension_methods/extension_methods.dart'
 import 'package:lebech_property/common/field_decorations.dart';
 import 'package:lebech_property/common/field_validations.dart';
 import 'package:lebech_property/seller/controllers/seller_create_property_screen_controller/seller_create_property_screen_controller.dart';
-import 'package:lebech_property/seller/models/seller_create_property_screen_model/property_features_checkbox_model.dart';
 import '../../models/seller_create_property_screen_model/form_basic_details_model.dart';
-
 
 class SalePropertyDetailsModule extends StatelessWidget {
   SalePropertyDetailsModule({Key? key}) : super(key: key);
@@ -23,7 +21,6 @@ class SalePropertyDetailsModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         propertyTypeDropDownModule(context),
         const SizedBox(height: 8),
         const Header1(text: "Property Location"),
@@ -32,96 +29,147 @@ class SalePropertyDetailsModule extends StatelessWidget {
         propertyNameFieldModule(),
         propertyShortDescriptionFieldModule(),
         const Divider(),
-
         const Header1(text: "Property Features"),
+        screenController.propertyTypeValue.sub == "house"
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(child: bedRoomDropDownModule(context)),
+                  const SizedBox(width: 8),
+                  Expanded(child: withoutHallCheckbox()),
+                ],
+              )
+            : Container(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(child: bedRoomDropDownModule(context)),
+            screenController.propertyTypeValue.sub == "house"
+                ? Expanded(child: balconiesDropDownModule(context))
+                : Container(),
             const SizedBox(width: 8),
-            Expanded(child: withoutHallCheckbox()),
+            screenController.propertyTypeValue.sub == "house" ||
+                    screenController.propertyTypeValue.sub == "office" ||
+                    screenController.propertyTypeValue.sub == "textile"
+                ? Expanded(child: floorNumberFieldModule())
+                : Container(),
           ],
         ),
-
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(child: balconiesDropDownModule(context)),
+            screenController.propertyTypeValue.sub == "house" ||
+                    screenController.propertyTypeValue.sub == "office" ||
+                    screenController.propertyTypeValue.sub == "textile"
+                ? Expanded(child: totalFloorFieldModule())
+                : Container(),
             const SizedBox(width: 8),
-            Expanded(child: floorNumberFieldModule()),
+            screenController.propertyTypeValue.sub == "house" ||
+                    screenController.propertyTypeValue.sub == "office" ||
+                    screenController.propertyTypeValue.sub == "textile"
+                ? Expanded(child: furnishedDropDownModule(context))
+                : Container(),
           ],
         ),
-
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(child: totalFloorFieldModule()),
+            screenController.propertyTypeValue.sub == "house" ||
+                    screenController.propertyTypeValue.sub == "office" ||
+                    screenController.propertyTypeValue.sub == "textile" ||
+                    screenController.propertyTypeValue.sub == "shed"
+                ? Expanded(child: bathroomsDropDownModule(context))
+                : Container(),
             const SizedBox(width: 8),
-            Expanded(child: furnishedDropDownModule(context)),
+            screenController.propertyTypeValue.sub == "house" ||
+                    screenController.propertyTypeValue.sub == "office" ||
+                    screenController.propertyTypeValue.sub == "textile"
+                ? Expanded(child: acDropDownModule(context))
+                : Container(),
           ],
         ),
-
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(child: bathroomsDropDownModule(context)),
+            screenController.propertyTypeValue.sub == "house"
+                ? Expanded(child: bedDropDownModule(context))
+                : Container(),
             const SizedBox(width: 8),
-            Expanded(child: acDropDownModule(context)),
+            screenController.propertyTypeValue.sub == "house"
+                ? Expanded(child: wardrobeDropDownModule(context))
+                : Container(),
           ],
         ),
-
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(child: bedDropDownModule(context)),
-            const SizedBox(width: 8),
-            Expanded(child: wardrobeDropDownModule(context)),
-          ],
-        ),
-
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(child: tvDropDownModule(context)),
+            screenController.propertyTypeValue.sub == "house"
+                ? Expanded(child: tvDropDownModule(context))
+                : Container(),
             const SizedBox(width: 8),
             Expanded(child: Container()),
           ],
         ),
-
         checkBoxGridViewModule(),
-
         const Divider(),
-        const Header1(text: "Area"),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(child: superAreaFieldModule()),
-            const SizedBox(width: 8),
-            Expanded(child: carpetAreaFieldModule()),
-          ],
-        ),
-
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile" ||
+                screenController.propertyTypeValue.sub == "industrial" ||
+                screenController.propertyTypeValue.sub == "shed" ||
+            screenController.propertyTypeValue.sub == "plot"
+            ? const Header1(text: "Area")
+            : Container(),
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile" ||
+                screenController.propertyTypeValue.sub == "industrial" ||
+                screenController.propertyTypeValue.sub == "shed"
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(child: superAreaFieldModule()),
+                  const SizedBox(width: 8),
+                  Expanded(child: carpetAreaFieldModule()),
+                ],
+              )
+            :
+        screenController.propertyTypeValue.sub == "plot"
+            ? varVighaYardFieldModule()
+        : Container(),
+        screenController.propertyTypeValue.sub == "shed" ? heightFieldModule() : Container(),
         const Divider(),
         const Header1(text: "Transaction Type, Property Availability"),
         availableFromModule(),
-        ageOfConstructionDropDownModule(context),
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile" ||
+                screenController.propertyTypeValue.sub == "industrial" ||
+                screenController.propertyTypeValue.sub == "shed"
+            ? ageOfConstructionDropDownModule(context)
+            : Container(),
         const SizedBox(height: 8),
-        screenController.propertyAvailability == PropertyAvailability.selectDate
+        screenController.propertyAvailability == PropertyAvailability.date
             ? datePickerModule(context)
             : Container(),
-
         const Divider(),
         const Header1(text: "Other Detail"),
-        otherDetailsRadioButtonModule(),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(child: liftsInTowerFieldModule()),
-            const SizedBox(width: 8),
-            Expanded(child: unitsOnTheFloorFieldModule()),
-          ],
-        ),
-
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile"
+            ? otherDetailsRadioButtonModule()
+            : Container(),
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile"
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(child: liftsInTowerFieldModule()),
+                  const SizedBox(width: 8),
+                  Expanded(child: unitsOnTheFloorFieldModule()),
+                ],
+              )
+            : Container(),
         const Divider(),
         const Header1(text: "Sale Detail"),
         Row(
@@ -132,7 +180,6 @@ class SalePropertyDetailsModule extends StatelessWidget {
             Expanded(child: negotiableCheckbox()),
           ],
         ),
-
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -141,11 +188,9 @@ class SalePropertyDetailsModule extends StatelessWidget {
             Expanded(child: perSrFtRateFieldModule()),
           ],
         ),
-
       ],
     );
   }
-
 
   // Property Type Dropdown
   Widget propertyTypeDropDownModule(BuildContext context) {
@@ -304,7 +349,8 @@ class SalePropertyDetailsModule extends StatelessWidget {
           hideSuggestionsOnKeyboardHide: true,
           textFieldConfiguration: TextFieldConfiguration(
             controller: screenController.propertyNameController,
-            decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+            decoration: sellerCreatePropertyFieldDecoration(
+                hintText: '', screenController: screenController),
           ),
           itemBuilder: (context, String? suggestion) {
             final cat = suggestion!;
@@ -317,7 +363,6 @@ class SalePropertyDetailsModule extends StatelessWidget {
             log("Text : ${screenController.propertyNameController.text}");
           },
         ),
-
 
         // TextFormField(
         //   controller: screenController.propertyNameController,
@@ -339,9 +384,10 @@ class SalePropertyDetailsModule extends StatelessWidget {
           controller: screenController.propertySortDescController,
           keyboardType: TextInputType.text,
           maxLines: 3,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           validator: (value) => FieldValidations().validateFullName(value!),
-        )
+        ),
       ],
     );
   }
@@ -401,12 +447,14 @@ class SalePropertyDetailsModule extends StatelessWidget {
         Row(
           children: [
             Obx(
-                  ()=> Checkbox(
+              () => Checkbox(
                 checkColor: Colors.white,
-                fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
+                fillColor: MaterialStateProperty.resolveWith(
+                    (states) => AppColors.blueColor),
                 value: screenController.isWithoutHall.value,
                 onChanged: (bool? value) {
-                  screenController.isWithoutHall.value = !screenController.isWithoutHall.value;
+                  screenController.isWithoutHall.value =
+                      !screenController.isWithoutHall.value;
                   log("screenController.isWithoutHall.value : ${screenController.isWithoutHall.value}");
                 },
               ),
@@ -442,7 +490,7 @@ class SalePropertyDetailsModule extends StatelessWidget {
             child: DropdownButtonHideUnderline(
               child: DropdownButton<int>(
                 value: screenController.balconiesValue,
-                items: screenController.intList
+                items: screenController.balconiesList
                     .map<DropdownMenuItem<int>>((int value) {
                   return DropdownMenuItem<int>(
                     value: value,
@@ -474,8 +522,9 @@ class SalePropertyDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.floorNoController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
-          validator: (value) => FieldValidations().validateFullName(value!),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
+          // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
     );
@@ -490,8 +539,9 @@ class SalePropertyDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.totalFloorController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
-          validator: (value) => FieldValidations().validateFullName(value!),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
+          // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
     );
@@ -781,36 +831,959 @@ class SalePropertyDetailsModule extends StatelessWidget {
 
   // Checkbox Gridview List
   Widget checkBoxGridViewModule() {
-    return GridView.builder(
-      itemCount: screenController.featuresCheckboxList.length,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        childAspectRatio: 5,
-      ),
-      itemBuilder: (context, i) {
-        FeatureCheckboxModel singleItem = screenController.featuresCheckboxList[i];
-        return Row(
-          children: [
-            Checkbox(
-              checkColor: Colors.white,
-              fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
-              value: singleItem.value,
-              onChanged: (bool? value) {
-                screenController.isLoading(true);
-                singleItem.value = !singleItem.value;
-                log("singleItem.value : ${singleItem.value}");
-                screenController.isLoading(false);
-              },
-            ),
-            Text(singleItem.name),
-          ],
-        );
-      },
-    );
+    return Obx(() => screenController.isLoading.value
+        ? const CustomCircularProgressIndicatorModule()
+        : screenController.propertyTypeValue.sub == "house"
+            ? GridView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 5,
+                ),
+                children: [
+                  Row(
+                    children: [
+                      Checkbox(
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.resolveWith(
+                            (states) => AppColors.blueColor),
+                        value: screenController.featuresCheckboxList[0].value,
+                        onChanged: (bool? value) {
+                          screenController.isLoading(true);
+                          screenController.featuresCheckboxList[0].value =
+                              !screenController.featuresCheckboxList[0].value;
+                          log("singleItem.value : ${screenController.featuresCheckboxList[0].value}");
+                          screenController.isLoading(false);
+                        },
+                      ),
+                      Expanded(
+                        child: Text(
+                          screenController.featuresCheckboxList[0].name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.resolveWith(
+                            (states) => AppColors.blueColor),
+                        value: screenController.featuresCheckboxList[1].value,
+                        onChanged: (bool? value) {
+                          screenController.isLoading(true);
+                          screenController.featuresCheckboxList[1].value =
+                              !screenController.featuresCheckboxList[1].value;
+                          log("singleItem.value : ${screenController.featuresCheckboxList[1].value}");
+                          screenController.isLoading(false);
+                        },
+                      ),
+                      Expanded(
+                        child: Text(
+                          screenController.featuresCheckboxList[1].name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.resolveWith(
+                            (states) => AppColors.blueColor),
+                        value: screenController.featuresCheckboxList[2].value,
+                        onChanged: (bool? value) {
+                          screenController.isLoading(true);
+                          screenController.featuresCheckboxList[2].value =
+                              !screenController.featuresCheckboxList[2].value;
+                          log("singleItem.value : ${screenController.featuresCheckboxList[2].value}");
+                          screenController.isLoading(false);
+                        },
+                      ),
+                      Expanded(
+                        child: Text(
+                          screenController.featuresCheckboxList[2].name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.resolveWith(
+                            (states) => AppColors.blueColor),
+                        value: screenController.featuresCheckboxList[3].value,
+                        onChanged: (bool? value) {
+                          screenController.isLoading(true);
+                          screenController.featuresCheckboxList[3].value =
+                              !screenController.featuresCheckboxList[3].value;
+                          log("singleItem.value : ${screenController.featuresCheckboxList[3].value}");
+                          screenController.isLoading(false);
+                        },
+                      ),
+                      Expanded(
+                        child: Text(
+                          screenController.featuresCheckboxList[3].name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.resolveWith(
+                            (states) => AppColors.blueColor),
+                        value: screenController.featuresCheckboxList[4].value,
+                        onChanged: (bool? value) {
+                          screenController.isLoading(true);
+                          screenController.featuresCheckboxList[4].value =
+                              !screenController.featuresCheckboxList[4].value;
+                          log("singleItem.value : ${screenController.featuresCheckboxList[4].value}");
+                          screenController.isLoading(false);
+                        },
+                      ),
+                      Expanded(
+                        child: Text(
+                          screenController.featuresCheckboxList[4].name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.resolveWith(
+                            (states) => AppColors.blueColor),
+                        value: screenController.featuresCheckboxList[5].value,
+                        onChanged: (bool? value) {
+                          screenController.isLoading(true);
+                          screenController.featuresCheckboxList[5].value =
+                              !screenController.featuresCheckboxList[5].value;
+                          log("singleItem.value : ${screenController.featuresCheckboxList[5].value}");
+                          screenController.isLoading(false);
+                        },
+                      ),
+                      Expanded(
+                        child: Text(
+                          screenController.featuresCheckboxList[5].name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            : screenController.propertyTypeValue.sub == "office"
+                ? GridView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 5,
+                    ),
+                    children: [
+                      Row(
+                        children: [
+                          Checkbox(
+                            checkColor: Colors.white,
+                            fillColor: MaterialStateProperty.resolveWith(
+                                (states) => AppColors.blueColor),
+                            value:
+                                screenController.featuresCheckboxList[0].value,
+                            onChanged: (bool? value) {
+                              screenController.isLoading(true);
+                              screenController.featuresCheckboxList[0].value =
+                                  !screenController
+                                      .featuresCheckboxList[0].value;
+                              log("singleItem.value : ${screenController.featuresCheckboxList[0].value}");
+                              screenController.isLoading(false);
+                            },
+                          ),
+                          Expanded(
+                            child: Text(
+                              screenController.featuresCheckboxList[0].name,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            checkColor: Colors.white,
+                            fillColor: MaterialStateProperty.resolveWith(
+                                (states) => AppColors.blueColor),
+                            value:
+                                screenController.featuresCheckboxList[1].value,
+                            onChanged: (bool? value) {
+                              screenController.isLoading(true);
+                              screenController.featuresCheckboxList[1].value =
+                                  !screenController
+                                      .featuresCheckboxList[1].value;
+                              log("singleItem.value : ${screenController.featuresCheckboxList[1].value}");
+                              screenController.isLoading(false);
+                            },
+                          ),
+                          Expanded(
+                            child: Text(
+                              screenController.featuresCheckboxList[1].name,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            checkColor: Colors.white,
+                            fillColor: MaterialStateProperty.resolveWith(
+                                (states) => AppColors.blueColor),
+                            value:
+                                screenController.featuresCheckboxList[5].value,
+                            onChanged: (bool? value) {
+                              screenController.isLoading(true);
+                              screenController.featuresCheckboxList[5].value =
+                                  !screenController
+                                      .featuresCheckboxList[5].value;
+                              log("singleItem.value : ${screenController.featuresCheckboxList[5].value}");
+                              screenController.isLoading(false);
+                            },
+                          ),
+                          Expanded(
+                            child: Text(
+                              screenController.featuresCheckboxList[5].name,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            checkColor: Colors.white,
+                            fillColor: MaterialStateProperty.resolveWith(
+                                (states) => AppColors.blueColor),
+                            value:
+                                screenController.featuresCheckboxList[6].value,
+                            onChanged: (bool? value) {
+                              screenController.isLoading(true);
+                              screenController.featuresCheckboxList[6].value =
+                                  !screenController
+                                      .featuresCheckboxList[6].value;
+                              log("singleItem.value : ${screenController.featuresCheckboxList[6].value}");
+                              screenController.isLoading(false);
+                            },
+                          ),
+                          Expanded(
+                            child: Text(
+                              screenController.featuresCheckboxList[6].name,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            checkColor: Colors.white,
+                            fillColor: MaterialStateProperty.resolveWith(
+                                (states) => AppColors.blueColor),
+                            value:
+                                screenController.featuresCheckboxList[7].value,
+                            onChanged: (bool? value) {
+                              screenController.isLoading(true);
+                              screenController.featuresCheckboxList[7].value =
+                                  !screenController
+                                      .featuresCheckboxList[7].value;
+                              log("singleItem.value : ${screenController.featuresCheckboxList[7].value}");
+                              screenController.isLoading(false);
+                            },
+                          ),
+                          Expanded(
+                            child: Text(
+                              screenController.featuresCheckboxList[7].name,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            checkColor: Colors.white,
+                            fillColor: MaterialStateProperty.resolveWith(
+                                (states) => AppColors.blueColor),
+                            value:
+                                screenController.featuresCheckboxList[9].value,
+                            onChanged: (bool? value) {
+                              screenController.isLoading(true);
+                              screenController.featuresCheckboxList[9].value =
+                                  !screenController
+                                      .featuresCheckboxList[9].value;
+                              log("singleItem.value : ${screenController.featuresCheckboxList[9].value}");
+                              screenController.isLoading(false);
+                            },
+                          ),
+                          Expanded(
+                            child: Text(
+                              screenController.featuresCheckboxList[9].name,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                : screenController.propertyTypeValue.sub == "textile"
+                    ? GridView(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: 5,
+                        ),
+                        children: [
+                          Row(
+                            children: [
+                              Checkbox(
+                                checkColor: Colors.white,
+                                fillColor: MaterialStateProperty.resolveWith(
+                                    (states) => AppColors.blueColor),
+                                value: screenController
+                                    .featuresCheckboxList[1].value,
+                                onChanged: (bool? value) {
+                                  screenController.isLoading(true);
+                                  screenController
+                                          .featuresCheckboxList[1].value =
+                                      !screenController
+                                          .featuresCheckboxList[1].value;
+                                  log("singleItem.value : ${screenController.featuresCheckboxList[1].value}");
+                                  screenController.isLoading(false);
+                                },
+                              ),
+                              Expanded(
+                                child: Text(
+                                  screenController.featuresCheckboxList[1].name,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Checkbox(
+                                checkColor: Colors.white,
+                                fillColor: MaterialStateProperty.resolveWith(
+                                    (states) => AppColors.blueColor),
+                                value: screenController
+                                    .featuresCheckboxList[6].value,
+                                onChanged: (bool? value) {
+                                  screenController.isLoading(true);
+                                  screenController
+                                          .featuresCheckboxList[6].value =
+                                      !screenController
+                                          .featuresCheckboxList[6].value;
+                                  log("singleItem.value : ${screenController.featuresCheckboxList[6].value}");
+                                  screenController.isLoading(false);
+                                },
+                              ),
+                              Expanded(
+                                child: Text(
+                                  screenController.featuresCheckboxList[6].name,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Checkbox(
+                                checkColor: Colors.white,
+                                fillColor: MaterialStateProperty.resolveWith(
+                                    (states) => AppColors.blueColor),
+                                value: screenController
+                                    .featuresCheckboxList[7].value,
+                                onChanged: (bool? value) {
+                                  screenController.isLoading(true);
+                                  screenController
+                                          .featuresCheckboxList[7].value =
+                                      !screenController
+                                          .featuresCheckboxList[7].value;
+                                  log("singleItem.value : ${screenController.featuresCheckboxList[7].value}");
+                                  screenController.isLoading(false);
+                                },
+                              ),
+                              Expanded(
+                                child: Text(
+                                  screenController.featuresCheckboxList[7].name,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Checkbox(
+                                checkColor: Colors.white,
+                                fillColor: MaterialStateProperty.resolveWith(
+                                    (states) => AppColors.blueColor),
+                                value: screenController
+                                    .featuresCheckboxList[9].value,
+                                onChanged: (bool? value) {
+                                  screenController.isLoading(true);
+                                  screenController
+                                          .featuresCheckboxList[9].value =
+                                      !screenController
+                                          .featuresCheckboxList[9].value;
+                                  log("singleItem.value : ${screenController.featuresCheckboxList[9].value}");
+                                  screenController.isLoading(false);
+                                },
+                              ),
+                              Expanded(
+                                child: Text(
+                                  screenController.featuresCheckboxList[9].name,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    : screenController.propertyTypeValue.sub == "industrial"
+                        ? GridView(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 10,
+                              crossAxisSpacing: 10,
+                              childAspectRatio: 5,
+                            ),
+                            children: [
+                              Row(
+                                children: [
+                                  Checkbox(
+                                    checkColor: Colors.white,
+                                    fillColor:
+                                        MaterialStateProperty.resolveWith(
+                                            (states) => AppColors.blueColor),
+                                    value: screenController
+                                        .featuresCheckboxList[5].value,
+                                    onChanged: (bool? value) {
+                                      screenController.isLoading(true);
+                                      screenController
+                                              .featuresCheckboxList[5].value =
+                                          !screenController
+                                              .featuresCheckboxList[5].value;
+                                      log("singleItem.value : ${screenController.featuresCheckboxList[5].value}");
+                                      screenController.isLoading(false);
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      screenController
+                                          .featuresCheckboxList[5].name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Checkbox(
+                                    checkColor: Colors.white,
+                                    fillColor:
+                                        MaterialStateProperty.resolveWith(
+                                            (states) => AppColors.blueColor),
+                                    value: screenController
+                                        .featuresCheckboxList[6].value,
+                                    onChanged: (bool? value) {
+                                      screenController.isLoading(true);
+                                      screenController
+                                              .featuresCheckboxList[6].value =
+                                          !screenController
+                                              .featuresCheckboxList[6].value;
+                                      log("singleItem.value : ${screenController.featuresCheckboxList[6].value}");
+                                      screenController.isLoading(false);
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      screenController
+                                          .featuresCheckboxList[6].name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Checkbox(
+                                    checkColor: Colors.white,
+                                    fillColor:
+                                        MaterialStateProperty.resolveWith(
+                                            (states) => AppColors.blueColor),
+                                    value: screenController
+                                        .featuresCheckboxList[7].value,
+                                    onChanged: (bool? value) {
+                                      screenController.isLoading(true);
+                                      screenController
+                                              .featuresCheckboxList[7].value =
+                                          !screenController
+                                              .featuresCheckboxList[7].value;
+                                      log("singleItem.value : ${screenController.featuresCheckboxList[7].value}");
+                                      screenController.isLoading(false);
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      screenController
+                                          .featuresCheckboxList[7].name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Checkbox(
+                                    checkColor: Colors.white,
+                                    fillColor:
+                                        MaterialStateProperty.resolveWith(
+                                            (states) => AppColors.blueColor),
+                                    value: screenController
+                                        .featuresCheckboxList[11].value,
+                                    onChanged: (bool? value) {
+                                      screenController.isLoading(true);
+                                      screenController
+                                              .featuresCheckboxList[11].value =
+                                          !screenController
+                                              .featuresCheckboxList[11].value;
+                                      log("singleItem.value : ${screenController.featuresCheckboxList[11].value}");
+                                      screenController.isLoading(false);
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      screenController
+                                          .featuresCheckboxList[11].name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Checkbox(
+                                    checkColor: Colors.white,
+                                    fillColor:
+                                        MaterialStateProperty.resolveWith(
+                                            (states) => AppColors.blueColor),
+                                    value: screenController
+                                        .featuresCheckboxList[12].value,
+                                    onChanged: (bool? value) {
+                                      screenController.isLoading(true);
+                                      screenController
+                                              .featuresCheckboxList[12].value =
+                                          !screenController
+                                              .featuresCheckboxList[12].value;
+                                      log("singleItem.value : ${screenController.featuresCheckboxList[12].value}");
+                                      screenController.isLoading(false);
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      screenController
+                                          .featuresCheckboxList[12].name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Checkbox(
+                                    checkColor: Colors.white,
+                                    fillColor:
+                                        MaterialStateProperty.resolveWith(
+                                            (states) => AppColors.blueColor),
+                                    value: screenController
+                                        .featuresCheckboxList[13].value,
+                                    onChanged: (bool? value) {
+                                      screenController.isLoading(true);
+                                      screenController
+                                              .featuresCheckboxList[13].value =
+                                          !screenController
+                                              .featuresCheckboxList[13].value;
+                                      log("singleItem.value : ${screenController.featuresCheckboxList[13].value}");
+                                      screenController.isLoading(false);
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      screenController
+                                          .featuresCheckboxList[13].name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Checkbox(
+                                    checkColor: Colors.white,
+                                    fillColor:
+                                        MaterialStateProperty.resolveWith(
+                                            (states) => AppColors.blueColor),
+                                    value: screenController
+                                        .featuresCheckboxList[8].value,
+                                    onChanged: (bool? value) {
+                                      screenController.isLoading(true);
+                                      screenController
+                                              .featuresCheckboxList[8].value =
+                                          !screenController
+                                              .featuresCheckboxList[8].value;
+                                      log("singleItem.value : ${screenController.featuresCheckboxList[8].value}");
+                                      screenController.isLoading(false);
+                                    },
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      screenController
+                                          .featuresCheckboxList[8].name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        : screenController.propertyTypeValue.sub == "plot"
+                            ? GridView(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 10,
+                                  crossAxisSpacing: 10,
+                                  childAspectRatio: 5,
+                                ),
+                                children: [
+                                  Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        fillColor:
+                                            MaterialStateProperty.resolveWith(
+                                                (states) =>
+                                                    AppColors.blueColor),
+                                        value: screenController
+                                            .featuresCheckboxList[11].value,
+                                        onChanged: (bool? value) {
+                                          screenController.isLoading(true);
+                                          screenController
+                                                  .featuresCheckboxList[11]
+                                                  .value =
+                                              !screenController
+                                                  .featuresCheckboxList[11]
+                                                  .value;
+                                          log("singleItem.value : ${screenController.featuresCheckboxList[11].value}");
+                                          screenController.isLoading(false);
+                                        },
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          screenController
+                                              .featuresCheckboxList[11].name,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        fillColor:
+                                            MaterialStateProperty.resolveWith(
+                                                (states) =>
+                                                    AppColors.blueColor),
+                                        value: screenController
+                                            .featuresCheckboxList[12].value,
+                                        onChanged: (bool? value) {
+                                          screenController.isLoading(true);
+                                          screenController
+                                                  .featuresCheckboxList[12]
+                                                  .value =
+                                              !screenController
+                                                  .featuresCheckboxList[12]
+                                                  .value;
+                                          log("singleItem.value : ${screenController.featuresCheckboxList[12].value}");
+                                          screenController.isLoading(false);
+                                        },
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          screenController
+                                              .featuresCheckboxList[12].name,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        fillColor:
+                                            MaterialStateProperty.resolveWith(
+                                                (states) =>
+                                                    AppColors.blueColor),
+                                        value: screenController
+                                            .featuresCheckboxList[13].value,
+                                        onChanged: (bool? value) {
+                                          screenController.isLoading(true);
+                                          screenController
+                                                  .featuresCheckboxList[13]
+                                                  .value =
+                                              !screenController
+                                                  .featuresCheckboxList[13]
+                                                  .value;
+                                          log("singleItem.value : ${screenController.featuresCheckboxList[13].value}");
+                                          screenController.isLoading(false);
+                                        },
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          screenController
+                                              .featuresCheckboxList[13].name,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        fillColor:
+                                            MaterialStateProperty.resolveWith(
+                                                (states) =>
+                                                    AppColors.blueColor),
+                                        value: screenController
+                                            .featuresCheckboxList[8].value,
+                                        onChanged: (bool? value) {
+                                          screenController.isLoading(true);
+                                          screenController
+                                                  .featuresCheckboxList[8]
+                                                  .value =
+                                              !screenController
+                                                  .featuresCheckboxList[8]
+                                                  .value;
+                                          log("singleItem.value : ${screenController.featuresCheckboxList[8].value}");
+                                          screenController.isLoading(false);
+                                        },
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          screenController
+                                              .featuresCheckboxList[8].name,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            : screenController.propertyTypeValue.sub == "shed"
+                                ? GridView(
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      mainAxisSpacing: 10,
+                                      crossAxisSpacing: 10,
+                                      childAspectRatio: 5,
+                                    ),
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Checkbox(
+                                            checkColor: Colors.white,
+                                            fillColor: MaterialStateProperty
+                                                .resolveWith((states) =>
+                                                    AppColors.blueColor),
+                                            value: screenController
+                                                .featuresCheckboxList[11].value,
+                                            onChanged: (bool? value) {
+                                              screenController.isLoading(true);
+                                              screenController
+                                                      .featuresCheckboxList[11]
+                                                      .value =
+                                                  !screenController
+                                                      .featuresCheckboxList[11]
+                                                      .value;
+                                              log("singleItem.value : ${screenController.featuresCheckboxList[11].value}");
+                                              screenController.isLoading(false);
+                                            },
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              screenController
+                                                  .featuresCheckboxList[11]
+                                                  .name,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Checkbox(
+                                            checkColor: Colors.white,
+                                            fillColor: MaterialStateProperty
+                                                .resolveWith((states) =>
+                                                    AppColors.blueColor),
+                                            value: screenController
+                                                .featuresCheckboxList[12].value,
+                                            onChanged: (bool? value) {
+                                              screenController.isLoading(true);
+                                              screenController
+                                                      .featuresCheckboxList[12]
+                                                      .value =
+                                                  !screenController
+                                                      .featuresCheckboxList[12]
+                                                      .value;
+                                              log("singleItem.value : ${screenController.featuresCheckboxList[12].value}");
+                                              screenController.isLoading(false);
+                                            },
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              screenController
+                                                  .featuresCheckboxList[12]
+                                                  .name,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Checkbox(
+                                            checkColor: Colors.white,
+                                            fillColor: MaterialStateProperty
+                                                .resolveWith((states) =>
+                                                    AppColors.blueColor),
+                                            value: screenController
+                                                .featuresCheckboxList[13].value,
+                                            onChanged: (bool? value) {
+                                              screenController.isLoading(true);
+                                              screenController
+                                                      .featuresCheckboxList[13]
+                                                      .value =
+                                                  !screenController
+                                                      .featuresCheckboxList[13]
+                                                      .value;
+                                              log("singleItem.value : ${screenController.featuresCheckboxList[13].value}");
+                                              screenController.isLoading(false);
+                                            },
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              screenController
+                                                  .featuresCheckboxList[13]
+                                                  .name,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Checkbox(
+                                            checkColor: Colors.white,
+                                            fillColor: MaterialStateProperty
+                                                .resolveWith((states) =>
+                                                    AppColors.blueColor),
+                                            value: screenController
+                                                .featuresCheckboxList[8].value,
+                                            onChanged: (bool? value) {
+                                              screenController.isLoading(true);
+                                              screenController
+                                                      .featuresCheckboxList[8]
+                                                      .value =
+                                                  !screenController
+                                                      .featuresCheckboxList[8]
+                                                      .value;
+                                              log("singleItem.value : ${screenController.featuresCheckboxList[8].value}");
+                                              screenController.isLoading(false);
+                                            },
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              screenController
+                                                  .featuresCheckboxList[8].name,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                : Container());
   }
 
   // Super Area
@@ -822,7 +1795,8 @@ class SalePropertyDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.superAreaController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
@@ -838,7 +1812,42 @@ class SalePropertyDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.carpetAreaController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
+          // validator: (value) => FieldValidations().validateFullName(value!),
+        )
+      ],
+    );
+  }
+
+  // Var/Vigha/Yard
+  Widget varVighaYardFieldModule() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Header2(text: "Var/Vigha/Yard"),
+        TextFormField(
+          controller: screenController.varVighaYardController,
+          keyboardType: TextInputType.number,
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
+          // validator: (value) => FieldValidations().validateFullName(value!),
+        )
+      ],
+    );
+  }
+
+  // Height
+  Widget heightFieldModule() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Header2(text: "Height"),
+        TextFormField(
+          controller: screenController.heightController,
+          keyboardType: TextInputType.number,
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
@@ -857,7 +1866,7 @@ class SalePropertyDetailsModule extends StatelessWidget {
               child: Row(
                 children: [
                   Radio<PropertyAvailability>(
-                    value: PropertyAvailability.immediately,
+                    value: PropertyAvailability.immediate,
                     groupValue: screenController.propertyAvailability,
                     onChanged: (value) {
                       screenController.isLoading(true);
@@ -874,7 +1883,7 @@ class SalePropertyDetailsModule extends StatelessWidget {
               child: Row(
                 children: [
                   Radio<PropertyAvailability>(
-                    value: PropertyAvailability.selectDate,
+                    value: PropertyAvailability.date,
                     groupValue: screenController.propertyAvailability,
                     onChanged: (value) {
                       screenController.isLoading(true);
@@ -958,13 +1967,12 @@ class SalePropertyDetailsModule extends StatelessWidget {
             children: [
               Text(
                 "${screenController.selectedDate.day}-"
-                    "${screenController.selectedDate.month}-"
-                    "${screenController.selectedDate.year}",
+                "${screenController.selectedDate.month}-"
+                "${screenController.selectedDate.year}",
                 style: const TextStyle(fontSize: 16),
               ).commonSymmetricPadding(horizontal: 14),
-
               GestureDetector(
-                onTap:  () async => await _selectDate(context),
+                onTap: () async => await _selectDate(context),
                 child: const Icon(
                   Icons.calendar_today_rounded,
                   // size: 20,
@@ -976,6 +1984,7 @@ class SalePropertyDetailsModule extends StatelessWidget {
       ],
     );
   }
+
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
@@ -1054,7 +2063,8 @@ class SalePropertyDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.liftsInTowerController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
@@ -1070,7 +2080,8 @@ class SalePropertyDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.unitsOnFloorController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
@@ -1084,11 +2095,12 @@ class SalePropertyDetailsModule extends StatelessWidget {
       children: [
         const Header2(text: "Sale Price"),
         TextFormField(
-          controller: screenController.salePriceController,
+          controller: screenController.monthlyRentController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           validator: (value) => FieldValidations().validateFullName(value!),
-        )
+        ),
       ],
     );
   }
@@ -1101,12 +2113,14 @@ class SalePropertyDetailsModule extends StatelessWidget {
         Row(
           children: [
             Obx(
-                  ()=> Checkbox(
+              () => Checkbox(
                 checkColor: Colors.white,
-                fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
+                fillColor: MaterialStateProperty.resolveWith(
+                    (states) => AppColors.blueColor),
                 value: screenController.isNegotiable.value,
                 onChanged: (bool? value) {
-                  screenController.isNegotiable.value = !screenController.isNegotiable.value;
+                  screenController.isNegotiable.value =
+                      !screenController.isNegotiable.value;
                   log("isNegotiable : ${screenController.isNegotiable.value}");
                 },
               ),
@@ -1127,7 +2141,8 @@ class SalePropertyDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.loanAmountController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
@@ -1143,15 +2158,14 @@ class SalePropertyDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.perSqFtRateController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
-          // validator: (value) => FieldValidations().validateFullName(value!),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
+          validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
     );
   }
-
 }
-
 
 class SaleTenantDetailsModule extends StatelessWidget {
   SaleTenantDetailsModule({Key? key}) : super(key: key);
@@ -1162,20 +2176,15 @@ class SaleTenantDetailsModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // const Header1(text: "Tenants You Prefer"),
-        // _bachelors(),
-        // _nonVegetarians(),
-        // _pets(),
-        // _companyLease(),
-        // const Divider(),
-
         const Header1(text: "Additional Features"),
-        _additionalRoom(),
+        screenController.propertyTypeValue.sub == "house"
+            ? _additionalRoom()
+            : Container(),
         _facing(context),
-        _overLooking(),
-
+        screenController.propertyTypeValue.sub == "house"
+            ? _overLooking()
+            : Container(),
         totalCarParkingFieldModule(),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -1184,22 +2193,28 @@ class SaleTenantDetailsModule extends StatelessWidget {
             Expanded(child: openCarParkingFieldModule()),
           ],
         ),
-
         const Divider(),
-
         const Header1(text: "Status of Water & Electricity"),
         _waterAvailability(context),
         _electricityAvailability(context),
-
         const Header1(text: "Landmarks"),
         landMarkFieldModule(),
-
         const Divider(),
-
-        const Header1(text: "Flooring and Amenities"),
-        _flooring(),
-        _amenities(),
-
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile"
+            ? const Header1(text: "Flooring and Amenities")
+            : Container(),
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile"
+            ? _flooring()
+            : Container(),
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile"
+            ? _amenities()
+            : Container(),
       ],
     );
   }
@@ -1470,19 +2485,18 @@ class SaleTenantDetailsModule extends StatelessWidget {
               children: [
                 Checkbox(
                   checkColor: Colors.white,
-                  fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
+                  fillColor: MaterialStateProperty.resolveWith(
+                      (states) => AppColors.blueColor),
                   value: screenController.additionalRoomsList[i].value,
                   onChanged: (bool? value) {
                     screenController.isLoading(true);
                     screenController.additionalRoomsList[i].value =
-                    !screenController.additionalRoomsList[i].value;
+                        !screenController.additionalRoomsList[i].value;
                     log("isNegotiable : ${screenController.additionalRoomsList[i].value}");
                     screenController.isLoading(false);
                   },
                 ),
-                Text(
-                    screenController.additionalRoomsList[i].name
-                ),
+                Text(screenController.additionalRoomsList[i].name),
               ],
             );
           },
@@ -1559,19 +2573,18 @@ class SaleTenantDetailsModule extends StatelessWidget {
               children: [
                 Checkbox(
                   checkColor: Colors.white,
-                  fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
+                  fillColor: MaterialStateProperty.resolveWith(
+                      (states) => AppColors.blueColor),
                   value: screenController.overlookingList[i].value,
                   onChanged: (bool? value) {
                     screenController.isLoading(true);
                     screenController.overlookingList[i].value =
-                    !screenController.overlookingList[i].value;
+                        !screenController.overlookingList[i].value;
                     log("${screenController.overlookingList[i].value}");
                     screenController.isLoading(false);
                   },
                 ),
-                Text(
-                    screenController.overlookingList[i].name
-                ),
+                Text(screenController.overlookingList[i].name),
               ],
             );
           },
@@ -1588,7 +2601,8 @@ class SaleTenantDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.totalCarParkingController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           onChanged: (value) {
             screenController.openCarParkingController.text =
                 screenController.totalCarParkingController.text;
@@ -1607,13 +2621,14 @@ class SaleTenantDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.coveredCarParkingController,
           keyboardType: TextInputType.number,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           onChanged: (value) {
-
             screenController.openCarParkingController.text =
-            (int.parse(screenController.totalCarParkingController.text) -
-                int.parse(screenController.coveredCarParkingController.text)).toString();
-
+                (int.parse(screenController.totalCarParkingController.text) -
+                        int.parse(
+                            screenController.coveredCarParkingController.text))
+                    .toString();
           },
           // validator: (value) => FieldValidations().validateFullName(value!),
         )
@@ -1631,7 +2646,8 @@ class SaleTenantDetailsModule extends StatelessWidget {
           keyboardType: TextInputType.number,
           // enabled: false,
           readOnly: true,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
@@ -1742,7 +2758,8 @@ class SaleTenantDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.landMarkAndNearByController,
           keyboardType: TextInputType.text,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
@@ -1769,12 +2786,13 @@ class SaleTenantDetailsModule extends StatelessWidget {
               children: [
                 Checkbox(
                   checkColor: Colors.white,
-                  fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
+                  fillColor: MaterialStateProperty.resolveWith(
+                      (states) => AppColors.blueColor),
                   value: screenController.flooringList[i].value,
                   onChanged: (bool? value) {
                     screenController.isLoading(true);
                     screenController.flooringList[i].value =
-                    !screenController.flooringList[i].value;
+                        !screenController.flooringList[i].value;
                     log("${screenController.flooringList[i].value}");
                     screenController.isLoading(false);
                   },
@@ -1813,12 +2831,13 @@ class SaleTenantDetailsModule extends StatelessWidget {
               children: [
                 Checkbox(
                   checkColor: Colors.white,
-                  fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
+                  fillColor: MaterialStateProperty.resolveWith(
+                      (states) => AppColors.blueColor),
                   value: screenController.aminitiesList[i].value,
                   onChanged: (bool? value) {
                     screenController.isLoading(true);
                     screenController.aminitiesList[i].value =
-                    !screenController.aminitiesList[i].value;
+                        !screenController.aminitiesList[i].value;
                     log("${screenController.aminitiesList[i].value}");
                     screenController.isLoading(false);
                   },
@@ -1836,11 +2855,7 @@ class SaleTenantDetailsModule extends StatelessWidget {
       ],
     );
   }
-
-
-
 }
-
 
 class SaleOwnerDetailsModule extends StatelessWidget {
   SaleOwnerDetailsModule({Key? key}) : super(key: key);
@@ -1869,18 +2884,37 @@ class SaleOwnerDetailsModule extends StatelessWidget {
         ),
         const Divider(),
 
-        const Header1(text: "Question & Answer"),
-        _securityFeaturesFieldModule(),
-        _occupantsStayFieldModule(),
-        _crossViolationModule(),
-        _commonWallModule(),
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile"
+            ? const Header1(text: "Question & Answer")
+            : Container(),
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile"
+            ? _securityFeaturesFieldModule()
+            : Container(),
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile"
+            ? _occupantsStayFieldModule()
+            : Container(),
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile"
+            ? _crossViolationModule()
+            : Container(),
+        screenController.propertyTypeValue.sub == "house" ||
+                screenController.propertyTypeValue.sub == "office" ||
+                screenController.propertyTypeValue.sub == "textile"
+            ? _commonWallModule()
+            : Container(),
 
         const Divider(),
         _agreeTermsAndConditionModule(),
       ],
     );
   }
-
 
   /*Widget _visitorsRestriction() {
     return Column(
@@ -2009,12 +3043,13 @@ class SaleOwnerDetailsModule extends StatelessWidget {
       children: [
         Checkbox(
           checkColor: Colors.white,
-          fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
+          fillColor: MaterialStateProperty.resolveWith(
+              (states) => AppColors.blueColor),
           value: screenController.isAnyTime.value,
           onChanged: (bool? value) {
             screenController.isLoading(true);
             screenController.isAnyTime.value =
-            !screenController.isAnyTime.value;
+                !screenController.isAnyTime.value;
             log("${screenController.isAnyTime.value}");
             screenController.isLoading(false);
           },
@@ -2073,7 +3108,6 @@ class SaleOwnerDetailsModule extends StatelessWidget {
                 ),
               ],
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -2111,10 +3145,8 @@ class SaleOwnerDetailsModule extends StatelessWidget {
                 ),
               ],
             ),
-
           ],
         ),
-
       ],
     );
   }
@@ -2232,7 +3264,8 @@ class SaleOwnerDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.securityFeaturesController,
           keyboardType: TextInputType.text,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
@@ -2256,7 +3289,8 @@ class SaleOwnerDetailsModule extends StatelessWidget {
         TextFormField(
           controller: screenController.occupantsStayController,
           keyboardType: TextInputType.text,
-          decoration: sellerCreatePropertyFieldDecoration(hintText: '',screenController: screenController),
+          decoration: sellerCreatePropertyFieldDecoration(
+              hintText: '', screenController: screenController),
           // validator: (value) => FieldValidations().validateFullName(value!),
         )
       ],
@@ -2269,42 +3303,42 @@ class SaleOwnerDetailsModule extends StatelessWidget {
       children: [
         const Header2(text: "Is there appropriate cross-ventilation?"),
         Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Row(
-                    children: [
-                      Radio<CrossViolation>(
-                        value: CrossViolation.yes,
-                        groupValue: screenController.crossViolation,
-                        onChanged: (value) {
-                          screenController.isLoading(true);
-                          screenController.crossViolation = value!;
-                          screenController.isLoading(false);
-                        },
-                      ),
-                      const Expanded(child: Text("Yes")),
-                    ],
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Radio<CrossViolation>(
+                    value: CrossViolation.yes,
+                    groupValue: screenController.crossViolation,
+                    onChanged: (value) {
+                      screenController.isLoading(true);
+                      screenController.crossViolation = value!;
+                      screenController.isLoading(false);
+                    },
                   ),
-                ),
-                Expanded(
-                  child: Row(
-                    children: [
-                      Radio<CrossViolation>(
-                        value: CrossViolation.no,
-                        groupValue: screenController.crossViolation,
-                        onChanged: (value) {
-                          screenController.isLoading(true);
-                          screenController.crossViolation = value!;
-                          screenController.isLoading(false);
-                        },
-                      ),
-                      const Expanded(child: Text("No")),
-                    ],
-                  ),
-                ),
-              ],
+                  const Expanded(child: Text("Yes")),
+                ],
+              ),
             ),
+            Expanded(
+              child: Row(
+                children: [
+                  Radio<CrossViolation>(
+                    value: CrossViolation.no,
+                    groupValue: screenController.crossViolation,
+                    onChanged: (value) {
+                      screenController.isLoading(true);
+                      screenController.crossViolation = value!;
+                      screenController.isLoading(false);
+                    },
+                  ),
+                  const Expanded(child: Text("No")),
+                ],
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
@@ -2360,12 +3394,13 @@ class SaleOwnerDetailsModule extends StatelessWidget {
       children: [
         Checkbox(
           checkColor: Colors.white,
-          fillColor: MaterialStateProperty.resolveWith((states) => AppColors.blueColor),
+          fillColor: MaterialStateProperty.resolveWith(
+              (states) => AppColors.blueColor),
           value: screenController.isTermAndCondition.value,
           onChanged: (bool? value) {
             screenController.isLoading(true);
             screenController.isTermAndCondition.value =
-            !screenController.isTermAndCondition.value;
+                !screenController.isTermAndCondition.value;
             log("${screenController.isTermAndCondition.value}");
             screenController.isLoading(false);
           },
@@ -2379,6 +3414,4 @@ class SaleOwnerDetailsModule extends StatelessWidget {
       ],
     );
   }
-
 }
-

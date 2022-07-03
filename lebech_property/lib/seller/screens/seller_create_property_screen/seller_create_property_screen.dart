@@ -23,17 +23,19 @@ class SellerCreatePropertyScreen extends StatelessWidget {
           () => sellerCreatePropertyScreenController.isLoading.value
           ? const CustomCircularProgressIndicatorModule()
           : SingleChildScrollView(
-            child: Column(
-              children: [
-                SCPPropertyDetailsModule(),
-                SCPTenantDetailsModule(),
-                SCPOwnerDetailsModule(),
+            child: Form(
+              key: sellerCreatePropertyScreenController.formKey,
+              child: Column(
+                children: [
+                  SCPPropertyDetailsModule(),
+                  SCPTenantDetailsModule(),
+                  SCPOwnerDetailsModule(),
 
-                const SizedBox(height: 10),
-                SaveButtonModule(),
-                const SizedBox(height: 10),
-
-              ],
+                  const SizedBox(height: 10),
+                  SaveButtonModule(),
+                  const SizedBox(height: 10),
+                ],
+              ),
             ),
           ),
       ),
