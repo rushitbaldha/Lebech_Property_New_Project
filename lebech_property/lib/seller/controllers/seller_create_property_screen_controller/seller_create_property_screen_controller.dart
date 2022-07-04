@@ -41,8 +41,8 @@ class SellerCreatePropertyScreenController extends GetxController {
   int bedRoomValue = 1;
 
   List<int> intList = [0,1,2,3,4,5,6,7,8,9,10];
-  List<int> balconiesList = [1,2,3,4,5,6,7,8,9,10];
-  int balconiesValue = 1;
+  List<int> balconiesList = [0,1,2,3,4,5,6,7,8,9,10];
+  int balconiesValue = 0;
   int bathRoomsValue = 0;
   int acValue = 0;
   int bedValue = 0;
@@ -63,6 +63,7 @@ class SellerCreatePropertyScreenController extends GetxController {
     FeatureCheckboxModel(name: "Microwave", value: false),
     FeatureCheckboxModel(name: "Gas Connection", value: false),
 
+    //todo
     FeatureCheckboxModel(name: "Personal Wash Room", value: false), // 6
     FeatureCheckboxModel(name: "Personal Kitchen", value: false), // 7
     FeatureCheckboxModel(name: "Personal Cabin", value: false), // 8
@@ -294,7 +295,7 @@ class SellerCreatePropertyScreenController extends GetxController {
       if(isSuccessStatus.value) {
         Fluttertoast.showToast(msg: createPropertyModel.message);
         log("createPropertyModel.message : ${createPropertyModel.message}");
-        // Get.back();
+        Get.back();
       } else {
         log("Create Property Else Else");
         Fluttertoast.showToast(msg: "Please try again!");
@@ -452,16 +453,16 @@ class SellerCreatePropertyScreenController extends GetxController {
         "negotiable":isNegotiable.value,
         "sort_desc":propertySortDescController.text.trim(),
         "property_tax":propertyTax,
-        "personal_wash_room":true,
-        "personal_keychain":true,
-        "cabin":false,
-        "personal_lift":false,
-        "boundry":false,
-        "main_gate":false,
-        "open_boundry":false,
-        "security_cabin":false,
-        "yard":"",
-        "height":"",
+        "personal_wash_room":featuresCheckboxList[6].value,//todo
+        "personal_keychain":featuresCheckboxList[7].value,
+        "cabin":featuresCheckboxList[8].value,
+        "personal_lift":featuresCheckboxList[9].value,
+        "boundry":featuresCheckboxList[11].value,
+        "main_gate":featuresCheckboxList[12].value,
+        "open_boundry":featuresCheckboxList[13].value,
+        "security_cabin":featuresCheckboxList[10].value,
+        "yard":varVighaYardController.text.trim(),
+        "height":heightController.text.trim(),
         "sq_rate":perSqFtRateController.text.trim()
       },
       "tenant":{
@@ -512,7 +513,7 @@ class SellerCreatePropertyScreenController extends GetxController {
         "call_anytime":isAnyTime.value,
         "security":securityFeaturesController.text.trim(),
         "occupants":occupantsStayController.text.trim(),
-        "cross_ventilation":crossVenti == false ? "" : crossVenti.toString(),
+        "cross_ventilation":crossVenti == false ? "no" : "yes",
         "common_wall":commonWall1,
         "from_time":fromTimeValue,
         "to_time":toTimeValue

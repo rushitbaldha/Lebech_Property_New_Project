@@ -5,6 +5,7 @@ import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/seller/controllers/seller_create_property_screen_controller/seller_create_property_screen_controller.dart';
+import 'package:lebech_property/seller/controllers/seller_home_screen_controller/seller_home_screen_controller.dart';
 
 import 'pg_module.dart';
 import 'rent_module.dart';
@@ -182,6 +183,7 @@ class PropertyForDropdownModule extends StatelessWidget {
 class SaveButtonModule extends StatelessWidget {
   SaveButtonModule({Key? key}) : super(key: key);
   final screenController = Get.find<SellerCreatePropertyScreenController>();
+  final sellerHomeScreenController = Get.find<SellerHomeScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -224,6 +226,7 @@ class SaveButtonModule extends StatelessWidget {
       Fluttertoast.showToast(msg: "Please agree with terms & condition!");
     } else {
       await screenController.createPropertyFunction();
+      await sellerHomeScreenController.getSellerAllPropertyFunction();
     }
   }
 

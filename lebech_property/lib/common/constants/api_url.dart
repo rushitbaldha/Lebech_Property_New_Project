@@ -28,5 +28,6 @@ class ApiUrl {
   static const String sellerRegisterApi = apiMainPath + "seller/register";
   static const String basicDetailsApi = apiMainPath + "basic_detail";
   static const String createPropertyDetailsApi = apiMainPath + "seller/save_propert";
+  static const String getSellerAllPropertyApi = apiMainPath + "seller/list_property";
 
 }
