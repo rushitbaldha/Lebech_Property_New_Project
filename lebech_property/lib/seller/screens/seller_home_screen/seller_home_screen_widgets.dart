@@ -65,7 +65,9 @@ class SellerPropertyListModule extends StatelessWidget {
             children: [
               Expanded(
                 flex: 4,
-                child: Container(
+                child: SizedBox(
+                  // width: Get.width * 0.35,
+                  height: Get.width * 0.35,
                   child: propertySingleItem.propertyImages.isEmpty
                   ? Image.asset(AppImages.banner1Img, fit: BoxFit.cover,)
                   : Image.network(
@@ -172,6 +174,75 @@ class SellerPropertyListModule extends StatelessWidget {
                             await sellerHomeScreenController.getSellerAllPropertyFunction();
                           });
                           },
+                        child: const Text(
+                          "Add",
+                          style: TextStyle(
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 5),
+
+          Row(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    const Text(
+                      "Property Video  ",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Fluttertoast.showToast(msg: "Clicked On Add Button");
+                        },
+                        child: const Text(
+                          "Add",
+                          style: TextStyle(
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  children: [
+                    const Text(
+                      "Youtube Link  ",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          // Get.to(
+                          //       ()=> AddPropertyImageScreen(),
+                          //   transition: Transition.zoom,
+                          //   arguments: [propertySingleItem.id, propertySingleItem.title],
+                          // )!.then((value) async {
+                          //   await sellerHomeScreenController.getSellerAllPropertyFunction();
+                          // });
+                        },
                         child: const Text(
                           "Add",
                           style: TextStyle(
