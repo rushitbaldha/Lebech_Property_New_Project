@@ -23,8 +23,7 @@ class SellerHomeScreenController extends GetxController {
 
     try {
       http.Response response = await http.post(Uri.parse(url), headers: apiHeader.sellerHeader);
-      log("response : ${response.body}");
-
+      // log("response : ${response.body}");
 
       PropertyListModule propertyListModule = PropertyListModule.fromJson(json.decode(response.body));
       isSuccessStatus = propertyListModule.status.obs;

@@ -21,7 +21,8 @@ class SellerHomeScreen extends StatelessWidget {
           ? const CustomCircularProgressIndicatorModule()
           : sellerHomeScreenController.sellerPropertyList.isEmpty
               ? const Center(child: Text("No Data Available"))
-              : SellerPropertyListModule()),
+              : SellerPropertyListModule(),
+      ),
     );
   }
 }

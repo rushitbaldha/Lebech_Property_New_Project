@@ -6,6 +6,7 @@ import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/seller/controllers/seller_home_screen_controller/seller_home_screen_controller.dart';
 import 'package:lebech_property/seller/models/seller_home_screen_models/property_list_model.dart';
+import 'package:lebech_property/seller/screens/add_property_image_screen/add_property_image_screen.dart';
 
 class SellerPropertyListModule extends StatelessWidget {
   SellerPropertyListModule({Key? key}) : super(key: key);
@@ -162,7 +163,15 @@ class SellerPropertyListModule extends StatelessWidget {
                     ),
                     Expanded(
                       child: GestureDetector(
-                        onTap: () {Fluttertoast.showToast(msg: "Clicked On Add Button");},
+                        onTap: () {
+                          Get.to(
+                                  ()=> AddPropertyImageScreen(),
+                              transition: Transition.zoom,
+                            arguments: [propertySingleItem.id, propertySingleItem.title],
+                          )!.then((value) async {
+                            await sellerHomeScreenController.getSellerAllPropertyFunction();
+                          });
+                          },
                         child: const Text(
                           "Add",
                           style: TextStyle(
