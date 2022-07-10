@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:lebech_property/builder/screens/builder_home_screen/builder_home_screen.dart';
 import 'package:lebech_property/buyer/screens/home_screen/home_screen.dart';
 import 'package:lebech_property/buyer/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:lebech_property/common/sharedpreference_data/sharedpreference_data.dart';
@@ -41,8 +42,12 @@ class SplashScreenController extends GetxController {
     else if(UserDetails.applicationType == "broker") {
       // Get.offAll(()=> );
     }
-    else if(UserDetails.applicationType == "propertySeller") {
-      // Get.offAll(()=> );
+    else if(UserDetails.applicationType == "builder") {
+      if(UserDetails.userLoggedIn == true) {
+        Get.offAll(()=> BuilderHomeScreen());
+      } else {
+        Get.offAll(()=> SignInScreen());
+      }
     } else {
       Get.offAll(()=> SelectApplicationTypeScreen(), transition: Transition.zoom);
     }

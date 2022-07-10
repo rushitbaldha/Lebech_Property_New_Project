@@ -11,7 +11,7 @@ enum ApplicationType {
   buyer,
   seller,
   broker,
-  propertySeller
+  builder
 }
 
 enum PropertyAvailability {

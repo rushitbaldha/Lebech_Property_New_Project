@@ -24,9 +24,9 @@ class SellerDrawer extends StatelessWidget {
                       child: Column(
                         children: [
                           homeModule(),
-                          profileModule(),
+                          // profileModule(),
                           createPropertyModule(),
-                          propertyListModule(),
+                          // propertyListModule(),
                         ],
                       ),
                     ),
@@ -61,7 +61,7 @@ class SellerDrawer extends StatelessWidget {
     );
   }
 
-  Widget profileModule() {
+ /* Widget profileModule() {
     return ListTile(
       onTap: () {
         Get.back();
@@ -76,7 +76,7 @@ class SellerDrawer extends StatelessWidget {
         ),
       ),
     );
-  }
+  }*/
 
   Widget createPropertyModule() {
     return ListTile(
@@ -96,7 +96,7 @@ class SellerDrawer extends StatelessWidget {
     );
   }
 
-  Widget propertyListModule() {
+  /*Widget propertyListModule() {
     return ListTile(
       onTap: () {
         Get.back();
@@ -111,7 +111,7 @@ class SellerDrawer extends StatelessWidget {
         ),
       ),
     );
-  }
+  }*/
 
 
   Widget signInButton() {

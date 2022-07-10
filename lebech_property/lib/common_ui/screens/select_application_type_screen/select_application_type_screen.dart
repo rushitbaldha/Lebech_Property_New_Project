@@ -27,7 +27,7 @@ class SelectApplicationTypeScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Spacer(),
+                      const Spacer(),
 
                       /// Buyer
                       ListTile(
@@ -106,15 +106,15 @@ class SelectApplicationTypeScreen extends StatelessWidget {
                         ),
                       ),
 
-                      /// Property Seller
+                      /// Builder
                       ListTile(
-                        title: const Text('Property Seller',
+                        title: const Text('Builder',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),),
                         leading: Radio<ApplicationType>(
-                          value: ApplicationType.propertySeller,
+                          value: ApplicationType.builder,
                           groupValue: selectApplicationTypeScreenController
                               .applicationType,
                           onChanged: (value) {
@@ -143,8 +143,8 @@ class SelectApplicationTypeScreen extends StatelessWidget {
                             typeSelected = "seller";
                           } else if(selectApplicationTypeScreenController.applicationType == ApplicationType.broker) {
                             typeSelected = "broker";
-                          } else if(selectApplicationTypeScreenController.applicationType == ApplicationType.propertySeller) {
-                            typeSelected = "propertySeller";
+                          } else if(selectApplicationTypeScreenController.applicationType == ApplicationType.builder) {
+                            typeSelected = "builder";
                           }
 
                           /// Set Application Type in Prefs
@@ -159,8 +159,8 @@ class SelectApplicationTypeScreen extends StatelessWidget {
                             Get.offAll(()=> SignInScreen(), transition: Transition.zoom);
                           } else if(typeSelected == "broker") {
                             // Get.offAll(()=> SignInScreen(), transition: Transition.zoom);
-                          } else if(typeSelected == "propertySeller") {
-                            // Get.offAll(()=> SignInScreen(), transition: Transition.zoom);
+                          } else if(typeSelected == "builder") {
+                            Get.offAll(()=> SignInScreen(), transition: Transition.zoom);
                           }
 
                         },
