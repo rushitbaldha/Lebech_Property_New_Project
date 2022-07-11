@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/builder/controllers/builder_drawer_controller/builder_drawer_controller.dart';
+import 'package:lebech_property/builder/screens/builder_create_property_screen/builder_create_property_screen.dart';
 import 'package:lebech_property/buyer/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:lebech_property/common/common_widgets.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
@@ -46,7 +47,7 @@ class BuilderDrawer extends StatelessWidget {
     return ListTile(
       onTap: () {
         Get.back();
-        // Get.to(()=> BuilderCreatePropertyScreen(), transition: Transition.leftToRight);
+        Get.to(()=> BuilderCreatePropertyScreen(), transition: Transition.leftToRight);
       },
       leading: const Icon(Icons.home_rounded),
       title: const Text(

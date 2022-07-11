@@ -36,6 +36,7 @@ class ApiUrl {
   static const String builderLoginApi = apiMainPath + "builder/login";
   static const String builderRegisterApi = apiMainPath + "builder/register";
   static const String getBuilderAllPropertyApi = apiMainPath + "builder/list_property";
+  static const String getBuilderAllProjectsApi = apiMainPath + "builder/project_list";
   static const String createBuilderPropertyDetailsApi = apiMainPath + "seller/save_propert";
 
 }

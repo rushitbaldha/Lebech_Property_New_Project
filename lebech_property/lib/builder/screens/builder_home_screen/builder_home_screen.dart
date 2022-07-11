@@ -22,9 +22,9 @@ class BuilderHomeScreen extends StatelessWidget {
 
       body: Obx(() => builderHomeScreenController.isLoading.value
           ? const CustomCircularProgressIndicatorModule()
-          : builderHomeScreenController.builderPropertyList.isEmpty
+          : builderHomeScreenController.builderProjectList.isEmpty
           ? const Center(child: Text("No Data Available"))
-          : BuilderPropertyListModule(),
+          : BuilderProjectListModule(),
       ),
 
     );

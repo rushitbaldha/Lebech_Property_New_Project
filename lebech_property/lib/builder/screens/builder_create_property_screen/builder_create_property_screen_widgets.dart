@@ -225,7 +225,7 @@ class BuilderSaveButtonModule extends StatelessWidget {
       Fluttertoast.showToast(msg: "Please agree with terms & condition!");
     } else {
       await screenController.createPropertyFunction();
-      await sellerHomeScreenController.getSellerAllPropertyFunction();
+      // await sellerHomeScreenController.getSellerAllPropertyFunction();
     }
   }
 

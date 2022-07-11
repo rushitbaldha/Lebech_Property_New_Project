@@ -2,44 +2,44 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:lebech_property/builder/models/builder_home_screen_models/project_list_model.dart';
 import 'package:lebech_property/common/constants/api_header.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
-import 'package:lebech_property/seller/models/seller_home_screen_models/property_list_model.dart';
 
 class BuilderHomeScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
   ApiHeader apiHeader = ApiHeader();
-  List<SellerPropertyDatum> builderPropertyList = [];
+  List<BuilderProjectDatum> builderProjectList = [];
 
 
 
 
-  /// Get Seller All Property
-  Future<void> getSellerAllPropertyFunction() async {
+  /// Get Builder All Projects
+  Future<void> getBuilderAllProjectFunction() async {
     isLoading(true);
-    String url = ApiUrl.getBuilderAllPropertyApi;
-    log("Get All Property Api Url : $url");
+    String url = ApiUrl.getBuilderAllProjectsApi;
+    log("Get All Projects Api Url : $url");
 
     try {
       http.Response response = await http.post(Uri.parse(url), headers: apiHeader.sellerHeader);
       // log("response : ${response.body}");
 
-      PropertyListModule propertyListModule = PropertyListModule.fromJson(json.decode(response.body));
-      isSuccessStatus = propertyListModule.status.obs;
+      BuilderProjectListModel builderProjectListModel = BuilderProjectListModel.fromJson(json.decode(response.body));
+      isSuccessStatus = builderProjectListModel.status.obs;
       log("isSuccessStatus : $isSuccessStatus");
 
       if(isSuccessStatus.value) {
-        builderPropertyList.clear();
-        builderPropertyList.addAll(propertyListModule.data.data);
-        log("sellerPropertyList : ${builderPropertyList.length}");
+        builderProjectList.clear();
+        builderProjectList.addAll(builderProjectListModel.data.data);
+        log("builderProjectList : ${builderProjectList.length}");
       } else {
-        log("Get All Property Else Else");
+        log("Get All Project Else Else");
       }
 
     } catch(e) {
-      log("Get All Property Error ::: $e");
+      log("Get All Project Error ::: $e");
     } finally {
       isLoading(false);
     }
@@ -47,7 +47,7 @@ class BuilderHomeScreenController extends GetxController {
 
   @override
   void onInit() {
-    getSellerAllPropertyFunction();
+    getBuilderAllProjectFunction();
     super.onInit();
   }
 
