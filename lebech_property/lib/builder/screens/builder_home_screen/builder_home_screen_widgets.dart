@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/builder/controllers/builder_home_screen_controller/builder_home_screen_controller.dart';
 import 'package:lebech_property/builder/models/builder_home_screen_models/project_list_model.dart';
+import 'package:lebech_property/builder/screens/add_project_images_screen/add_project_images_screen.dart';
 import 'package:lebech_property/common/constants/app_colors.dart';
 import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
@@ -169,15 +170,15 @@ class BuilderProjectListModule extends StatelessWidget {
                     ),
                     Expanded(
                       child: GestureDetector(
-                        /*onTap: () {
+                        onTap: () {
                           Get.to(
-                                ()=> AddPropertyImageScreen(),
+                                ()=> AddProjectImagesScreen(),
                             transition: Transition.zoom,
-                            arguments: [propertySingleItem.id, propertySingleItem.title],
+                            arguments: [propertySingleItem.id, propertySingleItem.name],
                           )!.then((value) async {
-                            await sellerHomeScreenController.getSellerAllPropertyFunction();
+                            await builderHomeScreenController.getBuilderAllProjectFunction();
                           });
-                        },*/
+                        },
                         child: const Text(
                           "Edit",
                           style: TextStyle(
