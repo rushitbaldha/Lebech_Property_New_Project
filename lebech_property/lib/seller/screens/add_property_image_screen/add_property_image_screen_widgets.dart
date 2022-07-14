@@ -29,8 +29,8 @@ class ImageUploadModule extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: () {
-                selectImages();
+              onTap: () async {
+                await selectImages();
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -81,7 +81,7 @@ class ImageUploadModule extends StatelessWidget {
 
   // Select Multiple Images From Gallery
   selectImages() async {
-    // screenController.isLoading(true);
+    screenController.isLoading(true);
     final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
     for(int i =0; i< selectedImages!.length; i++){
       screenController.imageFileList.add(selectedImages[i]);
@@ -90,4 +90,35 @@ class ImageUploadModule extends StatelessWidget {
     log("Images Length : ${screenController.imageFileList.length}");
   }
 
+}
+
+
+class ImagesGridViewModule extends StatelessWidget {
+  ImagesGridViewModule({Key? key}) : super(key: key);
+  final screenController = Get.find<AddPropertyImageScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      itemCount: screenController.apiImagesList.length,
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+      ),
+      itemBuilder: (context, i) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+              image: NetworkImage(screenController.apiImagesList[i].image),
+              fit: BoxFit.cover,
+            )
+          ),
+        );
+      },
+    ).commonAllSidePadding(padding: 10);
+  }
 }

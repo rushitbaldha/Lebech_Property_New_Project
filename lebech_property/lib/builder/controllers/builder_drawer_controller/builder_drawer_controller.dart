@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:lebech_property/buyer/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:lebech_property/common/sharedpreference_data/sharedpreference_data.dart';
 import 'package:lebech_property/common/user_details/user_details.dart';
+import 'package:lebech_property/common_ui/screens/select_application_type_screen/select_application_type_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BuilderDrawerController extends GetxController {
@@ -33,7 +34,9 @@ class BuilderDrawerController extends GetxController {
     UserDetails.userToken = prefs.getString(sharedPreferenceData.userTokenKey) ?? "";
     UserDetails.userCity = prefs.getString(sharedPreferenceData.currentCityKey) ?? "";
 
-    Get.offAll(()=> SignInScreen());
+    sharedPreferenceData.removeApplicationType();
+
+    Get.offAll(()=> SelectApplicationTypeScreen());
   }
 
   @override

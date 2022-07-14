@@ -41,4 +41,9 @@ class SharedPreferenceData {
     return applicationType;
   }
 
+  Future<void> removeApplicationType() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(applicationTypeKey);
+  }
+
 }

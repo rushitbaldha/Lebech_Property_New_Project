@@ -30,6 +30,7 @@ class ApiUrl {
   static const String createPropertyDetailsApi = apiMainPath + "seller/save_propert";
   static const String getSellerAllPropertyApi = apiMainPath + "seller/list_property";
   static const String addPropertyImagesApi = apiMainPath + "seller/add_image";
+  static const String getPropertyImagesApi = apiMainPath + "seller/property_image_list";
 
 
   /// Builder

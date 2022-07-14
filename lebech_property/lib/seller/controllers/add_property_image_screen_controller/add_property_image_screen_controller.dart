@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lebech_property/common/constants/api_header.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
+import 'package:lebech_property/common/user_details/user_details.dart';
 import 'package:lebech_property/seller/models/add_property_image_screen_model/add_property_image_model.dart';
+import 'package:lebech_property/seller/models/add_property_image_screen_model/get_property_images_model.dart';
 
 class AddPropertyImageScreenController extends GetxController {
   final propertyId = Get.arguments[0];
@@ -20,7 +22,10 @@ class AddPropertyImageScreenController extends GetxController {
   List streamLengthList = [];
   List multipartList = [];
 
+  List<Datum> apiImagesList = [];
 
+
+  // Add Property Image
   Future<void> addPropertyImagesFunction() async {
     isLoading(true);
     String url = ApiUrl.addPropertyImagesApi;
@@ -66,7 +71,7 @@ class AddPropertyImageScreenController extends GetxController {
         if(isSuccessStatus.value) {
           Fluttertoast.showToast(msg: addPropertyImageModule.message);
           // log("Message : ${addPropertyImageModule.message}");
-          Get.back();
+          // Get.back();
         } else {
           log('addPropertyImagesFunction Else');
         }
@@ -76,8 +81,55 @@ class AddPropertyImageScreenController extends GetxController {
     } catch(e) {
       log("Add Property Images Function Error ::: $e");
     } finally {
+      // isLoading(false);
+      await getPropertyImagesFunction();
+    }
+  }
+
+  // Get Property Image
+  Future<void> getPropertyImagesFunction() async {
+    isLoading(true);
+    String url = ApiUrl.getPropertyImagesApi;
+    log("Get Property Image List Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "property_id" : "$propertyId"
+      };
+
+      Map<String, String> sellerHeader = <String,String> {
+        'Authorization': "Bearer ${UserDetails.userToken}"
+        //'Authorization': "Bearer 85|nE54BkonvXUdxxTyZKT8KVXz0rYkaD8EokJjZzKv"
+      };
+      http.Response response = await http.post(
+          Uri.parse(url),
+          headers: sellerHeader,
+          body: data);
+      log("Get Property Response :${response.body}");
+
+      PropertyImagesModel propertyImagesModel = PropertyImagesModel.fromJson(json.decode(response.body));
+      isSuccessStatus = propertyImagesModel.status.obs;
+
+      if(isSuccessStatus.value) {
+        apiImagesList.clear();
+        apiImagesList.addAll(propertyImagesModel.data.data);
+      } else {
+        log("Get Property Images Api Else");
+      }
+
+
+    } catch(e) {
+      log("Get Property Image Error ::: $e");
+    } finally {
       isLoading(false);
     }
+  }
+
+
+  @override
+  void onInit() {
+    getPropertyImagesFunction();
+    super.onInit();
   }
 
 

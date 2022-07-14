@@ -453,7 +453,7 @@ class SellerCreatePropertyScreenController extends GetxController {
         "negotiable":isNegotiable.value,
         "sort_desc":propertySortDescController.text.trim(),
         "property_tax":propertyTax,
-        "personal_wash_room":featuresCheckboxList[6].value,//todo
+        "personal_wash_room":featuresCheckboxList[6].value,
         "personal_keychain":featuresCheckboxList[7].value,
         "cabin":featuresCheckboxList[8].value,
         "personal_lift":featuresCheckboxList[9].value,
