@@ -7,6 +7,8 @@ import 'package:lebech_property/common/constants/app_images.dart';
 import 'package:lebech_property/common/extension_methods/extension_methods.dart';
 import 'package:lebech_property/seller/models/seller_home_screen_models/property_list_model.dart';
 
+import '../add_broker_property_image_screen/add_broker_property_image_screen.dart';
+
 class BrokerPropertyListModule extends StatelessWidget {
   BrokerPropertyListModule({Key? key}) : super(key: key);
   final screenController = Get.find<BrokerHomeScreenController>();
@@ -164,16 +166,15 @@ class BrokerPropertyListModule extends StatelessWidget {
                     ),
                     Expanded(
                       child: GestureDetector(
-                        //todo - on tap function
-                        // onTap: () {
-                        //   Get.to(
-                        //         ()=> AddPropertyImageScreen(),
-                        //     transition: Transition.zoom,
-                        //     arguments: [propertySingleItem.id, propertySingleItem.title],
-                        //   )!.then((value) async {
-                        //     await screenController.getBrokerAllPropertyFunction();
-                        //   });
-                        // },
+                        onTap: () {
+                          Get.to(
+                                ()=> AddBrokerPropertyImageScreen(),
+                            transition: Transition.zoom,
+                            arguments: [propertySingleItem.id, propertySingleItem.title],
+                          )!.then((value) async {
+                            await screenController.getBrokerAllPropertyFunction();
+                          });
+                        },
                         child: const Text(
                           "Add",
                           style: TextStyle(
