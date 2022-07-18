@@ -28,7 +28,7 @@ class AddPropertyImageScreenController extends GetxController {
   // Add Property Image
   Future<void> addPropertyImagesFunction() async {
     isLoading(true);
-    String url = ApiUrl.addPropertyImagesApi;
+    String url = ApiUrl.addBrokerPropertyImagesApi;
     log("Add Property Images Api Url :$url");
 
     try {

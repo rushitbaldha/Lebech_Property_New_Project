@@ -46,4 +46,5 @@ class ApiUrl {
   static const String brokerRegisterApi = apiMainPath + "agent/register";
   static const String getBrokerAllPropertyApi = apiMainPath + "agent/list_property";
   static const String addBrokerPropertyImagesApi = apiMainPath + "agent/add_image";
+  static const String createBrokerPropertyDetailsApi = apiMainPath + "agent/save_propert";
 }
