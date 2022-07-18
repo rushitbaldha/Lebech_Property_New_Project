@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:lebech_property/broker/screens/broker_home_screen/broker_home_screen.dart';
 import 'package:lebech_property/builder/screens/builder_home_screen/builder_home_screen.dart';
 import 'package:lebech_property/buyer/models/sign_in_model/sign_in_model.dart';
 import 'package:lebech_property/buyer/screens/home_screen/home_screen.dart';
@@ -57,7 +58,7 @@ class SignInScreenController extends GetxController {
           } else if(UserDetails.applicationType == "seller") {
             Get.offAll(()=> SellerHomeScreen(), transition: Transition.zoom);
           } else if(UserDetails.applicationType == "broker") {
-
+            Get.offAll(()=> BrokerHomeScreen(), transition: Transition.zoom);
           } else if(UserDetails.applicationType == "builder") {
             Get.offAll(()=> BuilderHomeScreen(), transition: Transition.zoom);
           }
@@ -82,7 +83,7 @@ class SignInScreenController extends GetxController {
     } else if(UserDetails.applicationType == "seller") {
       return ApiUrl.sellerLoginApi;
     } else if(UserDetails.applicationType == "broker") {
-      return "ApiUrl.sellerLoginApi";
+      return ApiUrl.brokerLoginApi;
     } else if(UserDetails.applicationType == "builder") {
       return ApiUrl.builderLoginApi;
     }
