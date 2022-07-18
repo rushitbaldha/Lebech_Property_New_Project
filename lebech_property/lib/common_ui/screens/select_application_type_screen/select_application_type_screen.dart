@@ -158,7 +158,7 @@ class SelectApplicationTypeScreen extends StatelessWidget {
                           } else if(typeSelected == "seller") {
                             Get.offAll(()=> SignInScreen(), transition: Transition.zoom);
                           } else if(typeSelected == "broker") {
-                            // Get.offAll(()=> SignInScreen(), transition: Transition.zoom);
+                            Get.offAll(()=> SignInScreen(), transition: Transition.zoom);
                           } else if(typeSelected == "builder") {
                             Get.offAll(()=> SignInScreen(), transition: Transition.zoom);
                           }
