@@ -26,42 +26,45 @@ class BuilderCreateProjectScreen extends StatelessWidget {
           : SingleChildScrollView(
             child: GestureDetector(
               onTap: ()=> hideKeyBoard(),
-              child: Column(
-                children: [
-                  // Name Field
-                  ProjectNameFieldModule(),
-                  // City & Area
-                  ProjectCityDropDownModule(),
-                  ProjectAreaDropDownModule(),
-                  // Category
-                  ProjectCategoryDropDownModule(),
+              child: Form(
+                key: builderCreateProjectScreenController.formKey,
+                child: Column(
+                  children: [
+                    // Name Field
+                    ProjectNameFieldModule(),
+                    // City & Area
+                    ProjectCityDropDownModule(),
+                    ProjectAreaDropDownModule(),
+                    // Category
+                    ProjectCategoryDropDownModule(),
 
-                  // Price Range
-                  PriceRangeModule(),
-                  // Add Near By
-                  AddNearbyModule(),
+                    // Price Range
+                    PriceRangeModule(),
+                    // Add Near By
+                    AddNearbyModule(),
 
-                  // Quill Fields
-                  WhyConsiderProjectFieldModule(),
-                  MoreAboutProjectFieldModule(),
-                  AboutBuilderFieldModule(),
+                    // Quill Fields
+                    WhyConsiderProjectFieldModule(),
+                    MoreAboutProjectFieldModule(),
+                    AboutBuilderFieldModule(),
 
-                  // Yt Link
-                  YouTubeLinkModule(),
+                    // Yt Link
+                    YouTubeLinkModule(),
 
-                  // Facility Checkbox
-                  FacilitiesGridViewModule(),
+                    // Facility Checkbox
+                    FacilitiesGridViewModule(),
 
-                  ProjectAddressFieldModule(),
-                  ProjectOfficeAddressFieldModule(),
-                  ProjectPhoneNoFieldModule(),
-                  ProjectEmailFieldModule(),
+                    ProjectAddressFieldModule(),
+                    ProjectOfficeAddressFieldModule(),
+                    ProjectPhoneNoFieldModule(),
+                    ProjectEmailFieldModule(),
 
-                  const SizedBox(height: 20),
-                  ProjectSaveButton(),
-                  const SizedBox(height: 20),
-                ],
-              ).commonAllSidePadding(padding: 10),
+                    const SizedBox(height: 20),
+                    ProjectSaveButton(),
+                    const SizedBox(height: 20),
+                  ],
+                ).commonAllSidePadding(padding: 10),
+              ),
             ),
           ),
       ),

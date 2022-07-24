@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/builder/controllers/builder_drawer_controller/builder_drawer_controller.dart';
+import 'package:lebech_property/builder/controllers/builder_home_screen_controller/builder_home_screen_controller.dart';
 import 'package:lebech_property/builder/screens/builder_create_project_screen/builder_create_project_screen.dart';
 import 'package:lebech_property/builder/screens/builder_create_property_screen/builder_create_property_screen.dart';
 import 'package:lebech_property/buyer/screens/sign_in_screen/sign_in_screen.dart';
@@ -10,6 +11,7 @@ import 'package:lebech_property/common/extension_methods/extension_methods.dart'
 class BuilderDrawer extends StatelessWidget {
   BuilderDrawer({Key? key}) : super(key: key);
   final builderDrawerController = Get.put(BuilderDrawerController());
+  final builderHomeScreenController = Get.find<BuilderHomeScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +48,10 @@ class BuilderDrawer extends StatelessWidget {
 
   Widget createProjectModule() {
     return ListTile(
-      onTap: () {
+      onTap: () async {
         Get.back();
         Get.to(()=> BuilderCreateProjectScreen(), transition: Transition.leftToRight);
+        await builderHomeScreenController.getBuilderAllProjectFunction();
       },
       leading: const Icon(Icons.home_rounded),
       title: const Text(

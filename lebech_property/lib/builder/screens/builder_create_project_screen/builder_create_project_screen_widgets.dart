@@ -98,7 +98,6 @@ class ProjectCityDropDownModule extends StatelessWidget {
                 onChanged: (value) {
                   screenController.isLoading(true);
                   screenController.cityValue = value!;
-
                   screenController.isLoading(false);
                 },
               ),
@@ -312,7 +311,7 @@ class ProjectOfficeAddressFieldModule extends StatelessWidget {
               keyboardType: TextInputType.text,
               maxLines: 3,
               decoration: builderCreateProjectFieldDecoration(hintText: ''),
-              validator: (value) => FieldValidations().validateFullName(value!),
+              // validator: (value) => FieldValidations().validateFullName(value!),
             )
           ],
         )
@@ -490,9 +489,9 @@ class ProjectSaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        // if(screenController.formKey.currentState!.validate()) {
-        //   await onCLickFunction();
-        // }
+        if(screenController.formKey.currentState!.validate()) {
+          await screenController.createProjectFunction();
+        }
       },
       child: Container(
         decoration: BoxDecoration(
@@ -596,7 +595,7 @@ class _PriceRangeSingleItemModuleState extends State<PriceRangeSingleItemModule>
                     controller: priceRangeTypeController,
                     keyboardType: TextInputType.text,
                     decoration: builderCreateProjectFieldDecoration(hintText: 'Type (1BHK, 2BHK etc)'),
-                    validator: (value) => FieldValidations().validateFullName(value!),
+                    // validator: (value) => FieldValidations().validateFullName(value!),
                   ),
                 ],
               ),
@@ -611,7 +610,7 @@ class _PriceRangeSingleItemModuleState extends State<PriceRangeSingleItemModule>
                     controller: priceRangeSellPriceController,
                     keyboardType: TextInputType.number,
                     decoration: builderCreateProjectFieldDecoration(hintText: 'Price'),
-                    validator: (value) => FieldValidations().validateFullName(value!),
+                    // validator: (value) => FieldValidations().validateFullName(value!),
                   ),
                 ],
               ),
@@ -630,7 +629,7 @@ class _PriceRangeSingleItemModuleState extends State<PriceRangeSingleItemModule>
                     controller: priceRangeAreaController,
                     keyboardType: TextInputType.text,
                     decoration: builderCreateProjectFieldDecoration(hintText: 'Area in Sq. Ft'),
-                    validator: (value) => FieldValidations().validateFullName(value!),
+                    // validator: (value) => FieldValidations().validateFullName(value!),
                   ),
                 ],
               ),
@@ -886,7 +885,7 @@ class _AddNearBySingleModuleState extends State<AddNearBySingleModule> {
                     controller: addNearByController,
                     keyboardType: TextInputType.text,
                     decoration: builderCreateProjectFieldDecoration(hintText: 'Near By'),
-                    validator: (value) => FieldValidations().validateFullName(value!),
+                    // validator: (value) => FieldValidations().validateFullName(value!),
                   ),
                 ],
               ),
@@ -901,7 +900,7 @@ class _AddNearBySingleModuleState extends State<AddNearBySingleModule> {
                     controller: travelTimeController,
                     keyboardType: TextInputType.text,
                     decoration: builderCreateProjectFieldDecoration(hintText: 'Time to reach'),
-                    validator: (value) => FieldValidations().validateFullName(value!),
+                    // validator: (value) => FieldValidations().validateFullName(value!),
                   ),
                 ],
               ),
@@ -1145,7 +1144,7 @@ class _YouTubeVideoLinkModuleState extends State<YouTubeVideoLinkModule> {
           controller: ytVideoLinkController,
           keyboardType: TextInputType.text,
           decoration: builderCreateProjectFieldDecoration(hintText: 'YouTube Link'),
-          validator: (value) => FieldValidations().validateFullName(value!),
+          // validator: (value) => FieldValidations().validateFullName(value!),
         ),
         const SizedBox(height: 10),
         Row(

@@ -40,6 +40,7 @@ class ApiUrl {
   static const String getBuilderAllProjectsApi = apiMainPath + "builder/project_list";
   static const String createBuilderPropertyDetailsApi = apiMainPath + "builder/save_propert";
   static const String addProjectImagesApi = apiMainPath + "builder/add_image";
+  static const String addBuilderProjectApi = apiMainPath + "builder/create_project";
 
   /// Broker
   static const String brokerLoginApi = apiMainPath + "agent/login";
