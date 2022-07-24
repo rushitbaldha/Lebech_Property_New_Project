@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lebech_property/broker/controllers/broker_create_property_screen_controller/broker_create_property_screen_controller.dart';
+import 'package:lebech_property/builder/controllers/builder_create_project_screen_controller/builder_create_project_screen_controller.dart';
 import 'package:lebech_property/builder/controllers/builder_create_property_screen_controller/builder_create_property_screen_controller.dart';
 import 'package:lebech_property/buyer/controllers/direct_search_screen_controller/direct_search_screen_controller.dart';
 import 'package:lebech_property/buyer/controllers/search_screen_controller/search_screen_controller.dart';
@@ -264,6 +265,43 @@ InputDecoration builderCreatePropertyFieldDecoration(
 InputDecoration brokerCreatePropertyFieldDecoration(
     {required String hintText,
       required BrokerCreatePropertyScreenController screenController}) {
+  return InputDecoration(
+    hintText: hintText,
+    fillColor: Colors.white,
+    filled: true,
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.black),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.black),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.black),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.black),
+    ),
+    isDense: true,
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+    counterText: '',
+    // suffixIcon: IconButton(
+    //   onPressed: () async {
+    //     String searchText =
+    //     screenController.directSearchFieldController.text.trim();
+    //     await screenController.directSearchFunction(searchText: searchText);
+    //     hideKeyBoard();
+    //   },
+    //   icon: const Icon(Icons.search, size: 25, color: AppColors.greenColor),
+    // ),
+  );
+}
+
+InputDecoration builderCreateProjectFieldDecoration(
+    {required String hintText}) {
   return InputDecoration(
     hintText: hintText,
     fillColor: Colors.white,

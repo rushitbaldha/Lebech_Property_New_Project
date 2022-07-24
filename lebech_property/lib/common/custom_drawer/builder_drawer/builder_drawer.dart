@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lebech_property/builder/controllers/builder_drawer_controller/builder_drawer_controller.dart';
+import 'package:lebech_property/builder/screens/builder_create_project_screen/builder_create_project_screen.dart';
 import 'package:lebech_property/builder/screens/builder_create_property_screen/builder_create_property_screen.dart';
 import 'package:lebech_property/buyer/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:lebech_property/common/common_widgets.dart';
@@ -23,7 +24,7 @@ class BuilderDrawer extends StatelessWidget {
                 child: Column(
                   children: [
                     // homeModule(),
-                    // profileModule(),
+                    createProjectModule(),
                     createPropertyModule(),
                     // propertyListModule(),
                   ],
@@ -38,6 +39,24 @@ class BuilderDrawer extends StatelessWidget {
 
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget createProjectModule() {
+    return ListTile(
+      onTap: () {
+        Get.back();
+        Get.to(()=> BuilderCreateProjectScreen(), transition: Transition.leftToRight);
+      },
+      leading: const Icon(Icons.home_rounded),
+      title: const Text(
+        "Create Project",
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
         ),
       ),
     );

@@ -35,6 +35,7 @@ class Data {
     required this.state,
     required this.city,
     required this.area,
+    required this.category,
   });
 
   List<String> name;
@@ -42,6 +43,7 @@ class Data {
   List<BasicState> state;
   List<BasicCity> city;
   List<BasicArea> area;
+  List<BasicCategory> category;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     name: List<String>.from(json["name"].map((x) => x ?? {})),
@@ -49,6 +51,7 @@ class Data {
     state: List<BasicState>.from(json["state"].map((x) => BasicState.fromJson(x ?? {}))),
     city: List<BasicCity>.from(json["city"].map((x) => BasicCity.fromJson(x ?? {}))),
     area: List<BasicArea>.from(json["area"].map((x) => BasicArea.fromJson(x ?? {}))),
+    category: List<BasicCategory>.from(json["category"].map((x) => BasicCategory.fromJson(x ?? {}))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -57,6 +60,7 @@ class Data {
     "state": List<dynamic>.from(state.map((x) => x.toJson())),
     "city": List<dynamic>.from(city.map((x) => x.toJson())),
     "area": List<dynamic>.from(area.map((x) => x.toJson())),
+    "category": List<dynamic>.from(category.map((x) => x.toJson())),
   };
 }
 
@@ -148,7 +152,6 @@ class BasicState {
   };
 }
 
-
 class BasicCity {
   BasicCity({
     this.id,
@@ -170,5 +173,25 @@ class BasicCity {
     "id": id,
     "name": name,
     "state_id": stateId,
+  };
+}
+
+class BasicCategory {
+  BasicCategory({
+    this.id,
+    this.name,
+  });
+
+  int? id;
+  String? name;
+
+  factory BasicCategory.fromJson(Map<String, dynamic> json) => BasicCategory(
+    id: json["id"] ?? 0,
+    name: json["name"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
   };
 }
