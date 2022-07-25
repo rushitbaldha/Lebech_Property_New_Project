@@ -47,7 +47,11 @@ class BuilderProjectListModule extends StatelessWidget {
               ),
               Expanded(
                 child: GestureDetector(
-                  onTap: () { Fluttertoast.showToast(msg: "Clicked On Deactivate Button");},
+                  onTap: () async {
+                    await builderHomeScreenController.changeProjectStatus(
+                        propertySingleItem.id
+                    );
+                  },
                   child: const Text(
                     "Deactivate",
                     textAlign: TextAlign.end,

@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:lebech_property/builder/models/builder_home_screen_models/project_list_model.dart';
+import 'package:lebech_property/builder/models/builder_home_screen_models/project_status_change_model.dart';
 import 'package:lebech_property/common/constants/api_header.dart';
 import 'package:lebech_property/common/constants/api_url.dart';
+import 'package:lebech_property/common/user_details/user_details.dart';
 
 class BuilderHomeScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -42,6 +45,47 @@ class BuilderHomeScreenController extends GetxController {
       log("Get All Project Error ::: $e");
     } finally {
       isLoading(false);
+    }
+  }
+
+  Future<void> changeProjectStatus(int projectId) async {
+    String url = ApiUrl.changeProjectStatus;
+    log("Change Project Status : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "project_id" : "$projectId",
+        "status" : "false"
+      };
+      log("data : $data");
+
+      Map<String, String> header = <String,String> {
+        'Authorization': "Bearer ${UserDetails.userToken}"
+      };
+
+      http.Response response = await http.post(
+          Uri.parse(url),
+          body: data,
+        headers: header,
+      );
+      log("Change Status Response Body : ${response.body}");
+
+      ProjectStatusChangeModel projectStatusChangeModel = ProjectStatusChangeModel.fromJson(json.decode(response.body));
+      isSuccessStatus = projectStatusChangeModel.status.obs;
+
+      if(isSuccessStatus.value) {
+        Fluttertoast.showToast(msg: "Project Deactivated Successfully!");
+
+      } else {
+        log("Change Project Status Else");
+      }
+
+
+    } catch(e) {
+      log("Change Project Status Error ::: $e");
+    } finally {
+      // isLoading(false);
+      await getBuilderAllProjectFunction();
     }
   }
 
